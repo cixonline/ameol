@@ -1,0 +1,92 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "amctrlrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "amctrlrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""amctrlv.rc""\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_VSPLITCUR           CURSOR  DISCARDABLE     "Cursors\\HSPLIT.CUR"
+IDC_STOPCURSOR          CURSOR  DISCARDABLE     "Cursors\\STOPCURS.CUR"
+IDC_MOVECURSOR          CURSOR  DISCARDABLE     "Cursors\\MOVECURS.CUR"
+IDC_COPYCURSOR          CURSOR  DISCARDABLE     "Cursors\\COPYCURS.CUR"
+IDC_DRAGCURSOR          CURSOR  DISCARDABLE     "Cursors\\DRAGCURS.CUR"
+IDC_HSPLITCUR           CURSOR  DISCARDABLE     "Cursors\\VSPLIT.CUR"
+IDC_HOTSPOT             CURSOR  DISCARDABLE     "Cursors\\hotspot.cur"
+IDC_NONODROP            CURSOR  DISCARDABLE     "Cursors\\NOLISTDR.CUR"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_INSERTICON          ICON    DISCARDABLE     "Icons\\INSERTIC.ICO"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "amctrlv.rc"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

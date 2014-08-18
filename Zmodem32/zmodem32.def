@@ -1,0 +1,10 @@
+LIBRARY   ZMODEM32 BASE=0x760000
+
+HEAPSIZE  1024
+
+EXPORTS
+    Aftp_Send           @1
+    Aftp_Receive        @2
+    Aftp_Cancel         @3
+    Aftp_Describe       @4
+    Aftp_Commands       @5

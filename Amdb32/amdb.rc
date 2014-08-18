@@ -1,0 +1,371 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "amdbrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDDLG_CONFPICKER DIALOG DISCARDABLE  0, 0, 206, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Forums List"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&List of Forums:",-1,7,7,97,8
+    CONTROL         "",IDD_LIST,"amxctl_SysTreeView",WS_TABSTOP | 0x3,7,17,
+                    139,138
+    DEFPUSHBUTTON   "OK",IDOK,155,7,44,14
+    PUSHBUTTON      "Cancel",IDCANCEL,155,24,44,14
+    PUSHBUTTON      "&Help",IDD_HELP,155,42,44,14
+END
+
+IDDLG_CHECKANDREPAIR DIALOG DISCARDABLE  0, 0, 204, 177
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Checking Folder"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_CHECK,-1,9,7,20,20
+    RTEXT           "&Folder:",IDD_TITLE,38,16,24,8
+    COMBOBOX        IDD_FOLDERLIST,64,13,132,92,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Options",IDD_OPTIONS,7,37,190,40
+    CONTROL         "&Automatically fix any errors found",IDD_AUTOFIX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,49,125,10
+    CONTROL         "&Report progress to REPAIR.LOG file",IDD_GENREPORT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,63,150,10
+    LTEXT           "",IDD_CHECKING,12,124,173,8
+    CONTROL         "",IDD_GAUGE,"amxctl_progress",0x0,7,136,190,12
+    PUSHBUTTON      "&Start",IDOK,36,156,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,91,156,50,14
+    PUSHBUTTON      "&Help",IDD_HELP,147,156,50,14
+    LTEXT           "",IDD_CATEGORYNAME,59,84,120,9,SS_NOPREFIX
+    LTEXT           "Category:",IDD_CHECKCATEGORYNAME1,23,84,30,9
+    LTEXT           "Folder:",IDD_CHECKCATEGORYNAME2,32,96,21,9
+    LTEXT           "",IDD_FOLDERNAME,59,96,120,9,SS_NOPREFIX
+    LTEXT           "Topic:",IDD_CHECKCATEGORYNAME3,33,108,20,9
+    LTEXT           "",IDD_TOPICNAME,59,108,120,9,SS_NOPREFIX
+END
+
+IDDLG_PASSWORD DIALOG DISCARDABLE  0, 0, 181, 63
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Password"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Enter password for:",-1,7,7,76,8
+    LTEXT           "(Name)",IDD_NAME,7,18,119,8
+    EDITTEXT        IDD_PASSWORD,7,44,118,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,132,7,42,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,24,42,14
+    PUSHBUTTON      "&Help",IDD_HELP,132,42,42,14
+END
+
+IDDLG_CHECKRESULT DIALOG DISCARDABLE  0, 0, 239, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Check"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "&Finished",IDCANCEL,85,49,70,14
+    ICON            IDI_INFOICON,-1,7,7,18,20
+    LTEXT           "Static",IDD_TEXT,41,7,191,32
+END
+
+IDDLG_DBBUILD DIALOG DISCARDABLE  0, 0, 203, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Building Database"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_INFOICON,IDD_CONFERENCE,7,7,18,20
+    LTEXT           "Ameol is rebuilding your database. Please wait.",
+                    IDD_CONFERENCE,39,7,157,16,SS_NOPREFIX
+    RTEXT           "Folder:",IDD_CONFERENCE,39,32,48,8
+    RTEXT           "Topic:",IDD_CONFERENCE,39,48,48,8
+    RTEXT           "Message:",IDD_CONFERENCE,39,64,48,8
+    LTEXT           "",IDD_CONFERENCE,93,32,91,8
+    LTEXT           "",IDD_TOPIC,93,48,91,8
+    LTEXT           "",IDD_MESSAGE,93,64,91,8
+END
+
+IDDLG_UPGRADE DIALOG DISCARDABLE  0, 0, 203, 57
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Upgrading Database"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_INFOICON,-1,7,7,18,20
+    LTEXT           "Please wait while Ameol upgrades the database format.",
+                    -1,39,7,144,16,SS_NOPREFIX
+    CONTROL         "",IDD_GAUGE,"amxctl_progress",0x1,25,35,153,12
+END
+
+IDDLG_CHECKINGSPACE DIALOG DISCARDABLE  0, 0, 203, 57
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Upgrading Database"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_INFOICON,-1,7,7,18,20
+    LTEXT           "Ameol is determining how much disk space is needed for the upgrade...",
+                    -1,39,7,157,16,SS_NOPREFIX
+    CONTROL         "",IDD_GAUGE,"amxctl_progress",0x1,25,35,153,12
+END
+
+IDDLG_RETHREAD DIALOG DISCARDABLE  0, 0, 204, 35
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Rethreading"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDD_TOPIC,7,7,190,8
+    CONTROL         "",IDD_GAUGE,"amxctl_progress",0x0,7,20,190,8
+END
+
+IDDLG_CHECKREPORTRESULT DIALOG DISCARDABLE  0, 0, 239, 70
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Check"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&View Repair Log",IDD_VIEW,45,49,70,14
+    PUSHBUTTON      "&Finished",IDCANCEL,123,49,70,14
+    ICON            IDI_INFOICON,-1,7,7,18,20
+    LTEXT           "Static",IDD_TEXT,41,7,191,32
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "amdbrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""amdbv.rc""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_DATABASE            BITMAP  DISCARDABLE     "Bitmaps\\CATEGORY.BMP"
+IDB_DATABASESELECTED    BITMAP  DISCARDABLE     "Bitmaps\\SELECTED.BMP"
+IDB_FOLDER              BITMAP  DISCARDABLE     "Bitmaps\\CONFEREN.BMP"
+IDB_FOLDERSELECTED      BITMAP  DISCARDABLE     "Bitmaps\\FOLDRSEL.BMP"
+IDB_CIXFOLDER_OLD       BITMAP  DISCARDABLE     "Bitmaps\\CIXFOLDE.BMP"
+IDB_LOCALTOPIC          BITMAP  DISCARDABLE     "Bitmaps\\LOCALTOP.BMP"
+IDB_MAILFOLDER          BITMAP  DISCARDABLE     "Bitmaps\\MAILFOLD.BMP"
+IDB_NEWSFOLDER          BITMAP  DISCARDABLE     "Bitmaps\\TOPIC.BMP"
+IDB_UNTYPEDFOLDER       BITMAP  DISCARDABLE     "Bitmaps\\UNTYPEDF.BMP"
+IDB_CIXFOLDER           BITMAP  DISCARDABLE     "Bitmaps\\BITMAP13.BMP"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_CHECK               ICON    DISCARDABLE     "Icons\\REPAIR.ICO"
+IDI_INFOICON            ICON    DISCARDABLE     "Icons\\Info.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDDLG_CHECKANDREPAIR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 197
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+
+    IDDLG_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 56
+    END
+
+    IDDLG_CHECKRESULT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+
+    IDDLG_DBBUILD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDDLG_UPGRADE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDDLG_CHECKINGSPACE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+    END
+
+    IDDLG_RETHREAD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 197
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 28
+    END
+
+    IDDLG_CHECKREPORTRESULT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 63
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STR443              "Your %s file is getting very large. Do you want to empty it ?"
+    IDS_STR161              "Ameol cannot create the repair log file: %s\n\nAmeol will continue to check and repair, but it will not generate a status report."
+    IDS_STR160              "Ameol Database Check Started - %s %s\r\n"
+    IDS_STR495              "Ameol will attempt to rebuild the index from the individual message files and will restore message threading. Continue?"
+    IDS_STR496              "Ameol could not find the database index file.\n\nAmeol can attempt to rebuild the index from the individual message files and will restore message threading. Continue?"
+    IDS_STR433              "%u errors found."
+    IDS_STR195              "No errors found."
+    IDS_STR162              "Ameol Database Check Complete - %s %s\r\n\r\n"
+    IDS_STR176              " Please refer to the REPAIR.LOG file in your Ameol directory for details of these fixes."
+    IDS_STR168              "Ameol detected problems with your database that have been fixed."
+    IDS_STR194              "Ameol detected problems with your database."
+    IDS_STR167              "Ameol has not detected any problems with your database"
+    IDS_STR452              "Corrected invalid default purge options."
+    IDS_STR164              "Missing forum filename"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STR655              "Corrupted forum signature caused by defective beta code"
+    IDS_STR166              "Missing forum file"
+    IDS_STR613              "Topic file(s) corrupted"
+    IDS_STR451              "Invalid purge options."
+    IDS_STR180              "Wrong value of lowest message in topic"
+    IDS_STR181              "Wrong value of highest message in topic"
+    IDS_STR438              "Incorrect count of messages"
+    IDS_STR173              "Incorrect count of marked messages"
+    IDS_STR174              "Incorrect count of unread messages"
+    IDS_STR175              "Incorrect count of priority messages"
+    IDS_STR518              "Incorrect total count of unread priority messages."
+    IDS_STR519              "Option: Errors will automatically be corrected\r\n"
+    IDS_STR520              "*** Deleted by Ameol Purge ***"
+    IDS_STR145              "Stop checking folder?"
+    IDS_STR188              "Write error writing to drive %c:"
+    IDS_STR434              "%u errors found and fixed."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STR435              "Checking folder..."
+    IDS_STR436              "Index file rebuilt because of errors"
+    IDS_STR437              "Failed to rebuild index file"
+    IDS_STR439              "Index file rebuilt at users request"
+    IDS_STR521              "The message file for this folder (%s) cannot be found or opened. Click OK to delete this folder or Cancel to leave it"
+    IDS_STR522              "Write error writing to drive"
+    IDS_STR523              "Incorrect password"
+    IDS_STR524              "Error reading user database. Defaults loaded"
+    IDS_STR525              "Cannot create a backup file (%s) from your database index file. Without a backup file, Ameol cannot recover from any damage to your main database index file. Are you sure you want to continue?"
+    IDS_STR526              "Rethreaded message %lu to message %lu\r\n"
+    IDS_STR527              "Fixed incorrect message ID %s\r\n"
+    IDS_STR528              "Not enough disk space required to perform the conversion.\n\nYou only have %s bytes of disk space free. Ameol needs %s bytes more."
+    IDS_STR529              "Database conversion complete.\n\nYour old index files have been saved to the data directory with the extension .~A~. If there are no problems with your database, you may delete them."
+    IDS_STR530              "Your database format has changed with this build of Ameol.\n\nAmeol will need to convert the database format. Click Yes to begin the conversion or No to exit Ameol"
+    IDS_STR531              "Cannot open index file for %s/%s. Pausing 2 seconds and retrying."
+    IDS_STR532              "The index file for %s/%s has become corrupted. Please run Check on the topic to attempt to repair the corruption."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STR533              "Rethreading %s/%s"
+    IDS_STR534              "Ameol is about to update your database format.\n\nDo you wish to continue?"
+    IDS_STR55               "*** MESSAGE CANNOT BE DISPLAYED *** (topic files read-only?)"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STR1240             "Click Start to check the selected item"
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "amdbv.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

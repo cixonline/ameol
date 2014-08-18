@@ -1,0 +1,41 @@
+LIBRARY   AMCTRL32 BASE=0x640000
+
+HEAPSIZE  1024
+
+EXPORTS
+    Amctl_Init                              @2
+    Amctl_CreateStatusbar                   @3
+    Amctl_SendNotify                        @4
+    Amctl_PropertySheet                     @5
+    Amctl_DrawInsert                        @6
+    Amctl_LBItemFromPt                      @7
+    Amctl_MakeDragList                      @8
+    Amctl_ImageList_Create                  @9
+    Amctl_ImageList_Destroy                 @10
+    Amctl_ImageList_AddMasked               @11
+    Amctl_ImageList_ReplaceIcon             @12
+    Amctl_ImageList_AddFromImageList        @13
+    Amctl_ImageList_Add                     @14
+    Amctl_ImageList_GetImageCount           @15
+    Amctl_ImageList_GetBkColor              @16
+    Amctl_ImageList_SetBkColor              @17
+    Amctl_ImageList_GetImageInfo            @18
+    Amctl_ImageList_LoadImage               @19
+    Amctl_CreateToolbar                     @20
+    Amctl_NewGetKeyNameText                 @21
+    Amctl_ImageList_Draw                    @25
+    Amctl_CreateUpDownControl               @34
+    Amctl_CreateSplitterWindow              @38
+    Amctl_GetAmctrlsVersion                 @39
+    Amctl_ImageList_DragMove                @40
+    Amctl_ImageList_EndDrag                 @41
+    Amctl_ImageList_BeginDrag               @42
+    Amctl_ImageList_DragEnter               @43
+    Amctl_ImageList_DragLeave               @44
+    GetBuildVersion                         @45
+    Amctl_EnableControlsAnimation           @46
+    Amctl_SetControlWheelScrollLines        @47
+    Amctl_LoadDIBBitmap                     @48
+    Amctl_IsHotlinkPrefix                   @49
+    Amctl_CountFormatChars                  @50
+    Amctl_GetControlWheelScrollLines        @51

@@ -1,0 +1,38 @@
+LIBRARY   AMOB32 BASE=0x730000
+
+HEAPSIZE  1024
+
+EXPORTS
+    Amob_DerefObject
+    Amob_FreeRefObject
+    Amob_CreateRefString
+    Amob_CreateRefObject
+    Amob_SaveRefObject
+    Amob_CopyRefObject
+    Amob_ClearMemory
+    Amob_RemoveObject
+    Amob_Commit
+    Amob_Find
+    Amob_Delete
+    Amob_New
+    Amob_RegisterObjectClass
+    Amob_GetOb
+    Amob_GetCount
+    Amob_GetObInfo
+    Amob_SetObInfo
+    Amob_Edit
+    Amob_Exec
+    Amob_Describe
+    Amob_IsEditable
+    Amob_Uncommit
+    Amob_GetObjectType
+    Amob_FindNext
+    GetBuildVersion
+    Amob_SaveDataObject
+    Amob_LoadDataObject
+    Amob_GetByID
+    Amob_GetNextObjectID
+    Amob_GetEditWindow
+    Amob_SetEditWindow
+    Amob_ResyncObjectIDs
+    Amob_SaveOutBasket

@@ -1,0 +1,13 @@
+#define  idsSIGNUP_P0         799
+#define  idsSIGNUP_P1         800
+#define  idsSIGNUP_P2         801
+#define  idsSIGNUP_P3         802
+#define  idsSIGNUP_P4         803
+#define  idsSIGNUP_P5         804
+#define  idsSIGNUP_P6         805
+#define  idsSIGNUP_P7         806
+#define  idsSIGNUP_P7_TAPI    807
+#define  idsSIGNUP_P9         808
+#define  idsSIGNUP_P10        809
+#define  idsSIGNUP_P11        810
+#define  idsSIGNUP_P12        811

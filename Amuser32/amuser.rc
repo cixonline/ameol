@@ -1,0 +1,105 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "amuserrc.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "windows.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDDLG_CHANGEDIR DIALOG DISCARDABLE  0, 0, 189, 173
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Directory"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&New Directory:",IDD_PROMPT,6,6,173,8
+    EDITTEXT        IDD_EDIT,6,17,172,12,ES_AUTOHSCROLL
+    LTEXT           "&Directories:",-1,6,37,96,8
+    LISTBOX         IDD_DIRECTORYLIST,6,48,104,90,LBS_OWNERDRAWFIXED | 
+                    LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Driv&es:",-1,6,145,65,8
+    COMBOBOX        IDD_DRIVELIST,6,155,104,56,CBS_DROPDOWNLIST | 
+                    CBS_OWNERDRAWFIXED | CBS_HASSTRINGS | WS_VSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,128,48,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,64,50,14
+    PUSHBUTTON      "Network...",IDD_NETWORK,128,80,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "&Help",IDD_HELP,128,107,50,14
+    LISTBOX         IDD_TEMPLIST,138,133,30,30,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | NOT WS_VISIBLE | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "amuserrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""windows.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""amuserv.rc""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_DRIVECDROM          BITMAP  DISCARDABLE     "Bitmaps\\CDROM.BMP"
+IDB_DRIVEFLOPPY         BITMAP  DISCARDABLE     "Bitmaps\\FLOPPY.BMP"
+IDB_DRIVEHARD           BITMAP  DISCARDABLE     "Bitmaps\\HARDDRV.BMP"
+IDB_DRIVENETWORK        BITMAP  DISCARDABLE     "Bitmaps\\NETDRIVE.BMP"
+IDB_DRIVERAM            BITMAP  DISCARDABLE     "Bitmaps\\RAMDRIVE.BMP"
+IDB_FOLDERCLOSED        BITMAP  DISCARDABLE     "Bitmaps\\FLDCLOSE.BMP"
+IDB_FOLDEROPEN          BITMAP  DISCARDABLE     "Bitmaps\\FLDOPEN2.BMP"
+IDB_FOLDEROPENSELECT    BITMAP  DISCARDABLE     "Bitmaps\\FLDSEL.BMP"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "amuserv.rc"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
