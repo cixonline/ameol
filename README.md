@@ -14,7 +14,7 @@ need a full Ameol installation for the remaining data files.
 
 To Build
 --------
-Open ameol232.sln in Visual Studio 2008 and do a full rebuild.
+Open ameol.sln in Visual Studio 2008 and do a full rebuild.
 
 All built binaries are copied to the Build folder off the root along with
 any program debug database files.
