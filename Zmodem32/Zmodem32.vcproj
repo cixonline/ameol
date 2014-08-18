@@ -111,7 +111,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\$(TargetFileName) ..\Build\$(TargetName).afp"
+				CommandLine="copy $(OutDir)\$(TargetFileName) $(SolutionDir)\Build\$(TargetName).afp"
 			/>
 		</Configuration>
 		<Configuration
@@ -210,7 +210,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\$(TargetFileName) ..\Build\$(TargetName).afp"
+				CommandLine="copy $(OutDir)\$(TargetFileName) $(SolutionDir)\Build\$(TargetName).afp"
 			/>
 		</Configuration>
 	</Configurations>
