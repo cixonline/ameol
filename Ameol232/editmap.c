@@ -36,6 +36,9 @@ HGLOBAL hgTable = NULL;          /* Memory block listing acronyms */
 
 #define  IDT_CLICKTIMER          42
 
+// Maximum size of an acronym expansion string
+#define  MAX_ACRONYM             512
+
 static const int SCE_STYLE_ORANGE = 11;
 static const int SCE_STYLE_PURPLE = 12;
 static const int SCE_STYLE_BLUE   = 13;
@@ -483,7 +486,7 @@ char    lPath[_MAX_PATH];
       return( FALSE );
 }
 
-BOOL WINAPI LookupAcronym(LPSTR sWord, LPSTR result)
+BOOL WINAPI LookupAcronym(LPSTR sWord, LPSTR result, int cchMax)
 {
 LPSTR lps;
 DWORD i,d;
@@ -497,7 +500,7 @@ DWORD i,d;
          if( lstrcmp( lps, sWord ) == 0 )
          {
                lps += lstrlen( lps ) + 1;
-               strcpy(result, lps);
+               strncpy_s(result, cchMax, lps, _TRUNCATE);
                GlobalUnlock( hgTable );
                return TRUE;
          }
@@ -707,7 +710,6 @@ LRESULT FASTCALL Lexer_OnNotify( HWND hwnd, int idCode, LPNMHDR lpNmHdr )
       {
          SCNotificationStruct * notify = (SCNotificationStruct*)lpNmHdr;
          char lBuf[255];
-         char lFound[255];
          char ch;
          int start = notify->position;
          int i = 0;
@@ -729,19 +731,19 @@ LRESULT FASTCALL Lexer_OnNotify( HWND hwnd, int idCode, LPNMHDR lpNmHdr )
             if( lEdit == lWnd )
             {
                ch = (char)SendMessage(lEdit, SCI_GETCHARAT, start, 0);
-               while( start > 0 && isalpha(ch) )
+               while( start > 0 && isalnum(ch) )
                {
                   ch = (char)SendMessage(lEdit, SCI_GETCHARAT, start, 0);
                   start--;
                }
-               while ( !isalpha(ch) && ch != '\x0' )
+               while ( !isalnum(ch) && ch != '\x0' )
                {
                   start++;
                   ch = (char)SendMessage(lEdit, SCI_GETCHARAT, start, 0);
                }
                
                ch = (char)SendMessage(lEdit, SCI_GETCHARAT, start, 0);
-               while(isalpha(ch) && ch != '\x0' && i < 254)
+               while(isalnum(ch) && ch != '\x0' && i < 254)
                {
                   ch = (char)SendMessage(lEdit, SCI_GETCHARAT, start, 0);
                   start++;
@@ -749,17 +751,20 @@ LRESULT FASTCALL Lexer_OnNotify( HWND hwnd, int idCode, LPNMHDR lpNmHdr )
                }
                lBuf[i] = '\x0';
                i--;
-               while(!isalpha(lBuf[i]) && i > 0)
+               while(!isalnum(lBuf[i]) && i > 0)
                {
                   i--;
                }
                lBuf[i+1] = '\x0';
 
-               lFound[0] = '\x0';
                if( lBuf[i] != '\x0' && lBuf[0] != '\x0')
                {
-                  if( LookupAcronym(lBuf, (LPSTR)&lFound) ) 
-                     SendMessage(lEdit, SCI_CALLTIPSHOW, notify->position, (LPARAM)(LPSTR)&lFound);
+                  char * lFound = malloc(MAX_ACRONYM);
+                  if(lFound != NULL && LookupAcronym(lBuf, lFound, MAX_ACRONYM) ) 
+                  {
+                     SendMessage(lEdit, SCI_CALLTIPSHOW, notify->position, (LPARAM)lFound);
+                     free(lFound);
+                  }
                }
             }
          }
