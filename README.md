@@ -8,8 +8,8 @@ solutions file provided is for Visual Studio 2008 which is the minimum
 supported version.
 
 Only the main Ameol executable and support DLLs are issued. At this point
-we are not releasing the source code for the installer or addons. You will
-need a full Ameol installation for the remaining data files.
+we are not releasing the source code for the installer. You will need a
+full Ameol installation for the remaining data files.
 
 
 To Build
@@ -53,10 +53,3 @@ The open source code IS the main Ameol source now. All official builds
 will use this, and any changes made by CIX staff will go into the open
 source tree by default. We will make official builds available when we deem
 that there are sufficient changes to warrant an upgrade.
-
-Addons
-------
-As stated, none of the official CIX addons are released as open source yet.
-This is mainly due to needing to get them into a state where they can be
-released in this way. We are hoping to have this accomplished soon enough
-though.
