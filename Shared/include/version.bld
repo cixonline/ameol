@@ -4,4 +4,4 @@
 #define IS_BETA                 1
 #define BETA_EXPIRY_DAY         31 
 #define BETA_EXPIRY_MONTH       12 
-#define BETA_EXPIRY_YEAR        2014 
+#define BETA_EXPIRY_YEAR        2017
