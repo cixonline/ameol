@@ -497,16 +497,24 @@ void WINAPI EXPORT Amuser_ParseWindowState( char * pszStateStr, LPRECT lprc, DWO
  */
 int FASTCALL ReadInteger( char ** ppszStr )
 {
+   BOOL isNegative = FALSE;
    char * pszStr;
    int nValue;
 
    pszStr = *ppszStr;
    nValue = 0;
+   if (*pszStr == '-')
+      {
+      isNegative = TRUE;
+      ++pszStr;
+      }
    while( isdigit( *pszStr ) )
       nValue = nValue * 10 + ( *pszStr++ - '0' );
    if( *pszStr == ',' )
       ++pszStr;
    *ppszStr = pszStr;
+   if (isNegative)
+       nValue = -nValue;
    return( nValue );
 }
 
