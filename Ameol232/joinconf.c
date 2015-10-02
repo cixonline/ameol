@@ -82,7 +82,8 @@ PTL FASTCALL CmdJoinConference( HWND hwnd, char * pszConfName )
 
          if( ptl != NULL) // 20060428 - 2.56.2051 FS#126
          {
-            if( strstr( pszConfName, "/" ) != NULL) // 20060308 - 2.56.2049.13
+            HPSTR fullPath = Amob_DerefObject(&jo.recConfName);
+            if( strstr( fullPath, "/" ) != NULL) // 20060308 - 2.56.2049.13
             {
                if( NULL != ptl )
                {
