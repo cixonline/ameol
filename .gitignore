@@ -14,6 +14,9 @@
 *.so
 *.so.*
 *.dylib
+!winsparkle.dll
+!regexp.dll
+!regexp9x.dll
 
 # Executables
 *.exe
