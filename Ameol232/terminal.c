@@ -2344,9 +2344,11 @@ void FASTCALL TerminalFrame_OnSize( HWND hwnd, UINT state, int cx, int cy )
 
           /* Save the new window state to the configuration file.
            */
-          Amuser_CreateWindowState( sz, hwnd );
-          wsprintf( szSection, "%s Properties", ptwnd->szName );
-          Amuser_WritePPString( szSection, "Window", sz );
+          if (Amuser_CreateWindowState( sz, hwnd ))
+              {
+              wsprintf( szSection, "%s Properties", ptwnd->szName );
+              Amuser_WritePPString( szSection, "Window", sz );
+              }
           }
      FORWARD_WM_SIZE( hwnd, state, cx, cy, Adm_DefMDIDlgProc );
 }
@@ -2360,9 +2362,11 @@ void FASTCALL TerminalFrame_OnMove( HWND hwnd, int x, int y )
      char sz[ 40 ];
 
      ptwnd = GetTerminalWnd( hwnd );
-     Amuser_CreateWindowState( sz, hwnd );
-     wsprintf( szSection, "%s Properties", ptwnd->szName );
-     Amuser_WritePPString( szSection, "Window", sz );
+     if (Amuser_CreateWindowState( sz, hwnd ))
+         {
+         wsprintf( szSection, "%s Properties", ptwnd->szName );
+         Amuser_WritePPString( szSection, "Window", sz );
+         }
      FORWARD_WM_MOVE( hwnd, x, y, Adm_DefMDIDlgProc );
 }
 

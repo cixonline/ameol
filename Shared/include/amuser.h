@@ -164,7 +164,7 @@ typedef struct _finddata32_t FINDDATA;
 void WINAPI Amuser_WriteWindowState( LPSTR, HWND );
 void WINAPI Amuser_ReadWindowState( LPSTR, LPRECT, DWORD FAR * );
 void WINAPI Amuser_ParseWindowState( LPSTR, LPRECT, DWORD FAR * );
-void WINAPI Amuser_CreateWindowState( LPSTR, HWND );
+BOOL WINAPI Amuser_CreateWindowState( LPSTR, HWND );
 
 HFIND WINAPI Amuser_FindFirst( LPSTR, UINT, FINDDATA FAR * );
 HFIND WINAPI Amuser_FindNext( HFIND, FINDDATA FAR * );

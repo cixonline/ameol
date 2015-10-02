@@ -517,14 +517,14 @@ void WINAPI EXPORT Amuser_WriteWindowState( char * pszWndName, HWND hwnd )
 {
    char sz[ 40 ];
 
-   Amuser_CreateWindowState( sz, hwnd );
-   Amuser_WritePPString( "Windows", pszWndName, sz );
+   if (Amuser_CreateWindowState( sz, hwnd ))
+       Amuser_WritePPString( "Windows", pszWndName, sz );
 }
 
 /* This function compiles a window state string for the
  * specified window.
  */
-void WINAPI EXPORT Amuser_CreateWindowState( char * pszStateStr, HWND hwnd )
+BOOL WINAPI EXPORT Amuser_CreateWindowState( char * pszStateStr, HWND hwnd )
 {
    WINDOWPLACEMENT wndpl;
    int wState;
@@ -534,18 +534,22 @@ void WINAPI EXPORT Amuser_CreateWindowState( char * pszStateStr, HWND hwnd )
    int height;
 
    wndpl.length = sizeof(WINDOWPLACEMENT);
-   GetWindowPlacement( hwnd, &wndpl );
-   if( wndpl.showCmd == SW_SHOWMINIMIZED )
-      wState = 1;
-   else if( wndpl.showCmd == SW_SHOWMAXIMIZED )
-      wState = 2;
-   else
-      wState = 0;
-   left = wndpl.rcNormalPosition.left;
-   top = wndpl.rcNormalPosition.top;
-   width = wndpl.rcNormalPosition.right - wndpl.rcNormalPosition.left;
-   height = wndpl.rcNormalPosition.bottom - wndpl.rcNormalPosition.top;
-   wsprintf( pszStateStr, "%u,%u,%u,%u,%u", wState, left, top, width, height );
+   if (GetWindowPlacement( hwnd, &wndpl ))
+       {
+       if( wndpl.showCmd == SW_SHOWMINIMIZED )
+          wState = 1;
+       else if( wndpl.showCmd == SW_SHOWMAXIMIZED )
+          wState = 2;
+       else
+          wState = 0;
+       left = wndpl.rcNormalPosition.left;
+       top = wndpl.rcNormalPosition.top;
+       width = wndpl.rcNormalPosition.right - wndpl.rcNormalPosition.left;
+       height = wndpl.rcNormalPosition.bottom - wndpl.rcNormalPosition.top;
+       wsprintf( pszStateStr, "%d,%d,%d,%d,%u", wState, left, top, width, height );
+       return TRUE;
+       }
+   return FALSE;
 }
 
 /* This function converts an input filename into one valid for the current
