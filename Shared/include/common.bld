@@ -4,7 +4,7 @@
 #define STRINGIZE(s)        STRINGIZE2(s)
 #define MAIN_PROGRAM_32     "AMEOL232.EXE\0"
 #define MAIN_PROGRAM        "AMEOL2.EXE\0"
-#define COPYRIGHT_STRING    "Copyright © 1993-2014 CIX Online Ltd\0"
+#define COPYRIGHT_STRING    "Copyright © 1993-2015 CIX Online Ltd\0"
 #define PRODUCT_NAME        "Ameol\0"
 #define PRODUCT_VERSION     STRINGIZE(PRODUCT_MAX_VER) "." STRINGIZE(PRODUCT_MIN_VER) "." STRINGIZE(PRODUCT_BUILD) "\0"
 #define TRADEMARK_STRING    "Ameol(TM) is a trademark of CIX Online Ltd\0"

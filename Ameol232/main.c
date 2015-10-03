@@ -1,6 +1,6 @@
 /* MAIN.C - Ameol main program
  *
- * Copyright 1993-2014 CIX Online Ltd, All Rights Reserved
+ * Copyright 1993-2015 CIX Online Ltd, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -9276,7 +9276,7 @@ void FASTCALL CmdCIXSupport ( HWND hwnd )
 void FASTCALL CmdCheckForUpdates ( HWND hwnd )
 {
 #ifdef IS_BETA
-   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/ameol/beta/appcast.xml");
+   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/release/appcast.xml");
 #else
    win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/ameol/release/appcast.xml");
 #endif

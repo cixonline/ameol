@@ -1,6 +1,6 @@
 /* PRINTMSG.C - Code that prints one or more messages in a topic
  *
- * Copyright 1993-2014 CIX Online Ltd, All Rights Reserved
+ * Copyright 1993-2015 CIX Online Ltd, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
