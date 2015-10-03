@@ -1478,9 +1478,7 @@ DWORD WINAPI EXPORT Amdb_MarkTopicRead( PTL ptl )
          {
          /* BUGBUG
           * This doesn't take read-locked messages
-          * into account! How the fuck do we find out
-          * how many messages in this topic are read-locked
-          * without paging this topic into memory (!)
+          * into account!
           */
          cUnRead = ptl->tlItem.msgc.cUnRead;
          ptl->tlItem.dwFlags |= TF_MARKALLREAD;
@@ -1535,9 +1533,7 @@ DWORD WINAPI EXPORT Amdb_MarkTopicDateRead( PTL ptl, WORD wDate )
          {
          /* BUGBUG
           * This doesn't take read-locked messages
-          * into account! How the fuck do we find out
-          * how many messages in this topic are read-locked
-          * without paging this topic into memory (!)
+          * into account!
           */
          cUnRead = ptl->tlItem.msgc.cUnRead;
          CommitTopicMessages( ptl, FALSE );

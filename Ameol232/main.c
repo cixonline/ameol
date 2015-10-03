@@ -2215,64 +2215,6 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
       }
    }
 
-   /* If this is a beta release and we've expired, then say so.
-    */
-   if( IS_BETA )
-      {
-      WORD w4DaysBeforeExpiryDate;
-      WORD wExpiryDate;
-      AM_DATE date;
-
-      /* First check for actual expiry.
-       */
-      date.iDay = BETA_EXPIRY_DAY;
-      date.iMonth = BETA_EXPIRY_MONTH;
-      date.iYear = BETA_EXPIRY_YEAR;
-      wExpiryDate = Amdate_PackDate( &date );
-      if( Amdate_GetPackedCurrentDate() >= wExpiryDate )
-         {
-         MessageBox( NULL, GS(IDS_STR1125), szAppName, MB_OK|MB_ICONINFORMATION );
-         ExitAmeol( NULL, 0 );
-         return( FALSE );
-         }
-
-      /* 7 days before expiry.
-       */
-      Amdate_AdjustDate( &date, -7 );
-      w4DaysBeforeExpiryDate = Amdate_PackDate( &date );
-      if( Amdate_GetPackedCurrentDate() >= w4DaysBeforeExpiryDate )
-         {
-         /* Show a warning.
-          */
-         date.iDay = BETA_EXPIRY_DAY;
-         date.iMonth = BETA_EXPIRY_MONTH;
-         date.iYear = BETA_EXPIRY_YEAR;
-
-         /* Hack to compute date.iDayOfWeek.
-          */
-         Amdate_UnpackDate( Amdate_PackDate( &date ), &date );
-         wsprintf( lpTmpBuf, GS(IDS_STR1145), szAppName, Amdate_FormatLongDate( &date, NULL ) );
-         MessageBox( NULL, lpTmpBuf, szAppName, MB_OK|MB_ICONINFORMATION );
-         }
-      else if( dwVersion != Ameol2_GetVersion() )
-         {
-         /* First time this version, show a warning.
-          */
-         date.iDay = BETA_EXPIRY_DAY;
-         date.iMonth = BETA_EXPIRY_MONTH;
-         date.iYear = BETA_EXPIRY_YEAR;
-
-         /* Hack to compute date.iDayOfWeek.
-          */
-         Amdate_UnpackDate( Amdate_PackDate( &date ), &date );
-
-         /* Show the message.
-          */
-         wsprintf( lpTmpBuf, GS(IDS_STR1146), szAppName, Amdate_FormatLongDate( &date, NULL ) );
-         MessageBox( NULL, lpTmpBuf, szAppName, MB_OK|MB_ICONINFORMATION );
-         }
-      }
-
    /* Make this the current version.
     */
    wsprintf( lpTmpBuf, "%u.%2.2u.%3.3u", amv.nMaxima, amv.nMinima, amv.nBuild );
@@ -9334,9 +9276,9 @@ void FASTCALL CmdCIXSupport ( HWND hwnd )
 void FASTCALL CmdCheckForUpdates ( HWND hwnd )
 {
 #ifdef IS_BETA
-   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/beta/appcast.xml");
+   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/ameol/beta/appcast.xml");
 #else
-   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/release/appcast.xml");
+   win_sparkle_set_appcast_url("http://ameol2beta.cixhosting.co.uk/ameol/release/appcast.xml");
 #endif
    win_sparkle_init();
    win_sparkle_check_update_with_ui();

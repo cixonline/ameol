@@ -150,7 +150,7 @@ BOOL FASTCALL CmdAboutDlg_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam)
    wsprintf(szBuf, GS(IDS_VERSION), amv.nMaxima, amv.nMinima, amv.nBuild);
    
    if (IS_BETA)
-      wsprintf(szBuf, "%s - BETA: Expires %02d/%02d/%d", szBuf, (LPSTR)BETA_EXPIRY_DAY, (LPSTR)BETA_EXPIRY_MONTH, (LPSTR)BETA_EXPIRY_YEAR);
+      wsprintf(szBuf, "%s - BETA", szBuf);
    
    SetDlgItemText(hwnd, IDC_VERSION, szBuf);
    
