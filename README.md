@@ -37,7 +37,7 @@ to run is to copy the files from the External folder into the Build folder.
 Documentation
 -------------
 The source code is the only real documentation. Feel free to ask questions
-in the ameol_dev forum though but CIX staff cannot guarantee much beyond
+in the cix.developer/ameol topic though but CIX staff cannot guarantee much beyond
 basic support.
 
 Contributions
