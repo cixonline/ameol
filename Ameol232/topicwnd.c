@@ -5671,7 +5671,10 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
 
       ListBox_SetSel( hwndList, FALSE, -1 );
       if( LB_ERR != ( index = Amdb_GetMsgSel( pth ) ) )
+         {
          ListBox_SetSel( hwndList, TRUE, index );
+         ListBox_SetCaretIndex( hwndList, index ); // needed for WINE in Linux
+         }
       }
    if( fCenter )
       CenterCurrentMsg( hwndTopic );
