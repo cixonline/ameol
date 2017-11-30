@@ -646,9 +646,8 @@ BOOL FASTCALL ReportWnd_CreateReport( HWND hwnd )
 
    /* Default mail address.
     */
-// strcpy( szBugRepEmail, "ameol2support@cix.co.uk" );
    strcat( strcpy( lpPathBuf, pszAmeolDir ), szReportIniFile );
-   GetPrivateProfileString( "SupportEmail", "Address", "ameol2support@cix.co.uk", szBugRepEmail, sizeof(szBugRepEmail), lpPathBuf );
+   GetPrivateProfileString( "SupportEmail", "Address", "support@cix.uk", szBugRepEmail, sizeof(szBugRepEmail), lpPathBuf );
 
    /* Decide to which conference to post, depending on whether this is a
     * beta, release or evaluation version.

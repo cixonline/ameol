@@ -4091,7 +4091,7 @@ BEGIN
     EDITTEXT        IDD_OWNERSNAME,153,148,117,12,ES_AUTOHSCROLL
     CONTROL         "",IDD_PICTURE,"amxctl_picctrl",WS_TABSTOP,3,3,71,222
     LTEXT           "Pricing information will be confirmed when your details are transmitted at the end of this Sign Up procedure.",-1,88,167,241,16
-    LTEXT           "If you do not have a credit card you can pay by direct debit, and businesses can pay by invoice. Please contact CIX Sales on 0845 355 5050 for more details (from outside the U.K. call +44 1492 641961), or email sales@cix.co.uk.",-1,88,191,241,33
+    LTEXT           "If you do not have a credit card you can pay by direct debit, and businesses can pay by invoice. Please contact CIX Sales on 03300 538 548 for more details, or email sales@cix.uk.",-1,88,191,241,33
 END
 
 IDDLG_SIGNUP_P10 DIALOG  0, 0, 346, 228
@@ -4222,7 +4222,7 @@ BEGIN
     LTEXT           "Answer a few simple questions and you could be signed up with CIX today. We will be asking for your name, address and credit card details to enable us to initiate your account.",-1,88,104,237,24
     LTEXT           "Click on the Next button to continue with this Sign Up.",-1,88,183,237,8
     CONTROL         "",IDD_PICTURE,"amxctl_picctrl",WS_TABSTOP,3,3,71,222
-    LTEXT           "If you do not have a credit card you can pay by direct debit, and businesses can pay by invoice. Please contact CIX Sales on 0845 355 5050 for more details (from outside the U.K. call +44 1492 641961), or email sales@cix.co.uk.",-1,88,138,241,33
+    LTEXT           "If you do not have a credit card you can pay by direct debit, and businesses can pay by invoice. Please contact CIX Sales on 03300 538 548 for more details, or email sales@cix.uk.",-1,88,138,241,33
 END
 
 IDDLG_SIGNUP_P7_TAPI DIALOG  0, 0, 346, 228
@@ -4580,7 +4580,7 @@ BEGIN
     CONTROL         "",IDD_PICTURE,"amxctl_picctrl",WS_TABSTOP,3,0,71,228
     LTEXT           "Type of Account",IDD_TITLE,88,8,240,16
     LTEXT           "CIX offers two levels of account - Standard User Tariff (SUT) and Occasional User Tariff (OUT).",IDC_STATIC,91,36,241,18
-    LTEXT           "For more details (including pricing) please refer to the literature that came with this software, or contact CIX Sales on 0845 355 5050 (from outside the U.K. call +44 181 255 5000). If you already have an email account email sales@cix.co.uk for prices.",IDC_STATIC,91,143,241,34
+    LTEXT           "For more details (including pricing) please refer to the literature that came with this software, or contact CIX Sales on 03300 538 548. If you already have an email account email sales@cix.uk for prices.",IDC_STATIC,91,143,241,34
     CONTROL         "&Standard User Tariff",IDD_SUT,"Button",BS_AUTORADIOBUTTON,151,62,121,10
     CONTROL         "&Occasional User Tariff",IDD_OUT,"Button",BS_AUTORADIOBUTTON,151,77,121,10
     LTEXT           "Please choose an account and click Next to continue Sign Up.",IDC_STATIC,93,205,234,9

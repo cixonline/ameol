@@ -609,8 +609,8 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          // need to set default POP3, News details etc
          strcpy( szAccountName, GS(IDS_STR1211) );
          strcpy( szNewsServer, "" );
-         strcpy( szSMTPMailServer, "mail.cixonline.com" );
-         strcpy( szMailServer, "mail.cixonline.com" );
+         strcpy( szSMTPMailServer, "mail.cix.co.uk" );
+         strcpy( szMailServer, "mail.cix.co.uk" );
          strcpy( szDomain, "cix.co.uk" );
          GetDlgItemText( hwnd, IDD_FULLNAME, szFullName, sizeof( szFullName ) );
          GetDlgItemText( hwnd, IDD_USERNAME, szMailLogin, sizeof( szMailLogin ) );
@@ -621,7 +621,7 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
 
          if ( strcmp(szMailPassword,szEmail2)==0 )
          {
-                strcpy(szCIXPassword, szMailPassword );
+            strcpy(szCIXPassword, szMailPassword );
             Amuser_Encrypt( szMailPassword, rgEncodeKey );
             Amuser_Encrypt( szCIXPassword, rgEncodeKey );
          }

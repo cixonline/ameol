@@ -416,7 +416,7 @@ void FASTCALL SetContent( HWND hwnd, int iTabpage )
                {
                SetWindowText( GetDlgItem( hwnd, IDD_TITLETEXT ), "Help and Support" );
                SetWindowFont( GetDlgItem( hwnd, IDD_TITLETEXT ), hTitleFont, FALSE );
-               SetWindowText( GetDlgItem( hwnd, IDD_BODYTEXT ), "If you ever get stuck in Ameol, there are a variety of ways to get help:\r\n\r\n1. The Help file - press the Help button on any unfamilar dialog and the Help file will explain the function of the dialog.\r\n\r\n2. The Tutorial - this is contained in the Tutorials folder in your In Basket.\r\n\r\n3. By contacting the Support department - use 'Submit Report' from the Help menu, mail solutions@cix.co.uk or call 0845 00 99 175." );
+               SetWindowText( GetDlgItem( hwnd, IDD_BODYTEXT ), "If you ever get stuck in Ameol, there are a variety of ways to get help:\r\n\r\n1. The Help file - press the Help button on any unfamilar dialog and the Help file will explain the function of the dialog.\r\n\r\n2. The Tutorial - this is contained in the Tutorials folder in your In Basket.\r\n\r\n3. By contacting the Support department - use 'Submit Report' from the Help menu, mail support@cix.uk or call 03300 538 548." );
                }
           break;
      case 6:
