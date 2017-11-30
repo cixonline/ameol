@@ -58,11 +58,11 @@ static char strCIMFilters[] = "CompuServe Address Book (*.dat)\0*.dat\0All Files
 static char strCSVFilters[] = "CSV Address Book (*.txt)\0*.txt\0CSV Address Book with Groups (*.txt)\0*.txt\0All Files (*.*)\0*.*\0\0";
 static char strCSVFilters2[] = "CSV Address Book (*.txt)\0*.txt\0"
                        "CSV Address Book with Groups (*.txt)\0*.txt\0"
-                       "vCard Address Book - use for CIXonline (*.vcf)\0*.vcf\0"
+                       "vCard Address Book - use for CIX (*.vcf)\0*.vcf\0"
                        "All Files (*.*)\0*.*\0\0"; // !!SM!! 2045
 static char strCSVFilters3[] = "CSV Address Book (*.txt)\0*.txt\0"
                        "CSV Address Book with Groups (*.txt)\0*.txt\0"
-                       "vCard Address Book - use for CIXonline (*.vcf)\0*.vcf\0"
+                       "vCard Address Book - use for CIX (*.vcf)\0*.vcf\0"
                        "All Files (*.*)\0*.*\0\0"; // !!SM!! 2045
 
 /* Full list of import extensions.

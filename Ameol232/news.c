@@ -1421,7 +1421,7 @@ void FASTCALL LoadUsenetHeaders( void )
          char szValue[ 80 ];
 
          strcpy( uNewsHeaders[ cNewsHeaders ].szType, "X-URL" );
-         strcpy( uNewsHeaders[ cNewsHeaders ].szValue, "http://cixonline.com" );
+         strcpy( uNewsHeaders[ cNewsHeaders ].szValue, "http://cix.uk" );
          ++cNewsHeaders;
          strcpy( uNewsHeaders[ cNewsHeaders ].szType, "X-News-Software" );
          strcpy( uNewsHeaders[ cNewsHeaders ].szValue, szAppName );

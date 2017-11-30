@@ -438,7 +438,7 @@ LRESULT FASTCALL SetupWizard_P2_1_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr
       {
       case NM_CLICK:
       case NM_RETURN:
-         if( ( uRetCode = (UINT)ShellExecute( hwnd, NULL, "http://www.cixonline.com/cixreader.asp", NULL, NULL, SW_SHOW ) ) < 32 )
+         if( ( uRetCode = (UINT)ShellExecute( hwnd, NULL, "https://www.cix.uk/forums/accessing-forums", NULL, NULL, SW_SHOW ) ) < 32 )
          {
             DisplayShellExecuteError( hwnd, szBrowser, uRetCode );
          }
