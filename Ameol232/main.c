@@ -263,6 +263,7 @@ BOOL fRFC2822;                   /* Use Name <address> instead of address (Name)
 DWORD fMaxNewsgroups;            /* Maximum number of newsgroups to base the progress gauge on 64000 !!SM!!*/
 BOOL fBreakLinesOnSave;          /* When saving messages this flag turns wrapped lines with linefeeds into hard returns */
 BOOL fUseINIfile;                /* Use INI Instead of Registry for setting storage */ // !!SM!! 2.56.2051
+BOOL fSaveRegistry;              /* Save the registry to INI files */
 BOOL fUseU3;                     /* Ameol is being run from a U3 Device, so use INI and U3 variables*/ // !!SM!! 2.56.2053
 BOOL fKillRunning;               /* U3 /Kill Command*/ // !!SM!! 2.56.2053
 BOOL fUseWebServices;            /* Use Web Services instead of COSY interface */ // !!SM!! 2.56.2053
@@ -590,6 +591,7 @@ struct tagSWI {
    {  "lite",     SWI_BOOL,      &fUseINIfile,     NULL,                0     }, // !!SM!! 2.56.2051
    {  "u3",       SWI_BOOL,      &fUseU3,          NULL,                0     }, // !!SM!! 2.56.2053
    {  "kill",     SWI_BOOL,      &fKillRunning,    NULL,                0     }, // !!SM!! 2.56.2053
+   {  "savereg",  SWI_BOOL,      &fSaveRegistry,   NULL,                0     },
    
    {  "yia",      SWI_BOOL,      &fYIA,            NULL,                0     },
 #ifdef _DEBUG
@@ -1303,6 +1305,26 @@ BOOL FASTCALL CheckForControlFile(char * pName)
    return ( Amfile_QueryFile( lChkFile ) );  
 
 }
+
+/* Create a control file
+ */
+BOOL FASTCALL CreateControlFile(char * pName)
+{
+   char lAppDir[_MAX_PATH];
+   char lChkFile[_MAX_PATH];
+   char * lDir;
+
+   GetModuleFileName( hInst, (char *)&lAppDir, _MAX_PATH );
+
+   lDir = strrchr( (char *)&lAppDir, '\\' );
+   if( NULL != lDir )
+      *++lDir = '\0';
+
+   wsprintf( lChkFile, "%s%s", lAppDir, pName );
+
+   return ( Amfile_Create( lChkFile, 0 ) != NULL );  
+}
+
 /* This function loads a DLL from the App module path
  */
 HMODULE WINAPI AmLoadLibrary( LPCSTR lpLibFileName )
@@ -1414,6 +1436,7 @@ int FASTCALL RunApp( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
    iActiveMode = WIN_ALL;
    fParsing = FALSE;
    fRunningScript = FALSE;
+   fSaveRegistry = FALSE;
    fUseINIfile = CheckForControlFile("lite");    // !!SM!! 2.56.2051
    fUseU3 = CheckForControlFile("u3");       //!!SM!! 2.56.2053   
    fKillRunning = FALSE;
@@ -2092,6 +2115,7 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
    int nHdrDivisions[ 5 ];
    BOOL fMigrateCookies;
    DWORD dwVersion;
+   BOOL fPrevUseINI;
    register int c;
    UINT iScrollLines;
    char * pszDir;
@@ -2179,11 +2203,16 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
     * the user progresses.
     */
    fFirstRun = FALSE;
+   fPrevUseINI = fUseINIfile;
    Amuser_GetLMString( szInfo, "Version", "", lpTmpBuf, LEN_TEMPBUF );
    if( !*lpTmpBuf )
       {
       dwVersion = 0;
       fFirstRun = TRUE;
+
+      // From 2.65 onwards, INI files, not the registry, is the default
+      SetINIMode(fUseINIfile = TRUE);
+      CreateControlFile("lite");
       }
    else
       {
@@ -2196,7 +2225,12 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
       }
    if( dwVersion != Ameol2_GetVersion() )
    {
-      /*!!SM!!*/
+      /* First time this version has been run. So dump the registry to
+       * the INI file if we previously were not using lite mode.
+       */
+      if (!fPrevUseINI)
+         fSaveRegistry = TRUE;
+
       if ( (int)LoadLibrary( "RichEd32.dll" ) >= 32 )
       {
          if( !DialogBox( hInst, MAKEINTRESOURCE(IDDLG_LICENCE), NULL, LicenceProc ) )
@@ -2254,7 +2288,7 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
 
    /* Now open the users list.
     */
-   if( !OpenUsersList() )
+   if( !OpenUsersList( fSaveRegistry ) )
       {
       MessageBox( NULL, GS(IDS_STR1061), NULL, MB_OK|MB_ICONEXCLAMATION );
       ExitAmeol( NULL, 0 );
@@ -9266,7 +9300,7 @@ void FASTCALL CmdShowTips ( HWND hwnd )
 void FASTCALL CmdCIXSupport ( HWND hwnd )
 {
    UINT uRetCode;
-   LPSTR pszLink = "http://www.cixonline.com/support.asp";
+   LPSTR pszLink = "https://www.cix.uk/contact/help";
    if( ( uRetCode = (UINT)ShellExecute( hwnd, NULL, pszLink, "", pszAmeolDir, SW_SHOW ) ) < 32 )
    {
       DisplayShellExecuteError( hwnd, pszLink, uRetCode );

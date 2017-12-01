@@ -1,6 +1,6 @@
 #ifndef _ADMIN_H
 
-BOOL FASTCALL OpenUsersList( void );
+BOOL FASTCALL OpenUsersList( BOOL );
 void FASTCALL CloseUsersList( void );
 void FASTCALL CmdAdmin( HWND );
 BOOL FASTCALL Login( char *, char * );

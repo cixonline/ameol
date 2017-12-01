@@ -31,10 +31,8 @@
 
 extern BOOL fUseINIfile; // 2.56.2051 FS#121
 
-//#define   USEREGISTRY
-
 extern char szActiveUser[ 40 ];
-
+extern char * szdirUser;
 
 int WINAPI INI_Amuser_GetPPInt( LPCSTR lpSection, LPSTR lpKey, int nDefault );
 int WINAPI INI_Amuser_GetPrivateProfileInt( LPCSTR lpSection, LPSTR lpKey, int nDefault, LPCSTR lpszIniFile );
@@ -59,6 +57,118 @@ int WINAPI INI_Amuser_WritePPFloat( LPCSTR lpSection, LPSTR lpKey, float nValue 
 int WINAPI INI_Amuser_WritePrivateProfileFloat( LPCSTR lpSection, LPSTR lpKey, float nValue, LPCSTR lpszIniFile );
 int WINAPI INI_Amuser_WritePPArray( LPCSTR lpSection, LPSTR lpKey, LPINT lpArray, int cArraySize );
 
+/* Dump the Ameol registry to INI files for the specified user
+ */
+void WINAPI EXPORT Amuser_SaveRegistry( LPCSTR szUser )
+{
+   char achKey[200];
+   DWORD cbName;
+   char achClass[MAX_PATH] = TEXT("");
+   char szIniFile[200];
+   DWORD cchClassName = MAX_PATH;
+   DWORD cSubKeys=0;
+   DWORD cbMaxSubKey;
+   DWORD cchMaxClass;
+   DWORD cValues;
+   DWORD cchMaxValue;
+   DWORD cbMaxValueData;
+   DWORD cbSecurityDescriptor;
+   FILETIME ftLastWriteTime;
+   DWORD i, n, retCode; 
+
+   // Get the class name and the value count.
+   HKEY hkResult;
+   char sz[ 100 ];
+
+   wsprintf( szIniFile, "%s\\%s\\%s.INI", szdirUser, szUser, szUser );
+
+   wsprintf( sz, "SOFTWARE\\CIX\\Ameol2\\%s", szUser );
+   if( RegOpenKeyEx(HKEY_CURRENT_USER, sz, 0L, KEY_READ, &hkResult ) == ERROR_SUCCESS )
+   {
+      retCode = RegQueryInfoKey(
+         hkResult,                // key handle 
+         achClass,                // buffer for class name 
+         &cchClassName,           // size of class string 
+         NULL,                    // reserved 
+         &cSubKeys,               // number of subkeys 
+         &cbMaxSubKey,            // longest subkey size 
+         &cchMaxClass,            // longest class string 
+         &cValues,                // number of values for this key 
+         &cchMaxValue,            // longest value name 
+         &cbMaxValueData,         // longest value data 
+         &cbSecurityDescriptor,   // security descriptor 
+         &ftLastWriteTime);       // last write time 
+
+      // Enumerate the subkeys.
+      for (i=0; i<cSubKeys; i++) 
+      {
+         HKEY hkSubKey;
+
+         cbName = 200;
+         retCode = RegEnumKeyEx(hkResult, i,
+                     achKey, 
+                     &cbName, 
+                     NULL, 
+                     NULL, 
+                     NULL, 
+                     &ftLastWriteTime);
+
+         // Enumerate values under the subkey
+         wsprintf( sz, "SOFTWARE\\CIX\\Ameol2\\%s\\%s", szUser, achKey );
+         if( RegOpenKeyEx(HKEY_CURRENT_USER, sz, 0L, KEY_READ, &hkSubKey ) == ERROR_SUCCESS )
+         {
+            retCode = RegQueryInfoKey(
+               hkSubKey,                // key handle 
+               achClass,                // buffer for class name 
+               &cchClassName,           // size of class string 
+               NULL,                    // reserved 
+               NULL,                    // number of subkeys 
+               NULL,                    // longest subkey size 
+               &cchMaxClass,            // longest class string 
+               &cValues,                // number of values for this key 
+               &cchMaxValue,            // longest value name 
+               &cbMaxValueData,         // longest value data 
+               &cbSecurityDescriptor,   // security descriptor 
+               &ftLastWriteTime);       // last write time
+
+            for (n=0, retCode=ERROR_SUCCESS; n<cValues; n++) 
+            {
+               char achKeyName[200];
+               union {
+                  char achValue[200];
+                  DWORD dwValue;
+               } unValue;
+               DWORD cchValue = 200; 
+               DWORD cchKeyName = 200;
+               DWORD dwType;
+
+               cchValue = MAX_VALUE_NAME; 
+               unValue.achValue[0] = '\0'; 
+               retCode = RegEnumValue(hkSubKey, n, 
+                   achKeyName, 
+                   &cchKeyName, 
+                   NULL, 
+                   &dwType,
+                   (LPBYTE)&unValue,
+                   &cchValue);
+               if (retCode == ERROR_SUCCESS ) 
+               {
+                  switch (dwType)
+                  {
+                     case REG_SZ:
+                        INI_Amuser_WritePrivateProfileString( achKey, achKeyName, unValue.achValue, szIniFile );
+                        break;
+
+                     case REG_DWORD:
+                        INI_Amuser_WritePrivateProfileLong( achKey, achKeyName, unValue.dwValue, szIniFile );
+                        break;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
 
 /* Opens the Ameol registry and reads the specified string.
 */
@@ -104,8 +214,6 @@ int WINAPI EXPORT ReadRegistryKey( HKEY hk, LPCSTR pKeyPath, LPSTR lpKey, LPCSTR
       lstrcpy( lpBuf, lpDefBuf );
    return( lstrlen( lpBuf ) );
 }
-
-//#ifdef USEREGISTRY
 
 void FASTCALL IniFileToLocalKey( LPCSTR, char * );
 LPCSTR FASTCALL GetIniFileBasename( LPCSTR );
@@ -162,7 +270,8 @@ int WINAPI EXPORT Amuser_WritePPArray( LPCSTR lpSection, LPSTR lpKey, LPINT lpin
    {
       char buf[ 80 ];
       register int c, n;
-      
+
+      INI_Amuser_WritePPArray( lpSection, lpKey, lpint, size );
       for( n = c = 0; c < size && n < sizeof( buf ) - 4; ++c )
       {
          if( c )
@@ -232,7 +341,8 @@ BOOL WINAPI EXPORT Amuser_WritePPFloat( LPCSTR lpSection, LPSTR lpKey, float nVa
    else
    {
       static char buf[ 20 ];
-      
+
+      INI_Amuser_WritePPFloat( lpSection, lpKey, nValue );
       sprintf( buf, "%.3f", nValue );
       return( Amuser_WritePPString( lpSection, lpKey, buf ) );
    }
@@ -252,6 +362,7 @@ BOOL WINAPI EXPORT Amuser_WritePrivateProfileFloat( LPCSTR lpSection, LPSTR lpKe
    {
       static char buf[ 20 ];
       
+      INI_Amuser_WritePrivateProfileFloat( lpSection, lpKey, nValue, lpszIniFile );
       sprintf( buf, "%.3f", nValue );
       return( Amuser_WritePrivateProfileString( lpSection, lpKey, buf, lpszIniFile ) );
    }
@@ -453,6 +564,7 @@ int WINAPI EXPORT Amuser_WritePPString( LPCSTR lpSection, LPSTR lpKey, LPSTR lpB
    }
    else
    {
+      INI_Amuser_WritePPString( lpSection, lpKey, lpBuf );
       return( WriteRegistryString( HKEY_CURRENT_USER, szActiveUser, lpSection, lpKey, lpBuf ) );
    }
 }
@@ -469,7 +581,8 @@ int WINAPI EXPORT Amuser_WriteLMString( LPCSTR lpSection, LPSTR lpKey, LPSTR lpB
    else
    {
       char sz[ 100 ];
-      
+
+      INI_Amuser_WriteLMString( lpSection, lpKey, lpBuf);
       wsprintf( sz, "SOFTWARE\\CIX\\Ameol2\\%s", lpSection );
       return( WriteRegistryKey( HKEY_LOCAL_MACHINE, sz, lpKey, lpBuf ) );
    }
@@ -486,7 +599,8 @@ int WINAPI EXPORT Amuser_WritePrivateProfileString( LPCSTR lpSection, LPSTR lpKe
    else
    {
       char szKey[ 9 ];
-      
+
+      INI_Amuser_WritePrivateProfileString( lpSection, lpKey, lpBuf, lpszIniFile );
       IniFileToLocalKey( lpszIniFile, szKey );
       return( WriteRegistryString( HKEY_CURRENT_USER, szKey, lpSection, lpKey, lpBuf ) );
    }
@@ -513,7 +627,8 @@ int WINAPI Amuser_DeleteUser( LPSTR lpUser )
    else
    {
       char sz[ 100 ];
-      
+
+      INI_Amuser_DeleteUser( lpUser );
       wsprintf( sz, "SOFTWARE\\CIX\\Ameol2\\%s", lpUser );
       return( WriteRegistryKey( HKEY_CURRENT_USER, sz, NULL, NULL ) );
    }
@@ -599,6 +714,7 @@ int WINAPI EXPORT Amuser_WritePPInt( LPCSTR lpSection, LPSTR lpKey, int nValue )
    }
    else
    {
+      INI_Amuser_WritePPInt( lpSection, lpKey, nValue );
       return( WriteRegistryInt( HKEY_CURRENT_USER, szActiveUser, lpSection, lpKey, nValue ) );
    }
 }
@@ -614,7 +730,8 @@ int WINAPI EXPORT Amuser_WritePrivateProfileInt( LPCSTR lpSection, LPSTR lpKey, 
    else
    {
       char szKey[ 9 ];
-      
+
+      INI_Amuser_WritePrivateProfileInt( lpSection, lpKey, nValue, lpszIniFile );
       IniFileToLocalKey( lpszIniFile, szKey );
       return( WriteRegistryInt( HKEY_CURRENT_USER, szKey, lpSection, lpKey, nValue ) );
    }
@@ -649,6 +766,7 @@ int WINAPI EXPORT Amuser_WritePPLong( LPCSTR lpSection, LPSTR lpKey, long lValue
    }
    else
    {
+      INI_Amuser_WritePPLong( lpSection, lpKey, lValue );
       return( WriteRegistryLong( HKEY_CURRENT_USER, szActiveUser, lpSection, lpKey, lValue ) );
    }
 }
@@ -664,7 +782,8 @@ int WINAPI EXPORT Amuser_WritePrivateProfileLong( LPCSTR lpSection, LPSTR lpKey,
    else
    {
       char szKey[ 9 ];
-      
+
+      INI_Amuser_WritePrivateProfileLong( lpSection, lpKey, nValue, lpszIniFile );
       IniFileToLocalKey( lpszIniFile, szKey );
       return( WriteRegistryLong( HKEY_CURRENT_USER, szKey, lpSection, lpKey, nValue ) );
    }
@@ -701,7 +820,7 @@ void FASTCALL IniFileToLocalKey( LPCSTR lpszIniFile, char * pszKey )
          *pszKey++ = toupper(*p);
       else
          *pszKey++ = tolower(*p);
-      *pszKey = '\0';
+   *pszKey = '\0';
 }
 
 /* Returns a pointer to the basename of an INI file path.
@@ -719,8 +838,6 @@ LPCSTR FASTCALL GetIniFileBasename( LPCSTR pszFile )
    }
    return( pszFile );
 }
-
-//#else USEREGISTRY
 
 extern char * szdirActiveUserFile;
 extern char * szdirAppDir;
@@ -945,7 +1062,7 @@ int WINAPI INI_Amuser_WritePPArray( LPCSTR lpSection, LPSTR lpKey, LPINT lpArray
 {
    char buf[ 80 ];
    register int c, n;
-   
+
    for( n = c = 0; c < cArraySize && n < sizeof( buf ) - 4; ++c )
    {
       if( c )

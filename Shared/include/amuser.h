@@ -347,6 +347,7 @@ int WINAPI Amuser_WritePrivateProfileString( LPCSTR, LPSTR, LPSTR, LPCSTR );
 
 /* Functions to read the general registry.
  */
+void WINAPI Amuser_SaveRegistry( LPCSTR );
 int WINAPI ReadRegistryKey( HKEY, LPCSTR, LPSTR, LPCSTR, LPSTR, int );
 
 /* Encyption/decryption functions.

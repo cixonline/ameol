@@ -154,7 +154,7 @@ BOOL CALLBACK FindAmeol2Windows(HWND hWnd, LPARAM lParam);
 /* This function opens the users list. No login can occur
  * until this is done.
  */
-BOOL FASTCALL OpenUsersList( void )
+BOOL FASTCALL OpenUsersList( BOOL fSaveRegistry )
 {
    /* Create the encrypted no-password string.
     */
@@ -221,6 +221,8 @@ BOOL FASTCALL OpenUsersList( void )
                lpu->dwOffset = dwOffset;
                lpuLast = lpu;
                lpu->us = usr;
+               if (fSaveRegistry)
+                  Amuser_SaveRegistry(lpu->us.szDir);
                ++cUsers;
                }
          dwOffset += sizeof(USERS);
@@ -475,7 +477,7 @@ BOOL FASTCALL RefreshUsersList( void )
    Amfile_GetFileTime( fhUsers, &date, &time );
    if( date != wUsersDate || time != wUsersTime )
       {
-      OpenUsersList();
+      OpenUsersList( FALSE );
       return( TRUE );
       }
    return( FALSE );

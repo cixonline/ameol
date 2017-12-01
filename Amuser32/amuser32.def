@@ -141,3 +141,4 @@ EXPORTS
     Amuser_AllocMemory
     Amuser_ReallocMemory
     Amuser_FreeMemory
+    Amuser_SaveRegistry
