@@ -50,7 +50,7 @@
 #define  GS_PROCESSMAIL       4
 #define  GS_PROCESSUSENET     8
 #define  GS_PROCESSCIX        16
-#define  GS_DOWNLOADMAIL         32
+#define  GS_DOWNLOADMAIL      32
 #define  GS_DOWNLOADUSENET    64
 #define  GS_DOWNLOADCIX       128
 #define  GS_FORCEUSENET       256
@@ -113,6 +113,20 @@ BOOL FASTCALL MustRecoverScratchpad()
    return( Amuser_GetPPInt( szSettings, "RecoverScratchpad", FALSE ) );
 }
 
+/* Check whether we have room in the default mail folder to store any
+ * further messages.
+ */
+BOOL FASTCALL CanGetMail()
+{
+   PTL mailFolder = GetPostmasterFolder();
+   if (Amdb_GetTopicTextFileSize( mailFolder ) >= Amdb_GetTextFileThreshold())
+   {
+      fMessageBox( hwndFrame, 0, GS(IDS_STR1264), MB_OK|MB_ICONEXCLAMATION );
+      return FALSE;
+   }
+   return TRUE;
+}
+
 /* This function starts a blink. We set all outbasket entries to be
  * pending, then we call the actual blink code.
  */
@@ -124,7 +138,7 @@ BOOL FASTCALL BeginBlink( LPBLINKENTRY lpbe )
    LPOB lpob;
    char szName[ sizeof( szAppName ) ];
    HWND hwndOldFocus = NULL;
-
+   BOOL fCanGetMail;
 
    fNewMailPlayed = FALSE;
    fInitiatingBlink = TRUE;
@@ -294,7 +308,8 @@ BOOL FASTCALL BeginBlink( LPBLINKENTRY lpbe )
       Amob_Delete( OBTYPE_GETTAGGED, &to );
       }
 
-   if( !fPOP3Last )
+   fCanGetMail = CanGetMail();
+   if( !fPOP3Last && fCanGetMail )
    {
       /* If we're collecting new mail, add a Get New Mail command
        * to the out-basket now.
@@ -330,7 +345,7 @@ BOOL FASTCALL BeginBlink( LPBLINKENTRY lpbe )
          }
       }
 
-   if( fPOP3Last )
+   if( fPOP3Last && fCanGetMail )
    {
       /* If we're collecting new mail, add a Get New Mail command
        * to the out-basket now.

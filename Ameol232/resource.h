@@ -3183,6 +3183,7 @@
 #define IDD_LIST_GROUP                  9036
 #define IDD_SEVERITY_GROUP              9037
 #define IDS_TT_HELPWHATSNEW             9038
+#define IDS_STR1264                     9039
 #define IDC_STATIC                      -1
 
 // Next default values for new objects

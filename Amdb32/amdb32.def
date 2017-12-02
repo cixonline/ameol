@@ -176,3 +176,5 @@ EXPORTS
     Amdb_MigrateCookies
     Amdb_GetSetNotificationBit
     Amdb_RenameCookies
+    Amdb_GetTopicTextFileSize
+    Amdb_GetTextFileThreshold

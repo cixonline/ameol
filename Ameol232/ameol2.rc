@@ -7068,6 +7068,7 @@ STRINGTABLE
 BEGIN
     IDS_STR1257             "Do you want to connect to CIX now and get any new messages?"
     IDS_STR1259             "Unban '%s' from %s"
+    IDS_STR1264             "Your mail folder is full and no further mail will be retrieved until you remove existing messages"
 END
 
 STRINGTABLE 

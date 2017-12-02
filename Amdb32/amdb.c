@@ -40,6 +40,11 @@ char szGlobalSig[] = "GLOBAL";            /* Name of global signature */
 
 static BOOL fDefDlgEx = FALSE;
 
+/* Threshold for TXT files is 1Mb short of the 2Gb limit. When the TXT file
+ * size reaches this, any further writes result in an AMDBERR_OUTOFDISKSPACE error.
+ */
+#define SIZE_THRESHOLD   ((2ull * 1024 * 1024 * 1024) - (1024ull * 1024))
+
 HINSTANCE hLibInst;                       /* Handle of library */
 HINSTANCE hRscLib;                        /* Handle of resourcelibrary */
 HINSTANCE hRegLib;                        /* Regular Expression and Mail Library */
@@ -1459,6 +1464,27 @@ int WINAPI EXPORT Amdb_MoveTopic( PTL ptl, PCL pclNewFolder, PTL ptlInsertAfter 
    fDataChanged = TRUE;
    Amuser_CallRegistered( AE_MOVETOPIC, (LPARAM)ptl, (LPARAM)-1 );
    return( AMDBERR_NOERROR );
+}
+
+/* Return the threshold for topic text files
+ */
+DWORD WINAPI EXPORT Amdb_GetTextFileThreshold( void )
+{
+   return SIZE_THRESHOLD;
+}
+
+/* This function returns the size of the topic text file
+ */
+DWORD WINAPI EXPORT Amdb_GetTopicTextFileSize( PTL ptl )
+{
+   char szFileName[ _MAX_PATH ];
+   DWORD dwFileSize = 0L;
+   struct _stat st;
+
+   wsprintf( szFileName, "%s\\%s.TXT", szDataDir, ptl->tlItem.szFileName );
+   if( _stat( szFileName, &st ) != -1 )
+      dwFileSize = st.st_size;
+   return dwFileSize;
 }
 
 /* This function does a fast mark-all-read of every message in
@@ -4091,6 +4117,10 @@ Retry:
       wsprintf( szFileName, "%s.TXT", (LPSTR)ptl->tlItem.szFileName );
       if( Amdb_QueryFileExists( szFileName ) )
       {
+         struct _stat st;
+         if( _stat( szFileName, &st ) != -1 && ((unsigned long)st.st_size) > SIZE_THRESHOLD )
+            return AMDBERR_OUTOFDISKSPACE;
+
          if( ( fh = Amdb_OpenFile( szFileName, AOF_SHARE_READWRITE ) ) != HNDFILE_ERROR )
             Amfile_SetPosition( fh, 0L, ASEEK_END );
       }

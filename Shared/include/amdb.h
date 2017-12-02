@@ -428,6 +428,8 @@ void WINAPI Amdb_SetTopicType( PTL, WORD );
 void WINAPI Amdb_SetTopicSel( PTL, HWND );
 HWND WINAPI Amdb_GetTopicSel( PTL );
 void WINAPI Amdb_MarkTopicInUse( PTL, BOOL );
+DWORD WINAPI Amdb_GetTopicTextFileSize( PTL );
+DWORD WINAPI Amdb_GetTextFileThreshold( void );
 
 /* Functions that work on messages.
  */
