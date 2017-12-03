@@ -4019,6 +4019,10 @@ int FASTCALL MsgViewWnd_OnCompareItem( HWND hwnd, const COMPAREITEMSTRUCT FAR * 
 
             case VSM_SENDER:
                nSort = lstrcmpi( msginfo1.szAuthor, msginfo2.szAuthor );
+               if (nSort == 0)
+               {
+                  nSort = msginfo1.dwMsg < msginfo2.dwMsg ? -1 : 1;
+               }
                break;
 
             case VSM_DATETIME:
@@ -4030,6 +4034,10 @@ int FASTCALL MsgViewWnd_OnCompareItem( HWND hwnd, const COMPAREITEMSTRUCT FAR * 
 
             case VSM_MSGSIZE:
                nSort = (msginfo1.dwSize & 0x7FFFFFFF) < (msginfo2.dwSize & 0x7FFFFFFF) ? -1 : 1;
+               if (nSort == 0)
+               {
+                  nSort = msginfo1.dwMsg < msginfo2.dwMsg ? -1 : 1;
+               }
                break;
 
             case VSM_SUBJECT: {
@@ -4049,6 +4057,10 @@ int FASTCALL MsgViewWnd_OnCompareItem( HWND hwnd, const COMPAREITEMSTRUCT FAR * 
                while( *psz1 == ' ' ) ++psz1;
                while( *psz2 == ' ' ) ++psz2;
                nSort = lstrcmpi( psz1, psz2 );
+               if (nSort == 0)
+               {
+                  nSort = msginfo1.dwMsg < msginfo2.dwMsg ? -1 : 1;
+               }
                break;
                }
             }
