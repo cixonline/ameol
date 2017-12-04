@@ -34,6 +34,7 @@
 
 static int nCIXIPPrefsPage;         /* Index of internet preferences page */
 static int nCIXIPPropertiesPage;    /* Index of internet properties page */
+static int nSMTPPrefsPage;          /* Index of internet SMTP page */
 
 extern char * pClrList[ 9 ];
 extern int nClrRate[ 9 ];
@@ -55,6 +56,11 @@ BOOL EXPORT CALLBACK Prefs_CixIP( HWND, UINT, WPARAM, LPARAM );
 BOOL FASTCALL Prefs_CixIP_OnInitDialog( HWND, HWND, LPARAM );
 LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND, int, LPNMHDR );
 void FASTCALL Prefs_CixIP_OnCommand( HWND, int, HWND, UINT );
+
+BOOL EXPORT CALLBACK Prefs_IPSMTP( HWND, UINT, WPARAM, LPARAM );
+BOOL FASTCALL Prefs_IPSMTP_OnInitDialog( HWND, HWND, LPARAM );
+LRESULT FASTCALL Prefs_IPSMTP_OnNotify( HWND, int, LPNMHDR );
+void FASTCALL Prefs_IPSMTP_OnCommand( HWND, int, HWND, UINT );
 
 BOOL EXPORT CALLBACK InBasket_Server( HWND, UINT, WPARAM, LPARAM );
 BOOL FASTCALL InBasket_Server_OnInitDialog( HWND, HWND, LPARAM );
@@ -411,6 +417,16 @@ BOOL WINAPI EXPORT CIXIP_PrefsDialog( int wEvent, LPARAM lParam1, LPARAM lParam2
    psp.pszTitle = "Internet";
    psp.lParam = 0L;
    nCIXIPPrefsPage = (int)PropSheet_AddPage( (HWND)lParam1, &psp );
+
+   psp.dwSize = sizeof( AMPROPSHEETPAGE );
+   psp.dwFlags = PSP_USETITLE;
+   psp.hInstance = hInst;
+   psp.pszTemplate = MIR(IDDLG_PREF_SMTP);
+   psp.pszIcon = NULL;
+   psp.pfnDlgProc = Prefs_IPSMTP;
+   psp.pszTitle = "SMTP";
+   psp.lParam = lParam2;
+   nSMTPPrefsPage = (int)PropSheet_AddPage( (HWND)lParam1, &psp );
    return( TRUE );
 }
 
@@ -444,23 +460,10 @@ BOOL FASTCALL Prefs_CixIP_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
    Edit_SetText( hwndEdit, szMailServer );
    Edit_LimitText( hwndEdit, sizeof(szMailServer) - 1 );
 
-   /* Set the current SMTP server name.
-    */
-   hwndEdit = GetDlgItem( hwnd, IDD_SMTPSERVER );
-   Edit_SetText( hwndEdit, szSMTPMailServer );
-   Edit_LimitText( hwndEdit, sizeof(szSMTPMailServer) - 1 );
-
    /* Set the current POP3 port value.
     */
    hwndEdit = GetDlgItem( hwnd, IDD_MAILPORT );
    wsprintf( lpTmpBuf, "%d", Amuser_GetPPLong( szSettings, "POP3Port", 110 ) );
-   Edit_SetText( hwndEdit, lpTmpBuf );
-   Edit_LimitText( hwndEdit, 5 );
-
-   /* Set the current SMTP server name.
-    */
-   hwndEdit = GetDlgItem( hwnd, IDD_SMTPPORT );
-   wsprintf( lpTmpBuf, "%d", Amuser_GetPPLong( szSettings, "SMTPPort", IPPORT_SMTP ) );
    Edit_SetText( hwndEdit, lpTmpBuf );
    Edit_LimitText( hwndEdit, 5 );
 
@@ -511,29 +514,6 @@ BOOL FASTCALL Prefs_CixIP_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
    CheckDlgButton( hwnd, IDD_DELETEAFTER, fDeleteMailAfterReading );
    CheckDlgButton( hwnd, IDD_POP3LAST, fPOP3Last );
 
-   CheckDlgButton( hwnd, IDD_RFC2822, fRFC2822 ); //!!SM!! 2.55.2035
-    
-   /* Set the mail login address.
-    */
-   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_EMAILADDRESS ) );
-   Edit_SetText( hwndEdit, szMailAddress );
-   Edit_LimitText( hwndEdit, sizeof(szMailAddress) - 1 );
-   EnableWindow( hwndEdit, fUseInternet );
-
-   /* Set the mail full name.
-    */
-   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_FULLNAME ) );
-   Edit_SetText( hwndEdit, szFullName );
-   Edit_LimitText( hwndEdit, sizeof(szFullName) - 1 );
-   EnableWindow( hwndEdit, fUseInternet );
-
-   /* Set the mail reply address.
-    */
-   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_REPLYADDRESS ) );
-   Edit_SetText( hwndEdit, szMailReplyAddress );
-   Edit_LimitText( hwndEdit, sizeof(szMailReplyAddress) - 1 );
-   EnableWindow( hwndEdit, fUseInternet );
-
    if( !fUseCIX )
       ShowEnableControl( hwnd, IDD_POP3LAST, FALSE );
 
@@ -569,16 +549,10 @@ void FASTCALL Prefs_CixIP_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeN
             PropSheet_Changed( GetParent( hwnd ), hwnd );
          break;
 
-      case IDD_EMAILADDRESS:
-      case IDD_FULLNAME:
-      case IDD_REPLYADDRESS:
       case IDD_LOGIN:
       case IDD_PASSWORD:
-      case IDD_SMTPSERVER:
       case IDD_MAILSERVER:
-      case IDD_SMTPPORT:
       case IDD_MAILPORT:
-      case IDD_RFC2822:
          if( codeNotify == EN_UPDATE )
             PropSheet_Changed( GetParent( hwnd ), hwnd );
          break;
@@ -621,22 +595,6 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          HWND hwndEdit;
          int nPort;
 
-         /* Read and store the SMTP mail server name.
-          */
-         hwndEdit = GetDlgItem( hwnd, IDD_SMTPSERVER );
-         if( Edit_GetTextLength( hwndEdit ) == 0 )
-            {
-            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
-            fMessageBox( hwnd, 0, GS(IDS_STR779), MB_OK|MB_ICONEXCLAMATION );
-            HighlightField( hwnd, IDD_SMTPSERVER );
-            return( PSNRET_INVALID_NOCHANGEPAGE );
-            }
-         Edit_GetText( hwndEdit, sz, sizeof(szSMTPMailServer) );
-         if( lstrcmpi( sz, szSMTPMailServer ) != 0 )
-            {
-            strcpy( szSMTPMailServer, sz );
-            }
-
          /* Read and store the POP3 mail server name.
           */
          hwndEdit = GetDlgItem( hwnd, IDD_MAILSERVER );
@@ -667,19 +625,6 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
             return( PSNRET_INVALID_NOCHANGEPAGE );
          }
          Amuser_WritePPLong( szSettings, "POP3Port", nPort );
-
-         hwndEdit = GetDlgItem( hwnd, IDD_SMTPPORT );
-         Edit_GetText( hwndEdit, sz, sizeof(sz) );
-         nPort = atoi( sz );
-         if (nPort < 1 || nPort > 65535)
-         {
-            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
-            wsprintf( lpTmpBuf, GS(IDS_STR1263), sz );
-            fMessageBox( hwnd, 0, lpTmpBuf, MB_OK|MB_ICONEXCLAMATION );
-            HighlightField( hwnd, IDD_SMTPPORT );
-            return( PSNRET_INVALID_NOCHANGEPAGE );
-         }
-         Amuser_WritePPLong( szSettings, "SMTPPort", nPort );
 
          /* Read and store the mail login name.
           */
@@ -753,12 +698,221 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          fDeleteMailAfterReading = IsDlgButtonChecked( hwnd, IDD_DELETEAFTER );
          fPOP3Last = IsDlgButtonChecked( hwnd, IDD_POP3LAST );
 
+         /* Save the mail settings
+          */
+         Amuser_WritePPString( szCIXIP, "MailServer", szMailServer );
+         Amuser_WritePPString( szCIXIP, "MailLogin", szMailLogin );
+         Amuser_WritePPInt( szSettings, "DeleteMailAfterReading", fDeleteMailAfterReading );
+         Amuser_WritePPInt( szSettings, "POP3Last", fPOP3Last );
+
+         /* Force the Apply button to be disabled.
+          */
+         PropSheet_UnChanged( GetParent( hwnd ), hwnd );
+         return( PSNRET_NOERROR );
+         }
+      }
+   return( FALSE );
+}
+
+/* This function dispatches messages for the SMTP page of the
+ * Preferences dialog.
+ */
+BOOL EXPORT CALLBACK Prefs_IPSMTP( HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam )
+{
+   switch( message )
+      {
+      HANDLE_DLGMSG( hwnd, WM_INITDIALOG, Prefs_IPSMTP_OnInitDialog );
+      HANDLE_DLGMSG( hwnd, WM_COMMAND, Prefs_IPSMTP_OnCommand );
+      HANDLE_DLGMSG( hwnd, WM_NOTIFY, Prefs_IPSMTP_OnNotify );
+      }
+   return( FALSE );
+}
+
+/* This function handles the WM_INITDIALOG message.
+ */
+BOOL FASTCALL Prefs_IPSMTP_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam )
+{
+   BOOL fSMTPAuthInfo;
+   HWND hwndEdit;
+
+   /* Set the current SMTP server name.
+    */
+   hwndEdit = GetDlgItem( hwnd, IDD_SMTPSERVER );
+   Edit_SetText( hwndEdit, szSMTPMailServer );
+   Edit_LimitText( hwndEdit, sizeof(szSMTPMailServer) - 1 );
+
+   /* Set the current SMTP server name.
+    */
+   hwndEdit = GetDlgItem( hwnd, IDD_SMTPPORT );
+   wsprintf( lpTmpBuf, "%d", Amuser_GetPPLong( szSettings, "SMTPPort", IPPORT_SMTP ) );
+   Edit_SetText( hwndEdit, lpTmpBuf );
+   Edit_LimitText( hwndEdit, 5 );
+
+   fSMTPAuthInfo = szSMTPMailLogin != '\0';
+   if( fSMTPAuthInfo )
+      {
+      Edit_SetText( GetDlgItem( hwnd, IDD_AUTHINFOUSER ), szSMTPMailLogin );
+      Amuser_Decrypt( szSMTPMailPassword, rgEncodeKey );
+      Edit_SetText( GetDlgItem( hwnd, IDD_AUTHINFOPASS ), szSMTPMailPassword );
+      Amuser_Encrypt( szSMTPMailPassword, rgEncodeKey );
+      }
+   Edit_LimitText( GetDlgItem( hwnd, IDD_AUTHINFOUSER ), sizeof(szSMTPMailLogin) - 1 );
+   Edit_LimitText( GetDlgItem( hwnd, IDD_AUTHINFOPASS ), sizeof(szSMTPMailPassword) - 1 );
+
+   /* Set the authinfo stuff.
+    */
+   CheckDlgButton( hwnd, IDD_SMTPAUTH, fSMTPAuthInfo );
+   EnableControl( hwnd, IDD_AUTHINFOUSER, fSMTPAuthInfo );
+   EnableControl( hwnd, IDD_AUTHINFOPASS, fSMTPAuthInfo );
+   EnableControl( hwnd, IDD_PAD2, fSMTPAuthInfo );
+   EnableControl( hwnd, IDD_PAD4, fSMTPAuthInfo );
+
+
+   /* Set the mail login address.
+    */
+   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_EMAILADDRESS ) );
+   Edit_SetText( hwndEdit, szMailAddress );
+   Edit_LimitText( hwndEdit, sizeof(szMailAddress) - 1 );
+   EnableWindow( hwndEdit, fUseInternet );
+
+   /* Set the mail full name.
+    */
+   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_FULLNAME ) );
+   Edit_SetText( hwndEdit, szFullName );
+   Edit_LimitText( hwndEdit, sizeof(szFullName) - 1 );
+   EnableWindow( hwndEdit, fUseInternet );
+
+   /* Set the mail reply address.
+    */
+   VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_REPLYADDRESS ) );
+   Edit_SetText( hwndEdit, szMailReplyAddress );
+   Edit_LimitText( hwndEdit, sizeof(szMailReplyAddress) - 1 );
+   EnableWindow( hwndEdit, fUseInternet );
+
+   CheckDlgButton( hwnd, IDD_RFC2822, fRFC2822 ); //!!SM!! 2.55.2035
+   return( TRUE );
+}
+
+/* This function handles the WM_COMMAND message.
+ */
+void FASTCALL Prefs_IPSMTP_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNotify )
+{
+   switch( id )
+      {
+      case IDD_SMTPAUTH: {
+         BOOL fSelected;
+
+         fSelected = IsDlgButtonChecked( hwnd, IDD_SMTPAUTH );
+         EnableControl( hwnd, IDD_AUTHINFOUSER, fSelected );
+         EnableControl( hwnd, IDD_AUTHINFOPASS, fSelected );
+         EnableControl( hwnd, IDD_PAD2, fSelected );
+         EnableControl( hwnd, IDD_PAD4, fSelected );
+         PropSheet_Changed( GetParent( hwnd ), hwnd );
+         break;
+         }
+
+      case IDD_EMAILADDRESS:
+      case IDD_FULLNAME:
+      case IDD_REPLYADDRESS:
+      case IDD_SMTPSERVER:
+      case IDD_SMTPPORT:
+         if( codeNotify == EN_UPDATE )
+            PropSheet_Changed( GetParent( hwnd ), hwnd );
+         break;
+
+      case IDD_RFC2822:
+         PropSheet_Changed( GetParent( hwnd ), hwnd );
+         break;
+      }
+}
+
+/* This function handles the WM_NOTIFY message.
+ */ 
+LRESULT FASTCALL Prefs_IPSMTP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
+{
+   switch( lpnmhdr->code )
+      {
+      case PSN_HELP:
+         HtmlHelp( hwnd, szHelpFile, HH_HELP_CONTEXT, idsPREF_SMTP );
+         break;
+
+      case PSN_SETACTIVE:
+         nLastMailDialogPage = nSMTPPrefsPage;
+         break;
+
+      case PSN_APPLY: {
+         BOOL fSMTPAuthInfo;
+         char sz[ 256 ];
+         HWND hwndEdit;
+         int nPort;
+
+         /* Read and store the SMTP mail server name.
+          */
+         hwndEdit = GetDlgItem( hwnd, IDD_SMTPSERVER );
+         if( Edit_GetTextLength( hwndEdit ) == 0 )
+            {
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nSMTPPrefsPage );
+            fMessageBox( hwnd, 0, GS(IDS_STR779), MB_OK|MB_ICONEXCLAMATION );
+            HighlightField( hwnd, IDD_SMTPSERVER );
+            return( PSNRET_INVALID_NOCHANGEPAGE );
+            }
+         Edit_GetText( hwndEdit, sz, sizeof(szSMTPMailServer) );
+         if( lstrcmpi( sz, szSMTPMailServer ) != 0 )
+            {
+            strcpy( szSMTPMailServer, sz );
+            }
+
+         Amuser_WritePPString( szCIXIP, "SMTPMailServer", szSMTPMailServer );
+
+         /* Save the SMTP mail port
+          */
+         hwndEdit = GetDlgItem( hwnd, IDD_SMTPPORT );
+         Edit_GetText( hwndEdit, sz, sizeof(sz) );
+         nPort = atoi( sz );
+         if (nPort < 1 || nPort > 65535)
+         {
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nSMTPPrefsPage );
+            wsprintf( lpTmpBuf, GS(IDS_STR1263), sz );
+            fMessageBox( hwnd, 0, lpTmpBuf, MB_OK|MB_ICONEXCLAMATION );
+            HighlightField( hwnd, IDD_SMTPPORT );
+            return( PSNRET_INVALID_NOCHANGEPAGE );
+         }
+         Amuser_WritePPLong( szSettings, "SMTPPort", nPort );
+
+         /* Use authentication info?
+          */
+         fSMTPAuthInfo = IsDlgButtonChecked( hwnd, IDD_SMTPAUTH );
+         if( fSMTPAuthInfo )
+         {
+            char szAuthInfoPass[ 64 ];
+
+            /* Set the user name.
+             */
+            hwndEdit = GetDlgItem( hwnd, IDD_AUTHINFOUSER );
+            Edit_GetText( hwndEdit, szSMTPMailLogin, sizeof(szSMTPMailLogin) );
+            Amuser_WritePPString( szCIXIP, "SMTPMailLogin", szSMTPMailLogin);
+
+            /* Set the password.
+             */
+            memset( szAuthInfoPass, 0, sizeof(szAuthInfoPass) );
+            hwndEdit = GetDlgItem( hwnd, IDD_AUTHINFOPASS );
+            Edit_GetText( hwndEdit, szSMTPMailPassword, sizeof(szSMTPMailPassword) );
+            Amuser_Encrypt( szSMTPMailPassword, rgEncodeKey );
+            EncodeLine64( szSMTPMailPassword, LEN_PASSWORD, szAuthInfoPass );
+            Amuser_WritePPString( szCIXIP, "SMTPMailPassword", szAuthInfoPass);
+         }
+         else
+         {
+            Amuser_WritePPString( szCIXIP, "SMTPMailLogin", "");
+            Amuser_WritePPString( szCIXIP, "SMTPMailPassword", "");
+         }
+
          /* Read and store the mail address.
           */
          hwndEdit = GetDlgItem( hwnd, IDD_EMAILADDRESS );
          if( Edit_GetTextLength( hwndEdit ) == 0 )
             {
-            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nSMTPPrefsPage );
             fMessageBox( hwnd, 0, GS(IDS_STR783), MB_OK|MB_ICONEXCLAMATION );
             HighlightField( hwnd, IDD_EMAILADDRESS );
             return( PSNRET_INVALID_NOCHANGEPAGE );
@@ -766,32 +920,12 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          Edit_GetText( hwndEdit, szMailAddress, sizeof(szMailAddress) );
          Amuser_WritePPString( szCIXIP, "MailAddress", szMailAddress );
 
-         /* Also change the hostname and domain registry entries
-          *
-          */
-
-         /* Now removed because of whinging by various tossers
-
-         wsprintf( lpTmpBuf, szMailAddress );
-         while( *lpTmpBuf != '@' ) 
-            lpTmpBuf++;
-         lpTmpBuf++;
-         if( *lpTmpBuf )
-         {
-            strcpy( szDomain, lpTmpBuf );
-            Amuser_WritePPString( szCIXIP, "Domain", szDomain );
-         }
-         strcpy( szHostname, szMailLogin );
-         Amuser_WritePPString( szCIXIP, "Hostname", szHostname );
-         */
-
-
          /* Read and store the mail reply address.
           */
          hwndEdit = GetDlgItem( hwnd, IDD_REPLYADDRESS );
          if( Edit_GetTextLength( hwndEdit ) == 0 )
             {
-            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nSMTPPrefsPage );
             fMessageBox( hwnd, 0, GS(IDS_STR1217), MB_OK|MB_ICONEXCLAMATION );
             HighlightField( hwnd, IDD_REPLYADDRESS );
             return( PSNRET_INVALID_NOCHANGEPAGE );
@@ -804,7 +938,7 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          hwndEdit = GetDlgItem( hwnd, IDD_FULLNAME );
          if( Edit_GetTextLength( hwndEdit ) == 0 )
             {
-            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nSMTPPrefsPage );
             fMessageBox( hwnd, 0, GS(IDS_STR784), MB_OK|MB_ICONEXCLAMATION );
             HighlightField( hwnd, IDD_FULLNAME );
             return( PSNRET_INVALID_NOCHANGEPAGE );
@@ -814,16 +948,9 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
 
          /* Save the mail settings
           */
-         Amuser_WritePPString( szCIXIP, "SMTPMailServer", szSMTPMailServer );
-         Amuser_WritePPString( szCIXIP, "MailServer", szMailServer );
-         Amuser_WritePPString( szCIXIP, "MailLogin", szMailLogin );
-         Amuser_WritePPInt( szSettings, "DeleteMailAfterReading", fDeleteMailAfterReading );
-         Amuser_WritePPInt( szSettings, "POP3Last", fPOP3Last );
-
          fRFC2822 = IsDlgButtonChecked( hwnd, IDD_RFC2822 ); //!!SM!! 2.55.2035
          Amuser_WritePPInt( szSettings, "RFC2822", fRFC2822 ); //!!SM!! 2.55.2035 
 
-         
          /* Force the Apply button to be disabled.
           */
          PropSheet_UnChanged( GetParent( hwnd ), hwnd );
@@ -887,7 +1014,6 @@ BOOL FASTCALL CIXIPBlinkProperties_OnInitDialog( HWND hwnd, HWND hwndFocus, LPAR
       strcpy( szBlinkSMTP, szSMTPMailServer );
    Edit_SetText( GetDlgItem( hwnd, IDD_BLINKSMTP ), szBlinkSMTP );
 
-   
    strcpy( lpTmpBuf, lpbe->szName );
    strcat( lpTmpBuf, "-SMTP User" );
    Amuser_GetPPString( szSMTPServers, lpTmpBuf, "", lpbe->szAuthInfoUser, sizeof( lpbe->szAuthInfoUser ) );

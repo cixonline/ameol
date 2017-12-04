@@ -2062,6 +2062,7 @@
 #define IDDLG_FORWARDMAILEDITOR         6671
 #define IDDLG_FORWARDMAILEDITOR_CIX     6671
 #define IDD_ATTRIBUTES                  6672
+#define IDDLG_PREF_SMTP                 6673
 #define IDD_DBLIST                      6674
 #define IDDLG_NEWS_DELIVERY_CIX         6674
 #define IDB_SPLASH                      6674
