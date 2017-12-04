@@ -359,7 +359,7 @@ BOOL FASTCALL Download_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam )
 
    /* Disable the OK button if no filename or directory/
     */
-   EnableControl( hwnd, IDOK, *lpfdl->recCIXFileName.hpStr && &lpfdl->recDirectory.hpStr );
+   EnableControl( hwnd, IDOK, *lpfdl->recCIXFileName.hpStr && *lpfdl->recDirectory.hpStr );
    SetFocus( GetDlgItem( hwnd, IDD_EDIT ) );
    return( FALSE );
 }

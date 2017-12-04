@@ -264,7 +264,6 @@ LRESULT EXPORT CALLBACK ListviewWndProc( HWND hwnd, UINT message, WPARAM wParam,
          { 
             int xDelta;  
             int xNewPos; 
-            int yDelta = 0; 
             SCROLLINFO si;
             LISTVIEW FAR * lpListview;
 

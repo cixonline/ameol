@@ -2127,7 +2127,6 @@ void FASTCALL FormatText( HNDFILE fh, HPSTR lpstr, UINT wFormatType, int iWordWr
 {
    static char szCrlf[] = "\r\n";
    BOOL fWrappedOnLast;
-   int line = 0;
 
    fWrappedOnLast = FALSE;
    if( lpstr )

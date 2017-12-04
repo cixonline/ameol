@@ -553,7 +553,7 @@ LRESULT EXPORT CALLBACK ToolbarWndFn( HWND hwnd,  UINT message, WPARAM wParam, L
           * TB_GETITEMRECT returns correct data.
           */
          pToolbar = GetBlock( hwnd );
-         if( DeleteButton( hwnd, pToolbar, (int)wParam ) );
+         if( DeleteButton( hwnd, pToolbar, (int)wParam ) )
             {
             RECT rc;
 

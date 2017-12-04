@@ -3183,7 +3183,6 @@ BOOL FASTCALL ValidTrailingChar(char ch)
 
 BOOL FASTCALL MatchFormatCharacter(HPSTR hpText)
 {
-   int lchk=0;
    char chMarker;
 
    // Check that there is a terminating format character on the line.

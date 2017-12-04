@@ -637,14 +637,12 @@ void FASTCALL EndOnlineBlink( void )
       {
       LONG wSize;                      //!!SM!! 2042
       HPSTR lpBuf;
-      static char szLogTitle[ 100 ];                  /* Title of current log entry */
 
       INITIALISE_PTR(lpBuf);
 
       wSize = /*(WORD)*/Amfile_GetFileSize( fh ); //!!SM!! 2042
         if( fNewMemory32( &lpBuf, wSize + 1 ) )
          {
-         int x = 0;
          /* Read the note, make sure the text is in PC format
           * and skip the spurious date at the start.
           */

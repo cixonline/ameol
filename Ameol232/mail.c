@@ -3220,7 +3220,6 @@ BOOL FASTCALL CheckAttachmentSize( HWND hwnd, LPSTR lpAttachments, int wScheme )
             {
             /* File not found, so offer to cancel
              */
-            DWORD ret = GetLastError();
             wsprintf( lpTmpBuf, GS(IDS_STR1200), lpPathBuf );
             fMessageBox( hwnd, 0, lpTmpBuf, MB_OK|MB_ICONINFORMATION );
             return( FALSE );

@@ -925,11 +925,6 @@ LRESULT EXPORT CALLBACK TreeviewWndFn( HWND hwnd, UINT message, WPARAM wParam, L
 
       case WM_SIZE:
          pTreeview = GetBlock( hwnd );
-         if( pTreeview == NULL )
-         {
-            DWORD dwPlop = GetLastError();
-         }
-//       ReadjustScrollPos( hwnd, pTreeview );
          RecalcTreelistSize( hwnd, pTreeview, NULL );
          UpdateWindow( hwnd );
          break;

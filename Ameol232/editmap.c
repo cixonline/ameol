@@ -772,8 +772,6 @@ LRESULT FASTCALL Lexer_OnNotify( HWND hwnd, int idCode, LPNMHDR lpNmHdr )
       }
    case SCN_DWELLEND:
       {
-         SCNotificationStruct * notify = (SCNotificationStruct*)lpNmHdr;
-
          if ( SendMessage(GetDlgItem( hwnd, lpNmHdr->idFrom ), SCI_CALLTIPACTIVE, 0, 0) == 1 )
             SendMessage(GetDlgItem( hwnd, lpNmHdr->idFrom ), SCI_CALLTIPCANCEL, 0, 0);
          break;

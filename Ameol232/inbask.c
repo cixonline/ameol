@@ -413,7 +413,7 @@ void FASTCALL InBasket_OnUpdateUnread( HWND hwnd, PTL ptl )
  */
 void FASTCALL InBasket_OnCategoryChanged( HWND hwnd, int type, PCAT pcat )
 {
-   if( type == AECHG_NAME );
+   if( type == AECHG_NAME )
       InbasketCategoryNameChanged( hwnd, pcat );
 }
 
@@ -421,7 +421,7 @@ void FASTCALL InBasket_OnCategoryChanged( HWND hwnd, int type, PCAT pcat )
  */
 void FASTCALL InBasket_OnFolderChanged( HWND hwnd, int type, PCL pcl )
 {
-   if( type == AECHG_NAME );
+   if( type == AECHG_NAME )
       InbasketFolderNameChanged( hwnd, pcl );
 }
 

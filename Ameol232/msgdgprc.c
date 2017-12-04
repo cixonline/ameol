@@ -37,8 +37,6 @@ LRESULT FASTCALL MsgDlgBoxProc_DlgProc( HWND, UINT, WPARAM, LPARAM );
  */
 int FASTCALL fDlgMessageBox( HWND hwnd, int nContext, int idDlg, LPSTR lpStr, DWORD dwTimeout, int idDef )
 {
-   int wStyle = 0;
-
    /* If the frame window is minimised, flash it until the user
     * restores the window.
     */

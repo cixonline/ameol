@@ -407,8 +407,6 @@ void FontSettings_OnDrawItem( HWND hwnd, const DRAWITEMSTRUCT FAR * lpDrawItem )
  */
 void FontSettings_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNotify )
 {
-   BOOL fSelUpdate = TRUE;
-
    switch( id )
       {
       case IDD_RESET:

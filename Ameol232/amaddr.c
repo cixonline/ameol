@@ -3543,7 +3543,7 @@ void FASTCALL CmdPrintAddressBook( HWND hwnd )
             if( !lpAddrBook->fGroup )
             {
                wsprintf( lpTmpBuf, "%s, %s, %s", (LPSTR)lpAddrBook->szFullName, (LPSTR)lpAddrBook->szCixName, (LPSTR)lpAddrBook->szComment );
-               if( fOk );
+               if( fOk )
                   fOk = PrintLine( hPr, lpTmpBuf );
             }
             else
@@ -3554,19 +3554,19 @@ void FASTCALL CmdPrintAddressBook( HWND hwnd )
                   int index;
 
                   wsprintf( lpTmpBuf, "**Group: %s", ((LPADDRBOOKGROUP)lpAddrBook)->szGroupName );
-                  if( fOk );
+                  if( fOk )
                      fOk = PrintLine( hPr, lpTmpBuf );
                   for( index = 0; Amaddr_ExpandGroup( ((LPADDRBOOKGROUP)lpAddrBook)->szGroupName , index, szName ); ++index )
                   {
                   wsprintf( lpTmpBuf, "   %s", szName );
-                  if( fOk );
+                  if( fOk )
                      fOk = PrintLine( hPr, lpTmpBuf );
                   }
                }
                else
                {
                   wsprintf( lpTmpBuf, "**Group: %s", ((LPADDRBOOKGROUP)lpAddrBook)->szGroupName );
-               if( fOk );
+               if( fOk )
                   fOk = PrintLine( hPr, lpTmpBuf );
                }
             }

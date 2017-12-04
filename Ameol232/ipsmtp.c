@@ -1023,7 +1023,6 @@ void FASTCALL SMTPError( char * pLine )
  */
 BOOL FASTCALL SendSMTPMail( LPCOMMDEVICE lpcdev, char * pLine )
 {
-   static BOOL fContinue = FALSE;
    int iCode;
 
    /* This code must not be re-entrant!

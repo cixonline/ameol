@@ -246,7 +246,6 @@ BOOL FASTCALL PrintMessage( HWND hwnd, BOOL fNonInteractive )
                   HWND hwndMsg;
                   HEDIT hedit;
                   LPSTR lp2;
-                  BOOL fSelected = FALSE;
 #ifndef USEBIGEDIT                  
                   SELRANGE len;
 #endif USEBIGEDIT                
