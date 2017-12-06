@@ -476,8 +476,6 @@ const char NEAR szScratchPad[] =       "scratchp.dat";      /* Scratchpad file n
 const char NEAR szScratchPadRcv[] =       "scratchp.rcv";   /* Recovery scratchpad file name */
 const char NEAR szUsenetScratchPad[] =    "newsnet.dat";    /* Usenet scratchpad file name */
 const char NEAR szUsenetRcvScratchPad[] = "newsnet.rcv";    /* Usenet recovery scratchpad file name */
-const char NEAR szLicenceRTF[] =       "licence.rtf";       /* Licence agreement !!SM!!*/
-const char NEAR szLicence[] =          "licence.txt";       /* Licence agreement */
 const char NEAR szConfigFile[] =       "custom.ini";        /* Custom configuration file */
 
 const char szSSCELib[] =               "ssce32.dll";        /* Name of spell check DLL */
@@ -1246,10 +1244,6 @@ void FASTCALL Amaddr_Load( void );
 void FASTCALL SyncSearchPtrs( LPVOID );
 void FASTCALL InstallAllFileTransferProtocols( void );
 void FASTCALL UninstallAllFileTransferProtocols( void );
-BOOL EXPORT CALLBACK LicenceProc( HWND, UINT, WPARAM, LPARAM );
-BOOL FASTCALL LicenceProc_OnInitDialog( HWND, HWND, LPARAM );
-void FASTCALL LicenceProc_OnCommand( HWND, int, HWND, UINT );
-LRESULT FASTCALL LicenceProc_DlgProc( HWND, UINT, WPARAM, LPARAM );
 
 // Tips things
 
@@ -2230,23 +2224,6 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
        */
       if (!fPrevUseINI)
          fSaveRegistry = TRUE;
-
-      if ( (int)LoadLibrary( "RichEd32.dll" ) >= 32 )
-      {
-         if( !DialogBox( hInst, MAKEINTRESOURCE(IDDLG_LICENCE), NULL, LicenceProc ) )
-         {
-            ExitAmeol( NULL, 0 );
-            return( FALSE );
-         }
-      }
-      else
-      {
-         if( !DialogBox( hInst, MAKEINTRESOURCE(IDDLG_LICENCE_ORG), NULL, LicenceProc ) )
-         {
-            ExitAmeol( NULL, 0 );
-            return( FALSE );
-         }
-      }
    }
 
    /* Make this the current version.
@@ -9031,31 +9008,6 @@ void FASTCALL OpenPassword_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT code
       }
 }
 
-/* This function handles the Licence Agreement dialog.
- */
-BOOL EXPORT CALLBACK LicenceProc( HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam )
-{
-   CheckDefDlgRecursion( &fDefDlgEx );
-   return( SetDlgMsgResult( hwnd, message, LicenceProc_DlgProc( hwnd, message, wParam, lParam ) ) );
-}
-
-/* This function handles the dialog box messages passed to the LicenceProc
- * dialog.
- */
-LRESULT FASTCALL LicenceProc_DlgProc( HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam )
-{
-   switch( message )
-      {
-      HANDLE_MSG( hwnd, WM_INITDIALOG, LicenceProc_OnInitDialog );
-      HANDLE_MSG( hwnd, WM_COMMAND, LicenceProc_OnCommand );
-
-      default:
-         return( DefDlgProcEx( hwnd, message, wParam, lParam, &fDefDlgEx ) );
-      }
-   return( FALSE );
-}
-
-
 /*******************************************************************/
 DWORD CALLBACK EditStreamCallback(
   DWORD dwCookie, // application-defined value
@@ -9071,92 +9023,6 @@ DWORD CALLBACK EditStreamCallback(
       return 0;
    else
       return 1;
-}
-/* This function handles the WM_INITDIALOG message.
- */
-BOOL FASTCALL LicenceProc_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam )
-{
-   DWORD dwFileSize;
-   DWORD dwRead;
-   HWND hwndEdit;
-   LPSTR lpText;
-   HNDFILE fh;
-   EDITSTREAM lpStream;
-
-   INITIALISE_PTR(lpText);
-
-   /* Open the licence agreement file.
-    */
-   if ( IsWindow(GetDlgItem( hwnd, IDD_EDIT_RTF ) ) )
-   {
-      hwndEdit = GetDlgItem( hwnd, IDD_EDIT_RTF ); /*!!SM!!*/
-      wsprintf( lpPathBuf, "%s%s", pszAmeolDir, szLicenceRTF );
-   }
-   else
-   {
-      hwndEdit = GetDlgItem( hwnd, IDD_EDIT );
-      wsprintf( lpPathBuf, "%s%s", pszAmeolDir, szLicence );
-   }
-
-   fh = Amfile_Open( lpPathBuf, AOF_READ );
-   if( HNDFILE_ERROR == fh )
-      {
-      FileOpenError( hwnd, (char *)lpPathBuf, FALSE, FALSE );
-      EndDialog( hwnd, FALSE );
-      return( TRUE );
-      }
-
-   if ( IsWindow(GetDlgItem( hwnd, IDD_EDIT_RTF ) ) )
-   {
-      SendMessage(hwndEdit, WM_SETTEXT, 0, (LPARAM)(LPSTR)"");
-      SendMessage(hwndEdit, EM_SETTEXTMODE, TM_RICHTEXT, 0);
-      lpStream.pfnCallback = EditStreamCallback;
-      lpStream.dwError = 0;
-      lpStream.dwCookie = (DWORD)(HANDLE)fh;
-      SendMessage(hwndEdit, EM_STREAMIN, (WPARAM)(UINT)SF_RTF|SFF_PLAINRTF, (LPARAM)(EDITSTREAM FAR *)&lpStream);
-      Amfile_Close( fh );
-   }
-   else
-   {
-      /* Allocate a block of memory for it and read it in.
-       */
-      dwFileSize = Amfile_GetFileSize( fh );
-      ASSERT( dwFileSize < 0x0000F000 );
-      if( !fNewMemory( &lpText, (WORD)dwFileSize + 1 ) )
-         {
-         OutOfMemoryError( hwnd, FALSE, FALSE );
-         EndDialog( hwnd, FALSE );
-         return( TRUE );
-         }
-      dwRead = Amfile_Read32( fh, lpText, (WORD)dwFileSize );
-      if( dwRead != (WORD)dwFileSize )
-         {
-         DiskReadError( hwnd, (char *)lpPathBuf, FALSE, FALSE );
-         EndDialog( hwnd, FALSE );
-         return( TRUE );
-         }
-      Amfile_Close( fh );
-      lpText[ dwRead ] = '\0';
-
-      /* Fill the edit control.
-       */
-      Edit_SetText( hwndEdit, lpText );
-      FreeMemory( &lpText );
-   }
-   return( TRUE );
-}
-
-/* This function handles the WM_COMMAND message.
- */
-void FASTCALL LicenceProc_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNotify )
-{
-   switch( id )
-      {
-      case IDD_ACCEPT:
-      case IDD_NO_ACCEPT:
-         EndDialog( hwnd, id == IDD_ACCEPT );
-         break;
-      }
 }
 
 /* This function tests whether the specified domain name is local
