@@ -7093,7 +7093,7 @@ BEGIN
     IDS_STR1260             "Participants will be removed and banned from the forum on the next connection"
     IDS_STR1261             "Ban these %d participants from the forum?"
     IDS_STR1262             "Ban %s from the forum?"
-    IDS_STR1265             "Invalid mail clear frequency. Range is 1 to 99 days"
+    IDS_STR1265             "Invalid mail clear frequency. Range is 1 to 90 days"
 END
 
 #endif    // English (U.K.) resources

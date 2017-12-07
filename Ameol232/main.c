@@ -9248,49 +9248,6 @@ void FASTCALL CmdTipsDlg_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNo
  */
 BOOL FASTCALL CmdTipsDlg_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam )
 {
-
-   char szTipText[ 511 ] = "";
-
-
-   Amuser_GetLMString( szTips, "Tip0", "", szTipText, LEN_TEMPBUF );
-
-   /* If no tips installed, read defaults.
-    */
-   if( strcmp( szTipText, "" ) == 0 )
-   {
-      HNDFILE fh;
-      char szDefTips[] = "tips.def";
-      if( ( fh = Amfile_Open( szDefTips, AOF_READ ) ) != HNDFILE_ERROR )
-            {
-            LPLBF hlbf;
-
-            fInitTips = TRUE;
-            if( hlbf = Amlbf_Open( fh, AOF_READ ) )
-               {
-               char sz[ 512 ];
-               int i = 0;
-
-               /* Read each line from the default tips file and add it to
-                * the registry.
-                */
-               while( Amlbf_Read( hlbf, sz, sizeof(sz), NULL, NULL, &fIsAmeol2Scratchpad ) )
-                  {
-                  if( strlen( sz ) > 0 )
-                  {
-                     wsprintf( lpTmpBuf, "Tip%d", i );
-                     Amuser_WriteLMString( szTips, lpTmpBuf, sz );
-                     i++;
-                  }
-               _itoa( i, lpTmpBuf, 10 );
-               Amuser_WriteLMString( szTips, "TotalTips", lpTmpBuf );
-               }
-               Amlbf_Close( hlbf );
-               }
-            }
-   }
-
-   
-
    fShowTips = Amuser_GetPPInt( szSettings, "ShowTips", FALSE );
    CheckDlgButton( hwnd, IDD_NOTIPS, fShowTips );
 
@@ -9298,6 +9255,7 @@ BOOL FASTCALL CmdTipsDlg_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam 
     */
    srand( (unsigned)time( NULL ) );
 
+   fInitTips = TRUE;
    SetTipText( hwnd );
 
    return( TRUE );
@@ -9305,21 +9263,31 @@ BOOL FASTCALL CmdTipsDlg_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam 
 
 void FASTCALL SetTipText( HWND hwnd )
 {
-   int i;
    HWND hwndText;
-   char szTipNumber[ 6 ];
    char szTipText[ 511 ] = "";
 
    hwndText = GetDlgItem( hwnd, IDD_TIPTEXT );
 
-   /* Try 50 times to get a tip from the tip database. If we fail,
-    * display a standard text
-    */
-   for( i = 0; ( i < 50 && strcmp( szTipText, "" ) == 0 ); i++ )
-   {
-   wsprintf( szTipNumber, "Tip%d", ( rand() % 50 ));
-   Amuser_GetLMString( szTips, szTipNumber, "", szTipText, LEN_TEMPBUF );
-   }
+   if (!fInitTips)
+      {
+      int tipNumber = rand() % 40;
+
+      HNDFILE fh;
+      if( ( fh = Amfile_Open( "tips.def", AOF_READ ) ) != HNDFILE_ERROR )
+         {
+         LPLBF hlbf;
+
+         if( hlbf = Amlbf_Open( fh, AOF_READ ) )
+            {
+            while( tipNumber > 0 && Amlbf_Read( hlbf, szTipText, sizeof(szTipText), NULL, NULL, &fIsAmeol2Scratchpad ) )
+               {
+               tipNumber--;
+               }
+            }
+            Amlbf_Close( hlbf );
+         }
+      }
+
    if( strcmp( szTipText, "" ) == 0 || fInitTips )
    {
       wsprintf( szTipText, "The Tip of the Day contains useful hints on using Ameol. Click the \"Another Tip\" button to see a new random tip. Keep tips turned on until you are more familiar with Ameol." );
@@ -9327,7 +9295,6 @@ void FASTCALL SetTipText( HWND hwnd )
    }
    SetWindowText( hwndText, szTipText );
    SetWindowFont( hwndText, hHelv8Font, FALSE );
-
 }
 
 LPSTR FASTCALL GetShortHeaderText( PTH pth )
