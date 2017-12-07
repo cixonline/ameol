@@ -453,6 +453,7 @@ BOOL FASTCALL Prefs_CixIP_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
    int nMailClearRate;
    HWND hwndEdit;
    SCHEDULE sch;
+   char sz[ 10 ];
 
    /* Set the current POP3 server name.
     */
@@ -507,7 +508,13 @@ BOOL FASTCALL Prefs_CixIP_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
    /* Fill Clear list
     */
    Common_FillClearRateList( hwnd, IDD_CLRLIST, nMailClearRate );
-   Common_FillClearCountList( hwnd, IDD_COUNTLIST, nIPMailClearCount );
+
+   /* Show current clear count
+    */
+   hwndEdit = GetDlgItem( hwnd, IDD_COUNTLIST );
+   Edit_LimitText( hwndEdit, 2 );
+   wsprintf( sz, "%d", nIPMailClearCount );
+   Edit_SetText( hwndEdit, sz );
 
    /* Set options.
     */
@@ -666,8 +673,17 @@ LRESULT FASTCALL Prefs_CixIP_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
 
          /* Get mail clear count.
           */
-         VERIFY( hwndList = GetDlgItem( hwnd, IDD_COUNTLIST ) );
-         nIPMailClearCount = nClearCount[ ComboBox_GetCurSel( hwndList ) ];
+         VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_COUNTLIST ) );
+         Edit_GetText( hwndEdit, sz, sizeof(sz) );
+         nIPMailClearCount = atoi( sz );
+         if (nIPMailClearCount < 1 || nIPMailClearCount > 90)
+         {
+            PropSheet_SetCurSel( lpnmhdr->hwndFrom, 0L, nCIXIPPrefsPage );
+            wsprintf( lpTmpBuf, GS(IDS_STR1265), sz );
+            fMessageBox( hwnd, 0, lpTmpBuf, MB_OK|MB_ICONEXCLAMATION );
+            HighlightField( hwnd, IDD_COUNTLIST );
+            return( PSNRET_INVALID_NOCHANGEPAGE );
+         }
          Amuser_WritePPInt( szCIXIP, "MailClearCount", nIPMailClearCount );
 
          /* Get mail clear frequency.

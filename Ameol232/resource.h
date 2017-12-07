@@ -2381,6 +2381,7 @@
 #define IDS_STR1260                     6871
 #define IDS_STR1261                     6872
 #define IDS_STR1262                     6873
+#define IDS_STR1265                     6874
 #define IDD_FDIR                        6876
 #define IDD_PROTOCOL                    6877
 #define IDD_AND                         6880

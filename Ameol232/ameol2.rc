@@ -1617,23 +1617,23 @@ BEGIN
     PUSHBUTTON      "&Help",IDD_HELP,139,41,50,14
 END
 
-IDDLG_CIXSETTINGS DIALOG  0, 0, 273, 229
+IDDLG_CIXSETTINGS DIALOGEX 0, 0, 273, 229
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Forums Settings"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    GROUPBOX        "Information Needed to Login",-1,7,7,202,50
-    RTEXT           "User&name:",-1,11,22,48,8
+    GROUPBOX        "Information Needed to Login",IDC_STATIC,7,7,202,50
+    RTEXT           "User&name:",IDC_STATIC,11,22,48,8
     EDITTEXT        IDD_CIXNICKNAME,63,20,129,12,ES_LOWERCASE | ES_AUTOHSCROLL
-    RTEXT           "&Password:",-1,11,38,48,8
+    RTEXT           "&Password:",IDC_STATIC,11,38,48,8
     EDITTEXT        IDD_CIXPASSWORD,63,36,129,12,ES_PASSWORD | ES_AUTOHSCROLL
-    GROUPBOX        "Options",-1,7,61,202,113
-    RTEXT           "&Recent Messages on Join:",-1,12,75,94,8
+    GROUPBOX        "Options",IDC_STATIC,7,61,202,113
+    RTEXT           "&Recent Messages on Join:",IDC_STATIC,12,75,94,8
     EDITTEXT        IDD_EDIT,109,73,29,12,ES_AUTOHSCROLL
     CONTROL         "",IDD_SPIN,"amxctl_updown",WS_TABSTOP | 0x22,141,73,7,11
-    RTEXT           "Maximum Message Si&ze:",-1,12,90,94,8
+    RTEXT           "Maximum Message Si&ze:",IDC_STATIC,12,90,94,8
     EDITTEXT        IDD_MAXMSGSIZE,109,89,29,12,ES_AUTOHSCROLL
-    LTEXT           "characters.",-1,142,90,45,8
+    LTEXT           "characters.",IDC_STATIC,142,90,45,8
     CONTROL         "&Compress Scratchpad before downloading",IDD_ARCSCRATCH,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,105,168,10
     CONTROL         "Create &log of last connection in CONNECT.LOG",IDD_CONNECTLOG,
@@ -1642,17 +1642,18 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,129,176,10
     CONTROL         "&Display terminal window while blinking to CIX",IDD_CIXTERMINAL,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,141,176,10
-    RTEXT           "Protocol To &Use:",-1,16,157,61,8
+    RTEXT           "Protocol To &Use:",IDC_STATIC,16,157,61,8
     COMBOBOX        IDD_PROTOCOL,82,155,88,57,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Clearing CIX Mail",-1,7,179,202,43
-    RTEXT           "Clear read CIX mail ever&y:",-1,14,190,87,8
+    GROUPBOX        "Clearing CIX Mail",IDC_STATIC,7,179,202,43
+    RTEXT           "Clear read CIX mail ever&y:",IDC_STATIC,14,190,87,8
     COMBOBOX        IDD_CLRLIST,106,189,67,71,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    RTEXT           "Clear mail &older than:",-1,13,206,87,8
-    COMBOBOX        IDD_COUNTLIST,106,204,67,71,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Clear mail &older than:",IDC_STATIC,13,206,87,8
+    EDITTEXT        IDD_COUNTLIST,106,204,29,12,ES_AUTOHSCROLL
     PUSHBUTTON      "OK",IDOK,216,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,216,24,50,14
     PUSHBUTTON      "&Help",IDD_HELP,216,41,50,14
     CONTROL         "",IDD_SCHEDULER,"amxctl_picbutton",NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,176,189,14,13
+    LTEXT           "days",IDC_STATIC,138,206,24,8
 END
 
 IDDLG_JOINHOST DIALOG  0, 0, 222, 65
@@ -3105,7 +3106,8 @@ BEGIN
     COMBOBOX        IDD_CLRLIST,106,106,67,71,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "",IDD_SCHEDULER,"amxctl_picbutton",NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,176,106,14,13
     RTEXT           "Clear mail &older than:",IDC_STATIC,35,124,67,8
-    COMBOBOX        IDD_COUNTLIST,106,122,67,71,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDD_COUNTLIST,106,122,29,12,ES_AUTOHSCROLL
+    LTEXT           "days",IDC_STATIC,137,124,30,8
 END
 
 IDDLG_PREF_SMTP DIALOGEX 0, 0, 215, 244
@@ -7091,6 +7093,7 @@ BEGIN
     IDS_STR1260             "Participants will be removed and banned from the forum on the next connection"
     IDS_STR1261             "Ban these %d participants from the forum?"
     IDS_STR1262             "Ban %s from the forum?"
+    IDS_STR1265             "Invalid mail clear frequency. Range is 1 to 99 days"
 END
 
 #endif    // English (U.K.) resources

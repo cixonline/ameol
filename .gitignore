@@ -40,3 +40,4 @@ mt.dep
 BuildLog.htm
 *.intermediate.manifest
 *.embed.manifest
+*.aps

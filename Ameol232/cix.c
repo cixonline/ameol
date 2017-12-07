@@ -609,6 +609,8 @@ BOOL FASTCALL CIXSettings_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
     */
    if (fUseLegacyCIX)
    {
+      char sz[ 10 ];
+
       nMailClearRate = 0;
       if( SCHDERR_OK == Ameol2_GetSchedulerInfo( "CixClearMail", &sch ) )
          {
@@ -623,7 +625,13 @@ BOOL FASTCALL CIXSettings_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
       /* Fill Clear list
        */
       Common_FillClearRateList( hwnd, IDD_CLRLIST, nMailClearRate );
-      Common_FillClearCountList( hwnd, IDD_COUNTLIST, nCIXMailClearCount );
+
+      /* Show current clear count
+       */
+      hwndEdit = GetDlgItem( hwnd, IDD_COUNTLIST );
+      Edit_LimitText( hwndEdit, 2 );
+      wsprintf( sz, "%d", nCIXMailClearCount );
+      Edit_SetText( hwndEdit, sz );
    }
    else
    {
@@ -743,8 +751,17 @@ void FASTCALL CIXSettings_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeN
           */
          if (fUseLegacyCIX)
          {
-            VERIFY( hwndList = GetDlgItem( hwnd, IDD_COUNTLIST ) );
-            nCIXMailClearCount = nClearCount[ ComboBox_GetCurSel( hwndList ) ];
+            char sz[10];
+            VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_COUNTLIST ) );
+            Edit_GetText( hwndEdit, sz, sizeof(sz) );
+            nCIXMailClearCount = atoi( sz );
+            if (nCIXMailClearCount < 1 || nCIXMailClearCount > 90)
+            {
+               wsprintf( lpTmpBuf, GS(IDS_STR1265), sz );
+               fMessageBox( hwnd, 0, lpTmpBuf, MB_OK|MB_ICONEXCLAMATION );
+               HighlightField( hwnd, IDD_COUNTLIST );
+               break;
+            }
             Amuser_WritePPInt( szCIX, "MailClearCount", nCIXMailClearCount );
 
             /* Get mail clear frequency.

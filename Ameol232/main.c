@@ -2689,7 +2689,7 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
    /* Now get the settings.
     */
    fUseInternet = Amuser_GetPPInt( szCIXIP, "UseInternet", FALSE );
-   nIPMailClearCount = Amuser_GetPPInt( szCIXIP, "MailClearCount", 3 );
+   nIPMailClearCount = Amuser_GetPPInt( szCIXIP, "MailClearCount", 30 );
    Amuser_GetPPString( szCIXIP, "NewsServer", szDefNews, szNewsServer, sizeof(szNewsServer) );
    Amuser_GetPPString( szCIXIP, "MailServer", szDefMail, szMailServer, sizeof(szMailServer) );
    Amuser_GetPPString( szCIXIP, "SMTPMailServer", szDefMail, szSMTPMailServer, sizeof(szSMTPMailServer) );
@@ -2744,7 +2744,7 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
    fOpenTerminalLog = Amuser_GetPPInt( szCIX, "CreateConnectLog", TRUE );
    dwMaxMsgSize = Amuser_GetPPLong( szCIX, "MaxMessageSize", 65535 );
    iRecent = Amuser_GetPPInt( szCIX, "Recent", 100 );
-   nCIXMailClearCount = Amuser_GetPPInt( szCIX, "MailClearCount", 3 );
+   nCIXMailClearCount = Amuser_GetPPInt( szCIX, "MailClearCount", 30 );
    fViewCixTerminal = Amuser_GetPPInt( szCIX, "CixTerminal", TRUE );
 
    /* Get the default e-mail domain.
