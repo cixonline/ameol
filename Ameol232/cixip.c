@@ -414,7 +414,7 @@ BOOL WINAPI EXPORT CIXIP_PrefsDialog( int wEvent, LPARAM lParam1, LPARAM lParam2
    psp.pszTemplate = MIR(IDDLG_PREF_INTERNET);
    psp.pszIcon = NULL;
    psp.pfnDlgProc = Prefs_CixIP;
-   psp.pszTitle = "Internet";
+   psp.pszTitle = "POP3";
    psp.lParam = 0L;
    nCIXIPPrefsPage = (int)PropSheet_AddPage( (HWND)lParam1, &psp );
 
