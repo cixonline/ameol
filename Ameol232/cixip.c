@@ -552,7 +552,7 @@ void FASTCALL Prefs_CixIP_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeN
          break;
 
       case IDD_COUNTLIST:
-         if( codeNotify == CBN_SELCHANGE )
+         if( codeNotify == EN_CHANGE )
             PropSheet_Changed( GetParent( hwnd ), hwnd );
          break;
 
