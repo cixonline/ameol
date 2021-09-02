@@ -3,9 +3,9 @@ Ameol Source Code
 This is the source code for the Ameol CIX offline reader. It is being
 released under the Apache license. See the LICENSE file for more details.
 
-The code requires Microsoft Visual Studio 2008 or greater to build. The
-solutions file provided is for Visual Studio 2008 which is the minimum
-supported version.
+The code requires Microsoft Visual Studio 2019 or greater to build. The
+solutions file provided is for Visual Studio 2019 which is the minimum
+supported version. The free community edition will work fine.
 
 Only the main Ameol executable and support DLLs are issued. At this point
 we are not releasing the source code for the installer. You will need a
@@ -14,7 +14,7 @@ full Ameol installation for the remaining data files.
 
 To Build
 --------
-Open ameol.sln in Visual Studio 2008 and do a full rebuild.
+Open ameol.sln in Visual Studio 2019 and do a full rebuild.
 
 All built binaries are copied to the Build folder off the root along with
 any program debug database files.

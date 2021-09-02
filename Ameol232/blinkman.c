@@ -59,9 +59,6 @@ void FASTCALL Comms_Blink_OnDrawItem( HWND, const DRAWITEMSTRUCT FAR * );
 void FASTCALL Comms_Blink_OnMeasureItem( HWND, MEASUREITEMSTRUCT FAR * );
 LRESULT FASTCALL Comms_Blink_OnNotify( HWND, int, LPNMHDR );
 
-extern const char FAR szDefModemConf[];
-extern const char FAR szDefTAPIConf[];
-
 /* List of default buttons and their indexes
  * in the grid bitmap array.
  */
@@ -423,8 +420,7 @@ LPBLINKENTRY FASTCALL AddBlinkToList( LPSTR lpszName, DWORD dwBlinkFlags, LPSTR 
        * CIX via dial-up, disable RAS.
        */
       lpbeNew->rd = rdDef;
-      if( ( !fCIXViaInternet && 0 == ( dwBlinkFlags & ~BF_CIXFLAGS ) ) || ( strcmp( lpszName, "CIX Forums Via Dial-Up" ) == 0 ) )
-         lpbeNew->rd.fUseRAS = FALSE;
+      lpbeNew->rd.fUseRAS = FALSE;
       }
    return( lpbeNew );
 }
@@ -735,187 +731,13 @@ BOOL FASTCALL BlinkmanProperties( HWND hwnd, LPBLINKENTRY lpbe )
  */
 UINT CALLBACK EXPORT BlinkmanPropertiesCallbackFunc( HWND hwnd, UINT uMsg, LPARAM lParam )
 {
-   AMPROPSHEETPAGE psp;
-
    if( PSCB_INITIALIZED == uMsg )
       Amuser_CallRegistered( AE_BLINKPROPERTIESDIALOG, (LPARAM)(LPSTR)hwnd, (LPARAM)lpbeThis );
-
-   /* Add RAS page if Win32.
-    */
-   psp.dwSize = sizeof( AMPROPSHEETPAGE );
-   psp.dwFlags = PSP_USETITLE;
-   psp.hInstance = hInst;
-   psp.pszTemplate = MAKEINTRESOURCE( IDDLG_BLINK_RAS );
-   psp.pszIcon = NULL;
-   psp.pfnDlgProc = RASBlinkProperties;
-   psp.pszTitle = "DUN";
-   psp.lParam = (LPARAM)lpbeThis;
-   idRasTab = (int)PropSheet_AddPage( hwnd, &psp );
 
    /* Set default selection.
     */
    PropSheet_SetCurSel( hwnd, 0L, 0 );
    return( 0 );
-}
-
-/* This function dispatches messages for the RAS page of the
- * Blink Manager properties dialog.
- */
-BOOL EXPORT CALLBACK RASBlinkProperties( HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam )
-{
-   switch( message )
-      {
-      HANDLE_DLGMSG( hwnd, WM_INITDIALOG, RASBlinkProperties_OnInitDialog );
-      HANDLE_DLGMSG( hwnd, WM_COMMAND, RASBlinkProperties_OnCommand );
-      HANDLE_DLGMSG( hwnd, WM_NOTIFY, RASBlinkProperties_OnNotify );
-      }
-   return( FALSE );
-}
-
-/* This function handles the WM_INITDIALOG message.
- */
-BOOL FASTCALL RASBlinkProperties_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam )
-{
-   LPCAMPROPSHEETPAGE psp;
-   LPBLINKENTRY lpbe;
-   HWND hwndList;
-   HWND hwndEdit;
-
-   /* Dereference and save the handle of the database, folder
-    * or topic whose properties we're showing.
-    */
-   psp = (LPCAMPROPSHEETPAGE)lParam;
-   lpbe = (LPVOID)psp->lParam;
-   SetWindowLong( hwnd, DWL_USER, (LPARAM)lpbe );
-
-   /* Set Use Ras checkbox.
-    */
-   CheckDlgButton( hwnd, IDD_USERAS, lpbe->rd.fUseRAS );
-
-   /* Set flag indicating that the combo box has not been
-    * filled with the RAS connections.
-    */
-   hwndList = GetDlgItem( hwnd, IDD_LIST );
-   ComboBox_AddString( hwndList, lpbe->rd.szRASEntryName );
-   ComboBox_SetCurSel( hwndList, 0 );
-   fRasFill = FALSE;
-
-   /* Show current user name and password.
-    */
-   hwndEdit = GetDlgItem( hwnd, IDD_USERNAME );
-   Edit_SetText( hwndEdit, lpbe->rd.szRASUserName );
-   Edit_LimitText( hwndEdit, UNLEN );
-
-   /* Show current password.
-    */
-   hwndEdit = GetDlgItem( hwnd, IDD_PASSWORD );
-   Amuser_Decrypt( lpbe->rd.szRASPassword, rgEncodeKey );
-   Edit_LimitText( hwndEdit, PWLEN );
-   Edit_SetText( hwndEdit, lpbe->rd.szRASPassword );
-   Amuser_Encrypt( lpbe->rd.szRASPassword, rgEncodeKey );
-
-   /* Disable list box and label if RAS disabled.
-    */
-   EnableControl( hwnd, IDD_PAD1, lpbe->rd.fUseRAS );
-   EnableControl( hwnd, IDD_PAD2, lpbe->rd.fUseRAS );
-   EnableControl( hwnd, IDD_PAD3, lpbe->rd.fUseRAS );
-   EnableControl( hwnd, IDD_LIST, lpbe->rd.fUseRAS );
-   EnableControl( hwnd, IDD_USERNAME, lpbe->rd.fUseRAS );
-   EnableControl( hwnd, IDD_PASSWORD, lpbe->rd.fUseRAS );
-   return( TRUE );
-}
-
-/* This function handles the WM_COMMAND message.
- */
-void FASTCALL RASBlinkProperties_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNotify )
-{
-   switch( id )
-      {
-      case IDD_USERNAME:
-      case IDD_PASSWORD:
-         if( codeNotify == EN_CHANGE )
-            PropSheet_Changed( GetParent( hwnd ), hwnd );
-         break;
-
-      case IDD_LIST:
-         if( codeNotify == CBN_SELCHANGE )
-            PropSheet_Changed( GetParent( hwnd ), hwnd );
-         else if( codeNotify == CBN_DROPDOWN && !fRasFill )
-            {
-            FillRasConnections( hwnd, IDD_LIST );
-            fRasFill = TRUE;
-            }
-         break;
-
-      case IDD_USERAS:{
-         BOOL fChecked;
-
-         fChecked = IsDlgButtonChecked( hwnd, IDD_USERAS );
-         EnableControl( hwnd, IDD_PAD1, fChecked );
-         EnableControl( hwnd, IDD_PAD2, fChecked );
-         EnableControl( hwnd, IDD_PAD3, fChecked );
-         EnableControl( hwnd, IDD_LIST, fChecked );
-         EnableControl( hwnd, IDD_USERNAME, fChecked );
-         EnableControl( hwnd, IDD_PASSWORD, fChecked );
-         PropSheet_Changed( GetParent( hwnd ), hwnd );
-         break;
-         }
-      }
-}
-
-/* This function handles the WM_NOTIFY message.
- */ 
-LRESULT FASTCALL RASBlinkProperties_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
-{
-   switch( lpnmhdr->code )
-      {
-      case PSN_HELP:
-         HtmlHelp( hwnd, szHelpFile, HH_HELP_CONTEXT, idsBLINK_RAS );
-         break;
-
-      case PSN_APPLY: {
-         LPBLINKENTRY lpbe;
-         HWND hwndTab;
-
-         /* Update the blink entry structure.
-          */
-         lpbe = (LPBLINKENTRY)GetWindowLong( hwnd, DWL_USER );
-         hwndTab = PropSheet_GetTabControl( GetParent( hwnd ) );
-         if( !TabCtrl_GetEnable( hwndTab, idRasTab ) )
-            lpbe->rd.fUseRAS = FALSE;
-         else
-            lpbe->rd.fUseRAS = IsDlgButtonChecked( hwnd, IDD_USERAS );
-
-         /* If we use RAS, we'll need the entry name.
-          */
-         if( lpbe->rd.fUseRAS )
-            {
-            HWND hwndList;
-
-            /* Get the entry name.
-             */
-            hwndList = GetDlgItem( hwnd, IDD_LIST );
-            ComboBox_GetText( hwndList, lpbe->rd.szRASEntryName, RAS_MaxEntryName+1 );
-
-            /* Get username and password.
-             */
-            Edit_GetText( GetDlgItem( hwnd, IDD_USERNAME ), lpbe->rd.szRASUserName, UNLEN+1 );
-            Edit_GetText( GetDlgItem( hwnd, IDD_PASSWORD ), lpbe->rd.szRASPassword, PWLEN+1 );
-            if( ( strlen( lpbe->rd.szRASEntryName ) == 0 ) || ( strlen( lpbe->rd.szRASUserName ) == 0 ) || ( strlen( lpbe->rd.szRASPassword ) == 0 ) )
-            {
-               fMessageBox( hwnd, 0, GS(IDS_STR1242), MB_OK|MB_ICONEXCLAMATION );
-               return( PSNRET_INVALID_NOCHANGEPAGE );
-            }
-            Amuser_Encrypt( lpbe->rd.szRASPassword, rgEncodeKey );
-            }
-
-         /* Force the Apply button to be disabled.
-          */
-         PropSheet_UnChanged( GetParent( hwnd ), hwnd );
-         return( PSNRET_NOERROR );
-         }
-      }
-   return( FALSE );
 }
 
 /* This function dispatches messages for the Blink dialog.

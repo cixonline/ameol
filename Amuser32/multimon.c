@@ -23,7 +23,10 @@
 
 #define COMPILE_MULTIMON_STUBS
 
+#pragma warning(push)
+#pragma warning(disable:4996)
 #include <multimon.h>
+#pragma warning(pop)
 
 //
 //  GetMonitorRect

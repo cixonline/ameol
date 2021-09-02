@@ -1,7 +1,7 @@
 #define PRODUCT_MAX_VER         2 
-#define PRODUCT_MIN_VER         65
-#define PRODUCT_BUILD           2200 
-#define IS_BETA                 0
+#define PRODUCT_MIN_VER         70
+#define PRODUCT_BUILD           2300 
+#define IS_BETA                 1
 #define BETA_EXPIRY_DAY         31 
 #define BETA_EXPIRY_MONTH       12 
-#define BETA_EXPIRY_YEAR        2020
+#define BETA_EXPIRY_YEAR        2022

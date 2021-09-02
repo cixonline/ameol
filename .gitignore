@@ -3,6 +3,11 @@
 *.ko
 *.obj
 *.elf
+*.tlog
+*.Build.CppClean.log
+*.FileListAbsolute.txt
+*.recipe
+*.log
 
 # Libraries
 *.lib
@@ -41,3 +46,5 @@ BuildLog.htm
 *.intermediate.manifest
 *.embed.manifest
 *.aps
+.vs
+Build/Zmodem32.afp

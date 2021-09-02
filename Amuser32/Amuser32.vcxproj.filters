@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{da1ce584-5b23-4414-a589-bcf9ee4d0bc5}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{b7ffac9b-3f67-4906-aac7-b382c34b3228}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{3caa701a-b90f-445e-921f-6955289fdee4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="adm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="admmdi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="admmsg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amevnt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amuser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Chgdir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Date.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="des.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ffind.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filecopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gif.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multimon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prof32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="register.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uncmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="amuser.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="amuserv.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Shared\include\amuser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bitmaps\cdrom.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\fldclose.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\fldopen2.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\fldsel.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\floppy.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\harddrv.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\netdrive.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Bitmaps\ramdrive.bmp">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="amuser32.def">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

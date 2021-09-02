@@ -1,0 +1,1163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{01e6e00e-05b8-4d00-bd82-5c99b336af67}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{570dd46b-60b7-4d27-90e1-fe2501a4f29c}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a8c8010c-474b-4089-9b39-53ec34ec41f4}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Documents">
+      <UniqueIdentifier>{4aa55f97-116d-4279-9c32-5662693aa28f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="About.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="addons.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="admin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amaddr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amdbimp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amimprt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="article.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="binmail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blink.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blinkman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="btnbmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buildscr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cancel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chkfilt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cixip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cixlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Colours.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comm32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="command.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comment.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="comms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commshrd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="connman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="copymsg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="custfont.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Custom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="custtool.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Datadir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Decode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dirassoc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dlgprocs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editmap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="editrsm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="encode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="errors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="event.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="export.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fdl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filelist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filename.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filetran.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Find.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ful.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fwmail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gallery.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getartcl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getmess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="grpfiltr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grplist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Import.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Inbask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ini.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ipcommon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ipmail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ipnews.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ipsmtp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="itsybits.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="joinconf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lbf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="local.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="localcmt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="localsay.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mailbox.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MAILDIR.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mailprf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mkselvs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mnugrp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="msgdgprc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Msghook.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Amuser32\multimon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Newartcl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Newmail.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="newmes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="news.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Newtaggd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nfl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Outbask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pagsetup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Print.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Printmsg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prntcomp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prntterm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Purge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="report.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resign.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resumes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rules.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="runscrpt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="say.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="schedule.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="screxprt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="script.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setupwiz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sortfrom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sortto.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sound.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spelling.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="startwiz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subscrbe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="terminal.C">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="termprop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Topicwnd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="userlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WebAPI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winsock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="withdraw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ameol2.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="version.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ameol232.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\Shared\include\common.bld">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="Cursors\CUR00001.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\CUR00002.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\CUR00003.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\MULTIPLE.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\NOLISTDR.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\SINGLEDR.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="admin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amaddr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="amaddri.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amcntxt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amcomms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amctrls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amdb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\ameol2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amevent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="amlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amuser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blinkman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cixip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cixipob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\cixob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\cookie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="demo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="editmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hxfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ini.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\intcomms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="itsybits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lbf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\listview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="local.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="localob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mnugrp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="news.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nfl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="palrc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="phone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="regwiz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rnaph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shared.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\shrdob.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ssce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="telnet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="terminal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="toolbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\transfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="warnings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WebAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zmouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bitmaps\ABOUT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\ABOUTNW.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\ADDRBOOK.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani01.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani02.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani03.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani04.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani05.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani06.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani07.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani08.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani09.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2ani10.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\AM2ANIM1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim3.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim4.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim5.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim6.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\am2anim7.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\APPIC16.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\APPIC32.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\APPIC48.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\APPICO16.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BITMAP13.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BITMAP15.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\BLINK1.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\BLINK2.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\BLINK3.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BLINKMAN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BMP00001.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONDO.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONFI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONLA.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONLE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONRI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\BUTTONUP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CATEGORY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CCTOSEND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CIXFOLDE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CIXLIST.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\CIXLIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CIXLIST1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\CIXREADER.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\COMMENT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CONFEREN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\CROSS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\DATE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\DOWNARRO.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\EDITCONN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\EVENTLOG.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\EVENTLOG.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\FILEBUTT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\FILELIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\FOLDER.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\FOLDERBU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\FOLDRSEL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\FONTBMPS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\GLOBE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\GRID16.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\GRID24.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\GROUP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\GRPLIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\HIER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\HIERSELE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\HIGHPRIO.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\ICO00001.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\ICON32.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\ICON48.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\IMPORT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\INBASKET.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\INFO.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\INTERNET.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\IPCONNCA.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\LOCALCMT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\LOCALSAY.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\LOCALTOP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\LOWPRIOR.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\MAIL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\Mail10.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\MAILFOLD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\MODEM.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\MODEMC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NC_PIX.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NEWCONNC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NEWSGROU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NEWSSERV.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NGRID16.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NGRID24.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NUMBER1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NUMBER2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\NUMBER3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\ORIGINAL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\OUTBASK.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\OUTBASKE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\OUTBASKI.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\PAGE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\PARLIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\Phone02.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\Phone15.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\PICKER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\PURGE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\purgeopt.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\reglogo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\REPORT.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\RESUMES.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\RETURNRE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6509.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6510.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6511.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6512.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6513.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6514.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6515.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6516.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6517.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6518.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6519.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6520.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6545.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6547.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6548.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6549.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6550.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6551.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6638.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6639.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6668.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\s6669.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\S6717.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\s6721.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\SAY.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SCHEDULE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\SCHEDULE.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SCRIPT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SELECTED.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\Setupw2e.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\Setupwz6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\signup.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SORT_ASC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SORT_DES.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\splash.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\SPLASH_N.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\startwiz.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\TAGREPLY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2002.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2004.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2005.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2006.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2007.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2008.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2009.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2010.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbl2011.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\TBL2012.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2001.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2002.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2003.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2004.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2005.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2006.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2007.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2008.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2009.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2010.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2011.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\tbs2012.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\TELEPHON.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\TERMINAL.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\THREAD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\TICK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\TIME.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\TOPIC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\TOPIC.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\totd2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\UNTYPEDF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\UPLOAD.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\User-4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\USER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\USERLIST.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\USERS-4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Icons\Warning.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmaps\YELLPHNE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="ameol232.exe.manifest">
+      <Filter>Documents</Filter>
+    </Manifest>
+  </ItemGroup>
+</Project>

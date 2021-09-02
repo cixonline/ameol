@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Ameol232</ProjectName>
+    <ProjectGuid>{39F88C10-48FC-4EBD-AF17-C19CBF029BFE}</ProjectGuid>
+    <RootNamespace>Ameol232</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.31624.102</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/ameol232.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\scintilla\include;..\shared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_PRSHT_H_;WIN32;_WINDOWS;WINVER=0x400;_WIN32_WINNT=0x400;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Release/ameol232.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
+      <ObjectFileName>.\Release/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
+      <BrowseInformation />
+      <BrowseInformationFile>.\Release/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>..\shared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>version.lib;winmm.lib;libcmt.lib;htmlhelp.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;winsparkle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)\Build\$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>.\ameol232.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(SolutionDir)\Build\$(ProjectName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>.\Release/ameol232.map</MapFileName>
+      <SubSystem>Windows</SubSystem>
+      <BaseAddress>0x2000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>./Release/Ameol232.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>./ameol232.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\scintilla\include;..\shared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_PRSHT_H_;WIN32;_WINDOWS;WINVER=0x400;_WIN32_WINNT=0x400;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>.\Debug/ameol232.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <BrowseInformationFile>.\Debug/</BrowseInformationFile>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0809</Culture>
+      <AdditionalIncludeDirectories>..\shared\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>version.lib;winmm.lib;libcmtd.lib;htmlhelp.lib;shell32.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;advapi32.lib;winsparkle.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)\Build\$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <ModuleDefinitionFile>.\ameol232.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(SolutionDir)\Build\$(ProjectName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <BaseAddress>0x2000000</BaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <ImportLibrary>./Debug/Ameol232.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Amuser32\multimon.c" />
+    <ClCompile Include="About.c" />
+    <ClCompile Include="addons.c" />
+    <ClCompile Include="admin.c" />
+    <ClCompile Include="amaddr.c" />
+    <ClCompile Include="amdbimp.c" />
+    <ClCompile Include="amimprt.c" />
+    <ClCompile Include="article.c" />
+    <ClCompile Include="binmail.c" />
+    <ClCompile Include="blink.c" />
+    <ClCompile Include="blinkman.c" />
+    <ClCompile Include="btnbmp.c" />
+    <ClCompile Include="buildscr.c" />
+    <ClCompile Include="cancel.c" />
+    <ClCompile Include="chkfilt.c" />
+    <ClCompile Include="cix.c" />
+    <ClCompile Include="cixip.c" />
+    <ClCompile Include="cixlist.c" />
+    <ClCompile Include="Colours.c" />
+    <ClCompile Include="comm32.c" />
+    <ClCompile Include="command.c" />
+    <ClCompile Include="comment.c" />
+    <ClCompile Include="comms.c" />
+    <ClCompile Include="commshrd.c" />
+    <ClCompile Include="connman.c" />
+    <ClCompile Include="copymsg.c" />
+    <ClCompile Include="custfont.c" />
+    <ClCompile Include="Custom.c" />
+    <ClCompile Include="custtool.c" />
+    <ClCompile Include="Datadir.c" />
+    <ClCompile Include="Decode.c" />
+    <ClCompile Include="Dirassoc.c" />
+    <ClCompile Include="directry.c" />
+    <ClCompile Include="Dlgprocs.c" />
+    <ClCompile Include="editmap.c" />
+    <ClCompile Include="editrsm.c" />
+    <ClCompile Include="encode.c" />
+    <ClCompile Include="errors.c" />
+    <ClCompile Include="event.c" />
+    <ClCompile Include="export.c" />
+    <ClCompile Include="fdl.c" />
+    <ClCompile Include="filelist.c" />
+    <ClCompile Include="filename.c" />
+    <ClCompile Include="filetran.c" />
+    <ClCompile Include="Find.c" />
+    <ClCompile Include="Fonts.c" />
+    <ClCompile Include="ful.c" />
+    <ClCompile Include="Fwmail.c" />
+    <ClCompile Include="gallery.c" />
+    <ClCompile Include="getartcl.c" />
+    <ClCompile Include="getmess.c" />
+    <ClCompile Include="grpfiltr.c" />
+    <ClCompile Include="Grplist.c" />
+    <ClCompile Include="Import.c" />
+    <ClCompile Include="Inbask.c" />
+    <ClCompile Include="ini.c" />
+    <ClCompile Include="Ipcommon.c" />
+    <ClCompile Include="Ipmail.c" />
+    <ClCompile Include="Ipnews.c" />
+    <ClCompile Include="Ipsmtp.c" />
+    <ClCompile Include="itsybits.c" />
+    <ClCompile Include="joinconf.c" />
+    <ClCompile Include="lbf.c" />
+    <ClCompile Include="local.c" />
+    <ClCompile Include="localcmt.c" />
+    <ClCompile Include="localsay.c" />
+    <ClCompile Include="log.c" />
+    <ClCompile Include="Mail.c" />
+    <ClCompile Include="mailbox.c" />
+    <ClCompile Include="MAILDIR.C" />
+    <ClCompile Include="mailprf.c" />
+    <ClCompile Include="Main.c" />
+    <ClCompile Include="md5c.c" />
+    <ClCompile Include="Mkselvs.c" />
+    <ClCompile Include="Mnugrp.c" />
+    <ClCompile Include="msgdgprc.c" />
+    <ClCompile Include="Msghook.c" />
+    <ClCompile Include="Newartcl.c" />
+    <ClCompile Include="Newmail.c" />
+    <ClCompile Include="newmes.c" />
+    <ClCompile Include="news.c" />
+    <ClCompile Include="Newtaggd.c" />
+    <ClCompile Include="nfl.c" />
+    <ClCompile Include="Outbask.c" />
+    <ClCompile Include="Pagsetup.c" />
+    <ClCompile Include="parlist.c" />
+    <ClCompile Include="parse.c" />
+    <ClCompile Include="Prefs.c" />
+    <ClCompile Include="Print.c" />
+    <ClCompile Include="Printmsg.c" />
+    <ClCompile Include="prntcomp.c" />
+    <ClCompile Include="prntterm.c" />
+    <ClCompile Include="Purge.c" />
+    <ClCompile Include="report.c" />
+    <ClCompile Include="resign.c" />
+    <ClCompile Include="resumes.c" />
+    <ClCompile Include="rules.c" />
+    <ClCompile Include="runscrpt.c" />
+    <ClCompile Include="say.c" />
+    <ClCompile Include="schedule.c" />
+    <ClCompile Include="screxprt.c" />
+    <ClCompile Include="script.c" />
+    <ClCompile Include="search.c" />
+    <ClCompile Include="setupwiz.c" />
+    <ClCompile Include="Sig.c" />
+    <ClCompile Include="sortfrom.c" />
+    <ClCompile Include="sortto.c" />
+    <ClCompile Include="sound.c" />
+    <ClCompile Include="Spelling.c" />
+    <ClCompile Include="splash.c" />
+    <ClCompile Include="startwiz.c" />
+    <ClCompile Include="subscrbe.c" />
+    <ClCompile Include="terminal.C" />
+    <ClCompile Include="termprop.c" />
+    <ClCompile Include="Topicwnd.c" />
+    <ClCompile Include="trace.c" />
+    <ClCompile Include="userlist.c" />
+    <ClCompile Include="Version.c" />
+    <ClCompile Include="WebAPI.c" />
+    <ClCompile Include="Windows.c" />
+    <ClCompile Include="winsock.c" />
+    <ClCompile Include="withdraw.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ameol2.rc" />
+    <ResourceCompile Include="version.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shared\include\common.bld" />
+    <None Include="ameol232.def" />
+    <None Include="Cursors\CUR00001.CUR" />
+    <None Include="Cursors\CUR00002.CUR" />
+    <None Include="Cursors\CUR00003.CUR" />
+    <None Include="Cursors\MULTIPLE.CUR" />
+    <None Include="Cursors\NOLISTDR.CUR" />
+    <None Include="Cursors\SINGLEDR.CUR" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Shared\include\amaddr.h" />
+    <ClInclude Include="..\Shared\include\amcntxt.h" />
+    <ClInclude Include="..\Shared\include\amcomms.h" />
+    <ClInclude Include="..\Shared\include\amctrls.h" />
+    <ClInclude Include="..\Shared\include\amdb.h" />
+    <ClInclude Include="..\Shared\include\ameol2.h" />
+    <ClInclude Include="..\Shared\include\amevent.h" />
+    <ClInclude Include="..\Shared\include\amob.h" />
+    <ClInclude Include="..\Shared\include\amuser.h" />
+    <ClInclude Include="..\Shared\include\cixob.h" />
+    <ClInclude Include="..\Shared\include\cookie.h" />
+    <ClInclude Include="..\Shared\include\intcomms.h" />
+    <ClInclude Include="..\Shared\include\listview.h" />
+    <ClInclude Include="..\Shared\include\shrdob.h" />
+    <ClInclude Include="..\Shared\include\transfer.h" />
+    <ClInclude Include="admin.h" />
+    <ClInclude Include="amaddri.h" />
+    <ClInclude Include="amlib.h" />
+    <ClInclude Include="blinkman.h" />
+    <ClInclude Include="cix.h" />
+    <ClInclude Include="cixip.h" />
+    <ClInclude Include="cixipob.h" />
+    <ClInclude Include="command.h" />
+    <ClInclude Include="demo.h" />
+    <ClInclude Include="editmap.h" />
+    <ClInclude Include="global.h" />
+    <ClInclude Include="hxfer.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="itsybits.h" />
+    <ClInclude Include="lbf.h" />
+    <ClInclude Include="local.h" />
+    <ClInclude Include="localob.h" />
+    <ClInclude Include="log.h" />
+    <ClInclude Include="mail.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="mnugrp.h" />
+    <ClInclude Include="news.h" />
+    <ClInclude Include="nfl.h" />
+    <ClInclude Include="palrc.h" />
+    <ClInclude Include="parse.h" />
+    <ClInclude Include="pdefs.h" />
+    <ClInclude Include="phone.h" />
+    <ClInclude Include="print.h" />
+    <ClInclude Include="regwiz.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="rnaph.h" />
+    <ClInclude Include="rules.h" />
+    <ClInclude Include="shared.h" />
+    <ClInclude Include="ssce.h" />
+    <ClInclude Include="telnet.h" />
+    <ClInclude Include="terminal.h" />
+    <ClInclude Include="toolbar.h" />
+    <ClInclude Include="trace.h" />
+    <ClInclude Include="tti.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="warnings.h" />
+    <ClInclude Include="WebAPI.h" />
+    <ClInclude Include="zmouse.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Bitmaps\ABOUT.BMP" />
+    <Image Include="Bitmaps\ABOUTNW.BMP" />
+    <Image Include="Bitmaps\BITMAP13.BMP" />
+    <Image Include="Bitmaps\BITMAP15.BMP" />
+    <Image Include="Bitmaps\BLINKMAN.BMP" />
+    <Image Include="Bitmaps\BMP00001.BMP" />
+    <Image Include="Bitmaps\BUTTONDO.BMP" />
+    <Image Include="Bitmaps\BUTTONFI.BMP" />
+    <Image Include="Bitmaps\BUTTONLA.BMP" />
+    <Image Include="Bitmaps\BUTTONLE.BMP" />
+    <Image Include="Bitmaps\BUTTONRI.BMP" />
+    <Image Include="Bitmaps\BUTTONUP.BMP" />
+    <Image Include="Bitmaps\CATEGORY.BMP" />
+    <Image Include="Bitmaps\CCTOSEND.BMP" />
+    <Image Include="Bitmaps\CIXFOLDE.BMP" />
+    <Image Include="Bitmaps\CIXLIST.BMP" />
+    <Image Include="Bitmaps\CIXLIST1.BMP" />
+    <Image Include="Bitmaps\CONFEREN.BMP" />
+    <Image Include="Bitmaps\CROSS.BMP" />
+    <Image Include="Bitmaps\DATE.BMP" />
+    <Image Include="Bitmaps\DOWNARRO.BMP" />
+    <Image Include="Bitmaps\EDITCONN.BMP" />
+    <Image Include="Bitmaps\EVENTLOG.BMP" />
+    <Image Include="Bitmaps\FILEBUTT.BMP" />
+    <Image Include="Bitmaps\FOLDERBU.BMP" />
+    <Image Include="Bitmaps\FOLDRSEL.BMP" />
+    <Image Include="Bitmaps\FONTBMPS.BMP" />
+    <Image Include="Bitmaps\GRID16.BMP" />
+    <Image Include="Bitmaps\GRID24.BMP" />
+    <Image Include="Bitmaps\GROUP.BMP" />
+    <Image Include="Bitmaps\HIER.BMP" />
+    <Image Include="Bitmaps\HIERSELE.BMP" />
+    <Image Include="Bitmaps\HIGHPRIO.BMP" />
+    <Image Include="Bitmaps\IPCONNCA.BMP" />
+    <Image Include="Bitmaps\LOCALTOP.BMP" />
+    <Image Include="Bitmaps\LOWPRIOR.BMP" />
+    <Image Include="Bitmaps\MAILFOLD.BMP" />
+    <Image Include="Bitmaps\MODEMC.BMP" />
+    <Image Include="Bitmaps\NC_PIX.BMP" />
+    <Image Include="Bitmaps\NEWCONNC.BMP" />
+    <Image Include="Bitmaps\NEWSGROU.BMP" />
+    <Image Include="Bitmaps\NEWSSERV.BMP" />
+    <Image Include="Bitmaps\NGRID16.BMP" />
+    <Image Include="Bitmaps\NGRID24.BMP" />
+    <Image Include="Bitmaps\NUMBER1.BMP" />
+    <Image Include="Bitmaps\NUMBER2.BMP" />
+    <Image Include="Bitmaps\NUMBER3.BMP" />
+    <Image Include="Bitmaps\ORIGINAL.BMP" />
+    <Image Include="Bitmaps\OUTBASKE.BMP" />
+    <Image Include="Bitmaps\OUTBASKI.BMP" />
+    <Image Include="Bitmaps\PAGE.BMP" />
+    <Image Include="Bitmaps\PICKER.BMP" />
+    <Image Include="Bitmaps\reglogo.bmp" />
+    <Image Include="Bitmaps\RETURNRE.BMP" />
+    <Image Include="Bitmaps\S6509.BMP" />
+    <Image Include="Bitmaps\S6510.BMP" />
+    <Image Include="Bitmaps\S6511.BMP" />
+    <Image Include="Bitmaps\S6512.BMP" />
+    <Image Include="Bitmaps\S6513.BMP" />
+    <Image Include="Bitmaps\S6514.BMP" />
+    <Image Include="Bitmaps\S6515.BMP" />
+    <Image Include="Bitmaps\S6516.BMP" />
+    <Image Include="Bitmaps\S6517.BMP" />
+    <Image Include="Bitmaps\S6518.BMP" />
+    <Image Include="Bitmaps\S6519.BMP" />
+    <Image Include="Bitmaps\S6520.BMP" />
+    <Image Include="Bitmaps\S6545.bmp" />
+    <Image Include="Bitmaps\S6547.BMP" />
+    <Image Include="Bitmaps\S6548.BMP" />
+    <Image Include="Bitmaps\S6549.BMP" />
+    <Image Include="Bitmaps\S6550.BMP" />
+    <Image Include="Bitmaps\S6551.BMP" />
+    <Image Include="Bitmaps\S6638.BMP" />
+    <Image Include="Bitmaps\S6639.BMP" />
+    <Image Include="Bitmaps\S6668.BMP" />
+    <Image Include="Bitmaps\s6669.bmp" />
+    <Image Include="Bitmaps\S6717.BMP" />
+    <Image Include="Bitmaps\s6721.bmp" />
+    <Image Include="Bitmaps\SCHEDULE.BMP" />
+    <Image Include="Bitmaps\SCRIPT.BMP" />
+    <Image Include="Bitmaps\SELECTED.BMP" />
+    <Image Include="Bitmaps\Setupw2e.bmp" />
+    <Image Include="Bitmaps\Setupwz6.bmp" />
+    <Image Include="Bitmaps\signup.bmp" />
+    <Image Include="Bitmaps\SORT_ASC.BMP" />
+    <Image Include="Bitmaps\SORT_DES.BMP" />
+    <Image Include="Bitmaps\splash.bmp" />
+    <Image Include="Bitmaps\SPLASH_N.BMP" />
+    <Image Include="Bitmaps\startwiz.bmp" />
+    <Image Include="Bitmaps\TAGREPLY.BMP" />
+    <Image Include="Bitmaps\tbl2001.bmp" />
+    <Image Include="Bitmaps\tbl2002.bmp" />
+    <Image Include="Bitmaps\tbl2003.bmp" />
+    <Image Include="Bitmaps\tbl2004.bmp" />
+    <Image Include="Bitmaps\tbl2005.bmp" />
+    <Image Include="Bitmaps\tbl2006.bmp" />
+    <Image Include="Bitmaps\tbl2007.bmp" />
+    <Image Include="Bitmaps\tbl2008.bmp" />
+    <Image Include="Bitmaps\tbl2009.bmp" />
+    <Image Include="Bitmaps\tbl2010.bmp" />
+    <Image Include="Bitmaps\tbl2011.bmp" />
+    <Image Include="Bitmaps\TBL2012.BMP" />
+    <Image Include="Bitmaps\tbs2001.bmp" />
+    <Image Include="Bitmaps\tbs2002.bmp" />
+    <Image Include="Bitmaps\tbs2003.bmp" />
+    <Image Include="Bitmaps\tbs2004.bmp" />
+    <Image Include="Bitmaps\tbs2005.bmp" />
+    <Image Include="Bitmaps\tbs2006.bmp" />
+    <Image Include="Bitmaps\tbs2007.bmp" />
+    <Image Include="Bitmaps\tbs2008.bmp" />
+    <Image Include="Bitmaps\tbs2009.bmp" />
+    <Image Include="Bitmaps\tbs2010.bmp" />
+    <Image Include="Bitmaps\tbs2011.bmp" />
+    <Image Include="Bitmaps\tbs2012.bmp" />
+    <Image Include="Bitmaps\THREAD.BMP" />
+    <Image Include="Bitmaps\TICK.BMP" />
+    <Image Include="Bitmaps\TIME.BMP" />
+    <Image Include="Bitmaps\TOPIC.BMP" />
+    <Image Include="Bitmaps\totd2.bmp" />
+    <Image Include="Bitmaps\UNTYPEDF.BMP" />
+    <Image Include="Bitmaps\User-4.bmp" />
+    <Image Include="Bitmaps\USER.BMP" />
+    <Image Include="Bitmaps\USERS-4.BMP" />
+    <Image Include="Bitmaps\YELLPHNE.BMP" />
+    <Image Include="Icons\ADDRBOOK.ICO" />
+    <Image Include="Icons\am2ani01.ico" />
+    <Image Include="Icons\am2ani02.ico" />
+    <Image Include="Icons\am2ani03.ico" />
+    <Image Include="Icons\am2ani04.ico" />
+    <Image Include="Icons\am2ani05.ico" />
+    <Image Include="Icons\am2ani06.ico" />
+    <Image Include="Icons\am2ani07.ico" />
+    <Image Include="Icons\am2ani08.ico" />
+    <Image Include="Icons\am2ani09.ico" />
+    <Image Include="Icons\am2ani10.ico" />
+    <Image Include="Icons\AM2ANIM1.ico" />
+    <Image Include="Icons\am2anim2.ico" />
+    <Image Include="Icons\am2anim3.ico" />
+    <Image Include="Icons\am2anim4.ico" />
+    <Image Include="Icons\am2anim5.ico" />
+    <Image Include="Icons\am2anim6.ico" />
+    <Image Include="Icons\am2anim7.ico" />
+    <Image Include="Icons\APPIC16.ICO" />
+    <Image Include="Icons\APPIC32.ICO" />
+    <Image Include="Icons\APPIC48.ICO" />
+    <Image Include="Icons\APPICO16.ICO" />
+    <Image Include="Icons\BLINK1.ICO" />
+    <Image Include="Icons\BLINK2.ICO" />
+    <Image Include="Icons\BLINK3.ICO" />
+    <Image Include="Icons\CIXLIST.ICO" />
+    <Image Include="Icons\CIXREADER.ICO" />
+    <Image Include="Icons\COMMENT.ICO" />
+    <Image Include="Icons\EVENTLOG.ICO" />
+    <Image Include="Icons\FILELIST.ICO" />
+    <Image Include="Icons\FOLDER.ICO" />
+    <Image Include="Icons\GLOBE.ICO" />
+    <Image Include="Icons\GRPLIST.ICO" />
+    <Image Include="Icons\ICO00001.ICO" />
+    <Image Include="Icons\ICON32.ICO" />
+    <Image Include="Icons\ICON48.ICO" />
+    <Image Include="Icons\IMPORT.ICO" />
+    <Image Include="Icons\INBASKET.ICO" />
+    <Image Include="Icons\INFO.ICO" />
+    <Image Include="Icons\INTERNET.ICO" />
+    <Image Include="Icons\LOCALCMT.ICO" />
+    <Image Include="Icons\LOCALSAY.ICO" />
+    <Image Include="Icons\MAIL.ICO" />
+    <Image Include="Icons\Mail10.ico" />
+    <Image Include="Icons\MODEM.ICO" />
+    <Image Include="Icons\OUTBASK.ICO" />
+    <Image Include="Icons\PARLIST.ICO" />
+    <Image Include="Icons\Phone02.ico" />
+    <Image Include="Icons\Phone15.ico" />
+    <Image Include="Icons\PURGE.ICO" />
+    <Image Include="Icons\purgeopt.ico" />
+    <Image Include="Icons\REPORT.ICO" />
+    <Image Include="Icons\RESUMES.ICO" />
+    <Image Include="Icons\SAY.ICO" />
+    <Image Include="Icons\SCHEDULE.ICO" />
+    <Image Include="Icons\TELEPHON.ICO" />
+    <Image Include="Icons\TERMINAL.ICO" />
+    <Image Include="Icons\TOPIC.ICO" />
+    <Image Include="Icons\UPLOAD.ICO" />
+    <Image Include="Icons\USERLIST.ICO" />
+    <Image Include="Icons\Warning.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="ameol232.exe.manifest">
+      <DeploymentContent>true</DeploymentContent>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Amctrl32\Amctrl32.vcxproj">
+      <Project>{daa2715a-8601-4056-84de-26bd51d46ca3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Amdb32\Amdb32.vcxproj">
+      <Project>{a089164b-8d46-4d9b-a406-63b96ba46a46}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Amlib32\Amlib32.vcxproj">
+      <Project>{80fa1536-e7c4-49af-acf4-9cc8e61256cc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Amob32\Amob32.vcxproj">
+      <Project>{c42f77a1-95ca-45b0-9c86-e0d6504c3c16}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Amuser32\Amuser32.vcxproj">
+      <Project>{948159db-8f70-431b-b28a-702738961108}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

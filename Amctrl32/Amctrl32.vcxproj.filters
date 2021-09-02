@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{03b5f003-46be-4c82-87c0-4d6b77f7eb81}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;hpj;bat;for;f90</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ca9cb539-9762-4503-bcaf-e4e84e19e203}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;fi;fd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{f3113707-7108-4c00-a750-210cdc396408}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="3dline.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amctrls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bigedit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bitmaps.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="draglist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="header.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hotkey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imglist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listview.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Amuser32\multimon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picbuttn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="picctrl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="progress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prsht.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splitter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="status.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tooltip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="topiclst.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="treeview.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="udctrl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="well.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="amctrl32.def">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\Shared\include\common.bld">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="Cursors\copycurs.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\dragcurs.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\hotspot.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\hsplit.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\movecurs.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\nolistdr.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\stopcurs.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Cursors\vsplit.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="amctrls.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="amctrlv.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="amctrli.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amctrls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\amuser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\httpmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\kludge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\listview.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\pdefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\include\warnings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Icons\insertic.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

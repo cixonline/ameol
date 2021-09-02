@@ -40,7 +40,7 @@
 
 static BOOL fDefDlgEx = FALSE;
 
-typedef struct tagRULEITEM;
+struct tagRULEITEM;
 
 typedef struct tagRULEHEADER {
    struct tagRULEHEADER FAR * lprhNext;   /* Pointer to next rule header */

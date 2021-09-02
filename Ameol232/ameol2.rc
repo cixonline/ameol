@@ -2569,26 +2569,7 @@ STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "New Connection Card",IDD_TITLE,91,6,178,24
-    LTEXT           "You can create a connection card for either an internet connection or a modem connection via your computer serial port.",-1,91,34,170,24
-    CONTROL         "Create a &Modem Connection Card",IDD_MODEM,"Button",BS_AUTORADIOBUTTON,97,71,145,10
-    CONTROL         "Create an &Internet Connection Card",IDD_INTERNET,
-                    "Button",BS_AUTORADIOBUTTON,97,89,157,10
-    CONTROL         "",IDD_PIX,"amxctl_picctrl",WS_TABSTOP,4,4,80,131
-END
-
-IDDLG_NEWCONNCARD2 DIALOG  0, 0, 276, 140
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif"
-BEGIN
-    LTEXT           "New Connection Card",IDD_TITLE,91,6,178,22
-    LTEXT           "You have chosen to create a Modem Connection Card. You now needs to know which modem you are using and to which port it is connected. Or choose AutoDetect to have Setup try to detect your modem automatically.",-1,91,28,170,40
-    LTEXT           "&Modem:",-1,91,85,26,8
-    COMBOBOX        IDD_MODEMS,119,83,129,105,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&Port:",-1,91,103,26,8
-    COMBOBOX        IDD_PORTS,119,101,46,78,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&Speed:",-1,91,121,26,8
-    COMBOBOX        IDD_SPEEDS,119,119,52,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&AutoDetect",IDD_AUTODETECT,175,99,50,14
+    LTEXT           "You can create a connection card for an internet connection.",-1,91,34,170,24
     CONTROL         "",IDD_PIX,"amxctl_picctrl",WS_TABSTOP,4,4,80,131
 END
 
@@ -2597,7 +2578,7 @@ STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "New Connection Card",IDD_TITLE,91,6,178,24
-    LTEXT           "You have chosen to create an Internet Connection Card. You now need to enter the internet address or number to which you want to connect.",-1,91,34,170,24
+    LTEXT           "You now need to enter the internet address or number to which you want to connect.",-1,91,34,170,24
     RTEXT           "&Address:",-1,89,71,36,8
     EDITTEXT        IDD_ADDRESS,127,69,125,12,ES_AUTOHSCROLL
     LTEXT           "Hint: You can specify the address as either the name (eg. cix.conferencing.co.uk) or as a dotted-decimal number (194.153.0.53)",-1,127,85,137,32
@@ -3554,19 +3535,6 @@ BEGIN
     ICON            IDI_GRPLIST,IDC_STATIC,5,8,20,20
 END
 
-IDDLG_NEWCONNCARD6 DIALOG  0, 0, 276, 140
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif"
-BEGIN
-    LTEXT           "New Connection Card",IDD_TITLE,91,6,178,24
-    LTEXT           "You can change the default dialup telephone number here and also enter a Mercury PIN code if you need to use one.",IDC_STATIC,91,34,170,24
-    LTEXT           "&Phone Number:",IDC_STATIC,91,76,54,8
-    EDITTEXT        IDC_PHONE,147,74,124,12,ES_AUTOHSCROLL
-    LTEXT           "&Mercury PIN Code (Optional):",IDC_STATIC,91,95,93,8
-    EDITTEXT        IDC_MERCURY_PIN,187,93,36,12,ES_AUTOHSCROLL
-    CONTROL         "",IDD_PIX,"amxctl_picctrl",0x0,4,4,80,131
-END
-
 IDDLG_BUTTONBITMAP DIALOG  0, 0, 207, 110
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Button Bitmap"
@@ -3683,17 +3651,6 @@ BEGIN
     PUSHBUTTON      "&Location",IDD_LOCATION,222,58,50,14
     PUSHBUTTON      "&Help",IDD_HELP,222,75,50,14
     ICON            IDI_TELEPHONY,-1,7,7,18,20
-END
-
-IDDLG_NEWCONNCARD2_TAPI DIALOG  0, 0, 276, 140
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif"
-BEGIN
-    LTEXT           "New Connection Card",IDD_TITLE,91,6,178,21
-    LTEXT           "You have chosen to create a Modem Connection Card. You now need to know which modem you are using.",-1,91,28,170,24
-    LTEXT           "&Modem:",-1,91,69,26,8
-    COMBOBOX        IDD_MODEMS,119,67,129,105,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "",IDD_PIX,"amxctl_picctrl",WS_TABSTOP,4,4,80,131
 END
 
 IDDLG_COMM_CARD DIALOG  0, 0, 200, 146
@@ -4183,21 +4140,6 @@ BEGIN
     EDITTEXT        IDD_EDIT,4,4,351,173,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL
 END
 
-IDDLG_NEWCONNCARD6_TAPI DIALOG  0, 0, 276, 140
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif"
-BEGIN
-    LTEXT           "New Connection Card",IDD_TITLE,91,6,178,24
-    LTEXT           "Enter the phone number to dial",IDC_STATIC,91,32,170,24
-    RTEXT           "&Country:",IDC_STATIC,99,65,46,8
-    COMBOBOX        IDD_COUNTRYLIST,147,63,115,80,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    RTEXT           "&Area code:",IDC_STATIC,91,82,54,8
-    EDITTEXT        IDD_AREACODE,147,80,55,12,ES_AUTOHSCROLL
-    RTEXT           "&Phone Number:",IDC_STATIC,91,99,54,8
-    EDITTEXT        IDC_PHONE,147,97,108,12,ES_AUTOHSCROLL
-    CONTROL         "",IDD_PIX,"amxctl_picctrl",0x0,4,4,80,131
-END
-
 IDDLG_SIGNUP_NEWNAME DIALOG  0, 0, 214, 111
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Preferred Nickname Rejected"
@@ -4538,18 +4480,6 @@ BEGIN
     DEFPUSHBUTTON   "&Save",IDOK,237,7,44,14
     PUSHBUTTON      "Cancel",IDCANCEL,237,24,44,14
     PUSHBUTTON      "&Help",IDD_HELP,237,41,44,14
-END
-
-IDDLG_NEWCONNCARD1a DIALOG  0, 0, 276, 140
-STYLE DS_SETFONT | WS_CHILD
-FONT 8, "MS Sans Serif"
-BEGIN
-    LTEXT           "New Connection Card",IDD_TITLE,91,6,178,24
-    LTEXT           "You can create a TAPI or Ameol Comms connection card. TAPI cards use the system modem properties set from Control Panel. Ameol Comms cards use Ameol's internal comms drivers.",-1,91,34,170,41
-    CONTROL         "&Create a TAPI Connection Card",IDD_TAPICARD,"Button",BS_AUTORADIOBUTTON,97,81,125,10
-    CONTROL         "Create an &Ameol Comms Connection Card",IDD_AMCOMCARD,
-                    "Button",BS_AUTORADIOBUTTON,97,99,168,10
-    CONTROL         "",IDD_PIX,"amxctl_picctrl",WS_TABSTOP,4,4,80,131
 END
 
 IDDLG_FIND DIALOG  66, 74, 245, 266
