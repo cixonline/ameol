@@ -563,6 +563,18 @@
     <ProjectReference Include="..\Amuser32\Amuser32.vcxproj">
       <Project>{948159db-8f70-431b-b28a-702738961108}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\HTTPMap\HTTPMap.vcxproj">
+      <Project>{b1aa6829-ecb8-4aac-beb5-480f4a48214c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\scintilla\SciLexer.vcxproj">
+      <Project>{ca3ee962-9448-4160-946b-db48047ee130}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\Zmodem32\Zmodem32.vcxproj">
+      <Project>{85725aef-950e-4c13-a91c-a92c5716c1fc}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
