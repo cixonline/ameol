@@ -147,6 +147,7 @@
       <DataExecutionPrevention />
       <ImportLibrary>./Debug/Zmodem32.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers />
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
