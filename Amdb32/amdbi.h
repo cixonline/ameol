@@ -119,7 +119,7 @@ typedef struct tagTLITEM {
 } TLITEM;
 #pragma pack()
 
-typedef struct tagCNL;
+struct tagCNL;
 
 /* Topic linked list structure 
  */
@@ -157,7 +157,7 @@ typedef struct tagCLITEM {
 } CLITEM;
 #pragma pack()
 
-typedef struct tagCAT;
+struct tagCAT;
 
 /*  Folder linked list structure 
  */
