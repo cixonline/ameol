@@ -24,6 +24,7 @@
 #include <memory.h>
 #include "telnet.h"
 #include "log.h"
+#include "crypto.h"
 
 #define  THIS_FILE   __FILE__
 
@@ -69,6 +70,8 @@ BOOL EXPORT WINAPI Amcomm_Open( LPCOMMDEVICE FAR * lppcdev, LPSTR lpConnectionCa
    LPCOMMDEVICE lpcdev;
 
    INITIALISE_PTR(lpcd);
+
+   TestCall();
 
    /* Get the specified connection card.
     */

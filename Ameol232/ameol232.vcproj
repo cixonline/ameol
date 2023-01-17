@@ -798,6 +798,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\crypto.c"
+				>
+			</File>
+			<File
 				RelativePath="custfont.c"
 				>
 				<FileConfiguration
@@ -3034,6 +3038,10 @@
 			</File>
 			<File
 				RelativePath="..\Shared\include\cookie.h"
+				>
+			</File>
+			<File
+				RelativePath=".\crypto.h"
 				>
 			</File>
 			<File
