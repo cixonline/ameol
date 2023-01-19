@@ -71,7 +71,7 @@ BOOL EXPORT WINAPI Amcomm_Open( LPCOMMDEVICE FAR * lppcdev, LPSTR lpConnectionCa
 
    INITIALISE_PTR(lpcd);
 
-   TestCall();
+   // TestCall();
 
    /* Get the specified connection card.
     */
