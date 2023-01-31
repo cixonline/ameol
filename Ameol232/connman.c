@@ -149,7 +149,7 @@ static WORD nPorts[] = {
    IPPORT_POP3,
    IPPORT_FTP,
    IPPORT_FINGER,
-   IPPORT_TELNET
+   992
    };
 
 /* This function displays the Connections Manager dialog.

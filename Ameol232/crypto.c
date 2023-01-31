@@ -1,4 +1,5 @@
 #include "main.h"
+#include "crypto.h"
 
 // https://gist.github.com/mmozeiko/c0dfcc8fec527a90a02145d2cc0bfb6d
 
@@ -10,20 +11,10 @@
 
 #define TLS_MAX_PACKET_SIZE (16384+512) // payload + extra over head for header/mac/padding (probably an overestimate)
 
-struct TlsState {
-	SOCKET sock;
-	CredHandle handle;
-    CtxtHandle context;
-    SecPkgContext_StreamSizes sizes;
-    int received;    // byte count in incoming buffer (ciphertext)
-    int used;        // byte count used from incoming buffer to decrypt current packet
-    int available;   // byte count available for decrypted bytes
-    char* decrypted; // points to incoming buffer where data is decrypted inplace
-    char incoming[TLS_MAX_PACKET_SIZE];
-};
+
 
 // Will connect to the server such that tls_read and tls_write can function
-int tls_connect(struct TlsState* s) {
+int tls_connect(SOCKET sock, struct TlsState* s) {
 	SCHANNEL_CRED cred;
 	CredHandle handle;
 	HRESULT result;
@@ -124,7 +115,7 @@ int tls_connect(struct TlsState* s) {
 
             while (size != 0)
             {
-                int d = send(s->sock, buffer, size, 0);
+                int d = send(sock, buffer, size, 0);
                 if (d <= 0)
                 {
                     break;
@@ -158,7 +149,7 @@ int tls_connect(struct TlsState* s) {
             break;
         }
 
-        r = recv(s->sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
+        r = recv(sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
         if (r == 0)
         {
             // server disconnected socket
@@ -180,7 +171,7 @@ int tls_connect(struct TlsState* s) {
 }
 
 // returns 0 on success or negative value on error
-static int tls_write(struct TlsState* s, const void* buffer, unsigned int size)
+static int tls_write(SOCKET sock, struct TlsState* s, const void* buffer, unsigned int size)
 {
     while (size != 0)
     {
@@ -220,7 +211,7 @@ static int tls_write(struct TlsState* s, const void* buffer, unsigned int size)
         sent = 0;
         while (sent != total)
         {
-            int d = send(s->sock, wbuffer + sent, total - sent, 0);
+            int d = send(sock, wbuffer + sent, total - sent, 0);
             if (d <= 0)
             {
                 // error sending data to socket, or server disconnected
@@ -238,7 +229,7 @@ static int tls_write(struct TlsState* s, const void* buffer, unsigned int size)
 
 // blocking read, waits & reads up to size bytes, returns amount of bytes received on success (<= size)
 // returns 0 on disconnect or negative value on error
-static int tls_read(struct TlsState* s, void* buffer, int size)
+static int tls_read(SOCKET sock, struct TlsState* s, void* buffer, int size)
 {
     int result = 0;
 	int r;
@@ -336,7 +327,7 @@ static int tls_read(struct TlsState* s, void* buffer, int size)
             }
 
             // wait for more ciphertext data from server
-            r = recv(s->sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
+            r = recv(sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
             if (r == 0)
             {
                 // server disconnected socket

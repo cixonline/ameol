@@ -25,7 +25,7 @@
 #define  cbMaxComBuf       32767
 
 #define  IPPORT_NNTP       119
-#define  IPPORT_POP3       110
+#define  IPPORT_POP3       110s
 #define  IPPORT_FINGER     79
 
 #ifdef WIN32
@@ -141,6 +141,7 @@ typedef struct tagCOMMDEVICE {
    LPLOGFILE lpLogFile;                      /* Pointer to active log file */
    BUFFER buf;                               /* Buffer for data */
    SOCKET sock;                              /* For IP connection, socket handle */
+   struct TlsState tlsState;				 /* For IP connection, TLS state */
    HCOMM hComm;                              /* Comms handle */
    DWORD dwAppData;                          /* Application data */
    struct {
