@@ -1138,7 +1138,7 @@ BOOL FASTCALL SendSMTPMail( LPCOMMDEVICE lpcdev, char * pLine )
             b64encode( (char *)&szPassword );
             
             wsprintf( sz, "%s\r\n", (LPSTR)szPassword );
-            WriteSocketLine( lpcdevSMTP, sz );
+            WriteSocketLineRedacted( lpcdevSMTP, sz, "****************\r\n" );
             memset( szPassword, 0, sizeof(beCur.szAuthInfoPass) );
             nSMTPState = NWS_MAILFROM;
             }

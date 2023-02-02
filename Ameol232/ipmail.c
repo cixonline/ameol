@@ -357,6 +357,7 @@ BOOL FASTCALL ParseMail( LPCOMMDEVICE lpcdev, char * pLine )
 {
    BOOL fServiceActive;
    char sz[ 60 ];
+   char redactedPass[ 60 ];
    BOOL fOk;
 
    /* This code must not be re-entrant!
@@ -417,8 +418,9 @@ BOOL FASTCALL ParseMail( LPCOMMDEVICE lpcdev, char * pLine )
                WriteToBlinkLog( GS(IDS_STR1188) );
             Amuser_Decrypt( szTmpMailPassword, rgEncodeKey );
             wsprintf( sz, szPCMD_Pass, (LPSTR)szTmpMailPassword );
+            wsprintf( redactedPass, szPCMD_Pass, "****************" );
             memset( szTmpMailPassword, 0, sizeof(szTmpMailPassword) );
-            WriteSocketLine( lpcdevMail, sz );
+            WriteSocketLineRedacted( lpcdevMail, sz, redactedPass );
             nMailState = NWS_MAILREADY;
             }
          break;

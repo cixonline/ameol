@@ -230,6 +230,7 @@ extern int wCommErr;
 
 void FASTCALL ReadAndProcessSocket( LPCOMMDEVICE, LPBUFFER, FPPARSERPROC );
 BOOL FASTCALL WriteSocketLine( LPCOMMDEVICE, LPSTR );
+BOOL FASTCALL WriteSocketLineRedacted( LPCOMMDEVICE, LPSTR, LPSTR );
 void FASTCALL CreateMessageId( char * );
 BOOL FASTCALL ResolveHostNames( void );
 LPSTR FASTCALL CreateMimeBoundary( void );

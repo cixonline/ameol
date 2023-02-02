@@ -464,6 +464,20 @@ BOOL FASTCALL WriteSocketLine( LPCOMMDEVICE lpcdev, LPSTR lpstr )
    return( Amcomm_WriteData( lpcdev, lpstr, cBytesToWrite ) );
 }
 
+/* Like WriteSocketLine, but writes lplogstr to the log file instead of lpstr
+ */
+BOOL FASTCALL WriteSocketLineRedacted( LPCOMMDEVICE lpcdev, LPSTR lpstr, LPSTR lplogstr )
+{
+   int cBytesToWrite;
+   int cLogBytesToWrite;
+
+   cBytesToWrite = lstrlen( lpstr );
+   cLogBytesToWrite = lstrlen( lplogstr );
+   if( NULL != lpcdev->lpLogFile )
+      Amfile_Write( lpcdev->lpLogFile->fhLog, lplogstr, cLogBytesToWrite );
+   return( Amcomm_WriteData( lpcdev, lpstr, cBytesToWrite ) );
+}
+
 /* This function parses a line of text from the socket and fills global variables with
  * details from the header.
  */
