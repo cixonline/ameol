@@ -1472,7 +1472,7 @@ BOOL FASTCALL ParseNews( LPCOMMDEVICE lpcdev, char * pLine )
             Amuser_Decrypt( szPassword, rgEncodeKey );
             wsprintf( lpTmpBuf, "authinfo pass %s\r\n", (LPSTR)szPassword );
             memset( szPassword, 0, sizeof(lpcNews->nsi.szAuthInfoPass) );
-            WriteSocketLine( lpcdev, lpTmpBuf );
+            WriteSocketLineRedacted( lpcdev, lpTmpBuf, "authinfo pass ****************\r\n" );
             lpcNews->nNewsState = NWS_AUTINFOACCEPT;
             }
          else
