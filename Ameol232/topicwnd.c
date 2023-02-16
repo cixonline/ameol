@@ -7901,37 +7901,7 @@ LPSTR FASTCALL GetTextBody( PTL ptl, LPSTR lpText2 )
 
 LPSTR GetReadableText(PTL ptl, LPSTR pSource)
 {
-   IMPORTPROC lpImpProc;
-   BOOL lResult;
-   LPSTR lpszMsg;
-
-   lResult = FALSE;
-
-
-   if (hRegLib >= (HINSTANCE)32)
-   {
-      if( NULL != ( lpImpProc = (IMPORTPROC)GetProcAddress( hRegLib, "GetReadableText" ) ) )
-      {
-         /* If we get here, we've got an import procedure entry point, so
-          * call it and wait for it to do the biz.
-          */
-         INITIALISE_PTR(lpszMsg);
-
-         if( fNewMemory( &lpszMsg, strlen(pSource) + 1 ) )
-         {
-            if( lpImpProc( pSource, lpszMsg ) )
-               strcpy(pSource, lpszMsg);
-            else
-               strcpy(pSource, GetTextBody( ptl, pSource ));
-               
-            FreeMemory( &lpszMsg );
-         }
-      }
-   }
-   else // !!SM!! 2041
-   {
-      strcpy(pSource, GetTextBody( ptl, pSource ));
-   }
+   strcpy(pSource, GetTextBody( ptl, pSource ));
 
    return( pSource );
 }
