@@ -513,6 +513,7 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
    BOOL fPreambled;
    BOOL fPartial;
    BOOL fDisableDecoding;
+   BOOL fAlreadyEmit;
    char szType[ LEN_RFCTYPE+1 ];
    char szSubtype[ 100 ];
 
@@ -551,6 +552,7 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
    fPartial = FALSE;
    fSkipSection = FALSE;
    fDisableDecoding = FALSE;
+   fAlreadyEmit = FALSE;
 
    /* We'll use a state machine to step through each line. Start
     * with the header state, since that's what we'll have.
@@ -987,13 +989,22 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                      }
                c = DecodeLine64( lpszLinePtr, lpszLinePtr, LEN_RAWLINE );
                ASSERT( hfile != HNDFILE_ERROR );
-               while( Amfile_Write( hfile, lpszLinePtr, c ) != (UINT)c )
-                  if( !DiskWriteError( hwnd, szFilename, TRUE, FALSE ) )
+
+               if( _strcmpi( szSubtype, "plain" ) == 0) {
+                   // We found some base64 plain text to write, now don't write other data.
+                   fAlreadyEmit = TRUE;
+                   lpszLinePtr[c] = 0;
+                   AddToTextBuffer( lpszLinePtr );
+			   } else {
+			     while( Amfile_Write( hfile, lpszLinePtr, c ) != (UINT)c )
+                   if( !DiskWriteError( hwnd, szFilename, TRUE, FALSE ) )
                      {
-                     nState = STMCH_FINISHED;
-                     fOk = FALSE;
-                     break;
+					   nState = STMCH_FINISHED;
+                       fOk = FALSE;
+                       break;
                      }
+			   }
+
                break;
                }
 
@@ -1129,7 +1140,8 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                 */
                if( fNewline )
                   lstrcat( lpszLinePtr, "\r\n" );
-               AddToTextBuffer( lpszLinePtr );
+               if (fAlreadyEmit == FALSE)
+                  AddToTextBuffer( lpszLinePtr );
                break;
                }
 
