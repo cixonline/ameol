@@ -498,6 +498,31 @@ BOOL FASTCALL ParseAttachmentHeader( char * pstrSubject, int * piIndex, int * pi
    return( FALSE );
 }
 
+/* 
+	Parses a MIME type and puts the appropriate extension in szExt
+*/
+void GetExtensionForMime(char* szType, char* szSubtype) {
+	// Overwritten if something more specific is found below
+	strcpy(szExt, "dat");
+
+	if( _strcmpi( szType, "image" ) == 0) {
+		if (_strcmpi(szSubtype, "jpeg") == 0) {
+			strcpy( szExt, "jpg" );
+		} else if (_strcmpi(szSubtype, "gif") == 0) {
+			strcpy( szExt, "gif" );
+		} else if (_strcmpi(szSubtype, "mpeg") == 0) {
+			strcpy(szExt, "mpg");
+		}
+	}
+
+	// szType is garbage if plain is the subtype
+	if (_strcmpi(szSubtype, "plain") == 0) {
+		strcpy(szExt, "txt");
+	} else if (_strcmpi(szSubtype, "html") == 0) {
+		strcpy(szExt, "htm");
+	}
+}
+
 /* This function parses an attachment in the specified message. It may be
  * a MIME or uuencoded attachment, but this function will handle both.
  */
@@ -727,15 +752,6 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                 */
                else if( _strcmpi( szType, "image" ) == 0 )
                   {
-                  /* Set the default extension.
-                   */
-                  if( _strcmpi( szSubtype, "jpeg" ) == 0 )
-                     strcpy( szExt, "jpg" );
-                  else if( _strcmpi( szSubtype, "gif" ) == 0 )
-                     strcpy( szExt, "gif" );
-                  else if( _strcmpi( szSubtype, "mpeg" ) == 0 )
-                     strcpy( szExt, "mpg" );
-
                   /* Parse rest of field.
                    */
                   while( *lpszLinePtr )
@@ -965,6 +981,7 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
             if( MIME_FORMAT_NONE != nMimeFormat )
                if( HNDFILE_ERROR == hfile && *szFilename != '\0' && fFiles )
                   {
+				  GetExtensionForMime(szType, szSubtype);
                   if( !OpenOutputFile( hwnd, fFirst, pth ) )
                      {
                      fOk = FALSE;
@@ -981,12 +998,15 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
             if( MIME_FORMAT_BASE64 == nMimeFormat )
                {
                if( HNDFILE_ERROR == hfile )
+			   {
+				  GetExtensionForMime(szType, szSubtype);
                   if( !OpenOutputFile( hwnd, fFirst, pth ) )
                      {
                      fOk = FALSE;
                      nState = STMCH_FINISHED;
                      break;
                      }
+			   }
                c = DecodeLine64( lpszLinePtr, lpszLinePtr, LEN_RAWLINE );
                ASSERT( hfile != HNDFILE_ERROR );
 
@@ -1212,6 +1232,7 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
              */
             if( hfile == HNDFILE_ERROR )
                {
+			   GetExtensionForMime(szType, szSubtype);
                if( !OpenOutputFile( hwnd, fFirst, pth ) )
                   {
                   nState = STMCH_FINISHED;
@@ -1411,7 +1432,7 @@ T1:         if( Amfile_QueryFile( szOutBuf ) )
    else
    {
       CreateTempFilename( szFilename, szExt );
-      if( fPromptForFilenames )
+	  if( 0 )
          if( !Adm_Dialog( hRscLib, hwnd, MAKEINTRESOURCE(IDDLG_DECODEFILENAME), DecodeFilename, (LPARAM)(LPSTR)szFilename ) )
             return( FALSE );
       wsprintf( szOutBuf, "%s\\%s", (LPSTR)lszAttachDir, (LPSTR)szFilename );
