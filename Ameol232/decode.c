@@ -1432,9 +1432,6 @@ T1:         if( Amfile_QueryFile( szOutBuf ) )
    else
    {
       CreateTempFilename( szFilename, szExt );
-	  if( 0 )
-         if( !Adm_Dialog( hRscLib, hwnd, MAKEINTRESOURCE(IDDLG_DECODEFILENAME), DecodeFilename, (LPARAM)(LPSTR)szFilename ) )
-            return( FALSE );
       wsprintf( szOutBuf, "%s\\%s", (LPSTR)lszAttachDir, (LPSTR)szFilename );
       hfile = Amfile_Create( szOutBuf, 0 );
    }
