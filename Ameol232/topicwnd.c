@@ -5475,6 +5475,29 @@ void FASTCALL SetMessageWindowTitle( HWND hwnd, PTL ptl )
    SetWindowText( hwnd, lpTmpBuf );
 }
 
+BOOL FASTCALL ShouldDecode(LPSTR msg) {
+	LPSTR line = msg;
+	char* needle = "Content-Type: multipart";
+	size_t len = strlen(needle);
+
+	while (TRUE) {
+		if (_strnicmp(line, needle, len) == 0 ) {
+			return TRUE;
+		}
+		// Reached the end of the headers without finding content-type
+		if (strncmp(line, "\r\n", 2) == 0) {
+			return FALSE;
+		}
+
+		line = _fstrstr(line, "\r\n");
+		line += 2;
+		if (line == NULL) {
+			return FALSE;
+		}
+	}
+}
+
+
 /* This function shows the specified message in the message window.
  */
 void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL fCenter )
@@ -5492,6 +5515,7 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
    HDC hdc;
    DWORD dwMsgLength = 0;
    HWND hwndBill = NULL;
+   BOOL shouldDecode = FALSE;
    
 
    if ( pth )
@@ -5596,9 +5620,14 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
          lpText2 = lpText;
          
          if( fStripHeaders && ( Amdb_GetTopicType( lpWindInfo->lpTopic ) == FTYPE_MAIL || Amdb_GetTopicType( lpWindInfo->lpTopic ) == FTYPE_NEWS ) )
+		 {
+			shouldDecode = ShouldDecode(lpText2);
             lpText = GetReadableText(ptl, lpText2);
-         else
+		 }
+		 else
+		 {
             lpText = GetTextBody( ptl, lpText2 );
+		 }
 
          if( ( lpszPreText || lpszPostText ) && dwLength )
             {
@@ -5716,6 +5745,10 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
    if( dwMsgLength > BIG_MAX_DISPLAY_MSG_SIZE )
       DestroyWindow( hwndBill );
    Amuser_CallRegistered( AE_MSGCHANGE, (LPARAM)pth, (LPARAM)lpWindInfo->lpTopic );
+
+   if (shouldDecode) {
+	   DecodeMessage(hwnd, TRUE);
+   }
 }
 
 /* This function updates the attachment pane by showing or hiding any
