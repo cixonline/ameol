@@ -5745,7 +5745,7 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
       DestroyWindow( hwndBill );
    Amuser_CallRegistered( AE_MSGCHANGE, (LPARAM)pth, (LPARAM)lpWindInfo->lpTopic );
 
-   if (shouldDecode) {
+   if (shouldDecode && !Amdb_IsDecoded(pth)) {
 	   DecodeMessage(hwnd, TRUE);
    }
 }

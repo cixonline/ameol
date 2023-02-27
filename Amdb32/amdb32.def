@@ -178,3 +178,4 @@ EXPORTS
     Amdb_RenameCookies
     Amdb_GetTopicTextFileSize
     Amdb_GetTextFileThreshold
+	Amdb_MarkMsgDecoded

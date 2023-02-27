@@ -4394,6 +4394,18 @@ BOOL EXPORT WINAPI Amdb_MarkMsgWithdrawn( PTH pth, BOOL fWithdrawn )
    return( fWasWithdrawn );
 }
 
+void EXPORT WINAPI Amdb_MarkMsgDecoded( PTH pth )
+{
+   HNDFILE fh;
+
+   if( ( fh = LockMessage( pth ) ) != HNDFILE_ERROR ) {
+        pth->thItem.dwFlags |= MF_MSGDECODED;
+        pth->ptl->tlItem.dwFlags |= TF_CHANGED;
+        UnlockMessage( fh, pth );
+		fDataChanged = TRUE;
+	}
+}
+
 BOOL WINAPI EXPORT Amdb_MarkMsgReadLock( PTH pth, BOOL fReadLock )
 {
    BOOL fWasReadLock = FALSE;

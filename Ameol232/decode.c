@@ -142,6 +142,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
    LPINT lpi;
    BOOL fOk;
 
+
    /* Get the handle of the selected message(s).
     */
    fOk = FALSE;
@@ -152,7 +153,8 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
       HWND hwndList;
       int iTotal = 0;
       int iIndex = 0;
-      PTH pthStart;
+	  PTH pthStart;
+
       BOOL fCtrl;
 
       /* Get this message details.
@@ -376,7 +378,13 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
             }
          }
       FreeMemory( &lpi );
+
+	  if (fOk){
+		  Amdb_MarkMsgDecoded(pthStart);
+	  }
       }
+
+
    return( fOk );
 }
 

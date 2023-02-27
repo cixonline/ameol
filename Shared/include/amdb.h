@@ -165,8 +165,9 @@ typedef struct tagNEWMSGSTRUCT {
 #define  MF_BEINGRETRIEVED       0x00010000
 #define  MF_TAGGED               0x00020000
 #define  MF_UNAVAILABLE          0x00040000
-#define  MF_WATCH             0x00080000
-#define  MF_NOTIFICATION            0x00100000
+#define  MF_WATCH                0x00080000
+#define  MF_NOTIFICATION         0x00100000
+#define	 MF_MSGDECODED           0x00200000
 
 #define  FTYPE_NEWS              0
 #define  FTYPE_MAIL              1
@@ -303,6 +304,7 @@ typedef int (WINAPI *PURGEPROC)( int, PURGECALLBACKINFO FAR * );
 #define  Amdb_IsWithdrawn(p)           Amdb_TestMsgFlags((p),MF_WITHDRAWN)
 #define  Amdb_IsWatched(p)             Amdb_TestMsgFlags((p),MF_WATCH)
 #define  Amdb_NeedNotification(p)      Amdb_TestMsgFlags((p),MF_NOTIFICATION)
+#define  Amdb_IsDecoded(p)			   Amdb_TestMsgFlags((p),MF_MSGDECODED)
 
 /* Get/Set bits */
 #define  BSB_CLRBIT           0
@@ -496,6 +498,7 @@ BOOL WINAPI Amdb_DeleteAttachment( PTH, ATTACHMENT FAR *, BOOL );
 BOOL WINAPI Amdb_TestMsgFlags( PTH, DWORD );
 BOOL WINAPI Amdb_SetOutboxMsgBit( PTH, BOOL );
 BOOL WINAPI Amdb_GetOutboxMsgBit( PTH );
+void WINAPI Amdb_MarkMsgDecoded( PTH );
 
 /* Cookie functions.
  */
