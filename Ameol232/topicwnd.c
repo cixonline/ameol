@@ -5480,21 +5480,20 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
 	char* needle = "Content-Type: multipart";
 	size_t len = strlen(needle);
 
-	while (TRUE) {
-		if (_strnicmp(line, needle, len) == 0 ) {
-			return TRUE;
-		}
+	while (_strnicmp(line, needle, len) != 0) {
 		// Reached the end of the headers without finding content-type
 		if (strncmp(line, "\r\n", 2) == 0) {
 			return FALSE;
 		}
 
 		line = _fstrstr(line, "\r\n");
-		line += 2;
 		if (line == NULL) {
 			return FALSE;
 		}
+		line += 2;
 	}
+
+	return TRUE;
 }
 
 
