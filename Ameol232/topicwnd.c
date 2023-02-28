@@ -5746,9 +5746,10 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
    Amuser_CallRegistered( AE_MSGCHANGE, (LPARAM)pth, (LPARAM)lpWindInfo->lpTopic );
 
    if (shouldDecode && !Amdb_IsDecoded(pth)) {
-	   DecodeMessage(hwnd, TRUE);
-	   // HACK: if we decoded something, go and recall showmsg to redraw.
-	   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter);
+	   if (DecodeMessage(hwnd, TRUE)) {
+		   // HACK: if we decoded something, go and recall showmsg to redraw.
+		   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter);
+	   }
    }
 }
 
