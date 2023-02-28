@@ -5477,10 +5477,14 @@ void FASTCALL SetMessageWindowTitle( HWND hwnd, PTL ptl )
 
 BOOL FASTCALL ShouldDecode(LPSTR msg) {
 	LPSTR line = msg;
-	char* needle = "Content-Type: multipart";
-	size_t len = strlen(needle);
+	char* needle1 = "Content-Type: multipart";
+	size_t len1 = strlen(needle1);
+	char* needle2 = "Content-Transfer-Encoding: quoted-printable";
+	size_t len2 = strlen(needle2);
 
-	while (_strnicmp(line, needle, len) != 0) {
+	while (_strnicmp(line, needle1, len1) != 0 &&
+		   _strnicmp(line, needle2, len2)) {
+
 		// Reached the end of the headers without finding content-type
 		if (strncmp(line, "\r\n", 2) == 0) {
 			return FALSE;
