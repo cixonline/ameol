@@ -1516,16 +1516,20 @@ BEGIN
     CONTROL         "Convert filenames with spaces to their shortname &equivalent",IDD_CONVERTSPACES,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,103,216,10
     GROUPBOX        "When Decoding Attachments",-1,7,135,251,76
+    CONTROL         "Automatically decode messages",IDD_AUTODECODE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,147,231,10
     CONTROL         "&Launch attachment after decoding",IDD_LAUNCHAFTERDECODE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,147,140,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,159,140,10
     CONTROL         "&Prompt for missing filenames for attachments",IDD_PROMPTFILENAMS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,159,172,10
-    CONTROL         "Strip &out HTML portion of MIME messages",IDD_STRIPHTML,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,171,172,10
+    CONTROL         "Strip &out HTML portion of MIME messages",IDD_STRIPHTML,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,183,172,10
     CONTROL         "Save original message to &backup file",IDD_BACKUPTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,183,236,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,195,236,10
     CONTROL         "Remove encoded text from message after &decode",IDD_REPLACETEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,195,231,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,207,231,10
+    CONTROL         "Automatically decode messages",IDD_AUTODECODE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,147,231,10
     CONTROL         "C&heck for the word ""attach"" when sending mails",IDD_CHECKFORATTACH,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,114,202,10
 END

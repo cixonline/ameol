@@ -2520,7 +2520,7 @@ BOOL FASTCALL InitializeInstance( LPSTR lpszCmdLine, int nCmdShow )
    fCopyRule = Amuser_GetPPInt( szSettings, "EnableCopyRule", FALSE );
    fParseDuringBlink = Amuser_GetPPInt( szSettings, "ParseDuringBlink", FALSE );
    fUnreadAfterBlink = Amuser_GetPPInt( szSettings, "ShowUnreadAfterBlink", TRUE );
-   fAutoDecode = Amuser_GetPPInt( szSettings, "AutoDecode", FALSE );
+   fAutoDecode = Amuser_GetPPInt( szSettings, "AutoDecode", TRUE );
    fStripHTML = Amuser_GetPPInt( szSettings, "StripHTML", FALSE );
    fReplaceAttachmentText = Amuser_GetPPInt( szSettings, "ReplaceAttachmentText", TRUE );
    fBackupAttachmentMail = Amuser_GetPPInt( szSettings, "BackupAttachmentMail", FALSE );

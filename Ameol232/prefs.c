@@ -1461,6 +1461,7 @@ BOOL FASTCALL Attachments_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lParam
    CheckDlgButton( hwnd, IDD_STRIPHTML, fStripHTML );
    CheckDlgButton( hwnd, IDD_REPLACETEXT, fReplaceAttachmentText );
    CheckDlgButton( hwnd, IDD_BACKUPTEXT, fBackupAttachmentMail );
+   CheckDlgButton( hwnd, IDD_AUTODECODE, fAutoDecode );
    EnableControl( hwnd, IDD_PAD1, fSplitParts );
    EnableControl( hwnd, IDD_EDIT, fSplitParts );
    EnableControl( hwnd, IDD_PAD2, fSplitParts );
@@ -1507,6 +1508,7 @@ void FASTCALL Attachments_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeN
       case IDD_STRIPHTML:
       case IDD_CONVERTSPACES:
       case IDD_CHECKFORATTACH:
+	  case IDD_AUTODECODE:
          PropSheet_Changed( GetParent( hwnd ), hwnd );
          break;
 
@@ -1555,6 +1557,7 @@ LRESULT FASTCALL Attachments_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          fStripHTML = IsDlgButtonChecked( hwnd, IDD_STRIPHTML );
          fReplaceAttachmentText = IsDlgButtonChecked( hwnd, IDD_REPLACETEXT );
          fBackupAttachmentMail = IsDlgButtonChecked( hwnd, IDD_BACKUPTEXT );
+		 fAutoDecode = IsDlgButtonChecked( hwnd, IDD_AUTODECODE );
 
          /* Get the encoding scheme
           */
@@ -1577,6 +1580,7 @@ LRESULT FASTCALL Attachments_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          Amuser_WritePPInt( szSettings, "StripHTML", fStripHTML );
          Amuser_WritePPInt( szSettings, "ReplaceAttachmentText", fReplaceAttachmentText );
          Amuser_WritePPInt( szSettings, "BackupAttachmentMail", fBackupAttachmentMail );
+		 Amuser_WritePPInt( szSettings, "AutoDecode", fAutoDecode );
 
          /* Force the Apply button to be disabled.
           */

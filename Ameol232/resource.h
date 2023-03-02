@@ -2574,6 +2574,7 @@
 #define IDD_MAILPORT                    7065
 #define IDC_SYSLINK1                    7065
 #define IDD_GETCIXREADER                7065
+#define IDD_AUTODECODE                  7066
 #define IDD_FILENAME                    7094
 #define IDD_VERSION                     7095
 #define IDD_TRANSFERTIME                7096

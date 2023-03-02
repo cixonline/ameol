@@ -5482,6 +5482,11 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
 	char* needle2 = "Content-Transfer-Encoding: quoted-printable";
 	size_t len2 = strlen(needle2);
 
+    if (fAutoDecode == FALSE) {
+		return FALSE;
+	}
+
+
 	while (_strnicmp(line, needle1, len1) != 0 &&
 		   _strnicmp(line, needle2, len2)) {
 
