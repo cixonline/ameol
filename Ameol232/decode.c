@@ -1005,18 +1005,8 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
              */
             if( MIME_FORMAT_BASE64 == nMimeFormat )
                {
-               if( HNDFILE_ERROR == hfile )
-			   {
-				  GetExtensionForMime(szType, szSubtype);
-                  if( !OpenOutputFile( hwnd, fFirst, pth ) )
-                     {
-                     fOk = FALSE;
-                     nState = STMCH_FINISHED;
-                     break;
-                     }
-			   }
+
                c = DecodeLine64( lpszLinePtr, lpszLinePtr, LEN_RAWLINE );
-               ASSERT( hfile != HNDFILE_ERROR );
 
                if( _strcmpi( szSubtype, "plain" ) == 0) {
                    // We found some base64 plain text to write, now don't write other data.
@@ -1024,6 +1014,18 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                    lpszLinePtr[c] = 0;
                    AddToTextBuffer( lpszLinePtr );
 			   } else {
+               if( HNDFILE_ERROR == hfile )
+			     {
+				  GetExtensionForMime(szType, szSubtype);
+                  if( !OpenOutputFile( hwnd, fFirst, pth ) )
+                     {
+                     fOk = FALSE;
+                     nState = STMCH_FINISHED;
+                     break;
+                     }
+			     }
+
+				 ASSERT( hfile != HNDFILE_ERROR );
 			     while( Amfile_Write( hfile, lpszLinePtr, c ) != (UINT)c )
                    if( !DiskWriteError( hwnd, szFilename, TRUE, FALSE ) )
                      {
