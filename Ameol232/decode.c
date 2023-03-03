@@ -1000,6 +1000,33 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                   fHasAttachment = TRUE;
                   }
 
+            if ( MIME_FORMAT_TEXT == nMimeFormat && _strcmpi( szSubtype, "html") == 0 ) {
+                if( HNDFILE_ERROR == hfile) {
+                  GetExtensionForMime(szType, szSubtype);
+
+                  if( !OpenOutputFile( hwnd, fFirst, pth ) )
+                     {
+                     fOk = FALSE;
+                     nState = STMCH_FINISHED;
+                     break;
+                     }
+                  OfflineStatusText( GS(IDS_STR968), (LPSTR)szFilename );
+                  fHasAttachment = TRUE;
+                  }
+
+                 ASSERT( hfile != HNDFILE_ERROR );
+                 c = strlen(lpszLinePtr);
+                 while( Amfile_Write( hfile, lpszLinePtr, c ) != (UINT)c )
+                   if( !DiskWriteError( hwnd, szFilename, TRUE, FALSE ) )
+                     {
+                       nState = STMCH_FINISHED;
+                       fOk = FALSE;
+                       break;
+                     }
+                   break;
+
+            }
+
             /* If the Base64 flag is set, then this is another line of Base64 data, so
              * parse it and add it to the output file.
              */
