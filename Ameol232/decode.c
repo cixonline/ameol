@@ -163,6 +163,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
       pthStart = (PTH)ListBox_GetItemData( hwndList, lpi[ 0 ] );
       Amdb_GetMsgInfo( pthStart, &msginfo );
       szFilename[ 0 ] = '\0';
+      szPartSubj[ 0 ] = '\0';
       strcpy( szExt, "dat" );
       nMimeFormat = MIME_FORMAT_NONE;
       fAlternative = FALSE;
@@ -503,7 +504,9 @@ BOOL FASTCALL ParseAttachmentHeader( char * pstrSubject, int * piIndex, int * pi
          pszPartSubj[ c++ ] = *pstrSubject;
       ++pstrSubject;
       }
-   return( FALSE );
+    if( c < LEN_PARTSUBJ - 1 )
+        pszPartSubj[ c ] = '\0';
+    return( FALSE );
 }
 
 /* 
