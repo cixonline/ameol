@@ -1635,6 +1635,19 @@ void FASTCALL MsgViewWnd_OnSetFocus( HWND hwnd, HWND hwndOldFocus )
  */
 LRESULT FASTCALL MsgViewWnd_OnNotify( HWND hwnd, int idCode, LPNMHDR lpNmHdr )
 {
+    HWND hwndAttach;
+    int cItems;
+    int c;
+    int cSelected = 0;
+    VERIFY( hwndAttach = GetDlgItem( hwnd, IDD_ATTACHMENT ) );
+    cItems = (int)SendMessage( hwndAttach, LVM_GETCOUNT, 0, 0L );
+    for( c = 0; c < cItems; ++c ) {
+        if( SendMessage( hwndAttach, LVM_GETSEL, c, 0L ) ) {
+            cSelected++;
+        }
+    }
+
+    MenuEnable( GetSubMenu( hMainMenu, 7 ), IDM_RUNATTACHMENT, cSelected > 0 );
 
    if( lpNmHdr->idFrom == IDD_FOLDERLIST )
       {

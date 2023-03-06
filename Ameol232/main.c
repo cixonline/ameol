@@ -6582,7 +6582,6 @@ void FASTCALL MainWnd_OnInitMenu( HWND hwnd, HMENU hMenu )
    MenuEnable( hMenu, IDM_VIEWINBROWSER, wStatus & MEB_HASMSG );
    MenuEnable( hMenu, IDM_KILLMSG, wStatus & MEB_HASMSG );
    MenuEnable( hMenu, IDM_DECODE, ( wStatus & MEB_HASFULLMSG ) && !(wStatus & (MEB_CIXTOPIC)));
-   MenuEnable( hMenu, IDM_RUNATTACHMENT, wStatus & MEB_ATTACHMENT );
    MenuEnable( hMenu, IDM_IGNORE, wStatus & MEB_HASMSG );
    MenuEnable( hMenu, IDM_MARKTHREADREAD, wStatus & MEB_HASMSG );
    MenuEnable( hMenu, IDM_FORWARD, wStatus & MEB_MSGWND );
