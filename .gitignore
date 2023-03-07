@@ -48,3 +48,7 @@ BuildLog.htm
 *.aps
 .vs
 Build/Zmodem32.afp
+
+*/Debug/*
+ameol.ncb
+ameol.suo
