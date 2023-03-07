@@ -355,7 +355,7 @@ BEGIN
         MENUITEM "Open",                        IDM_RUNATTACHMENT
         MENUITEM "Open With...",                IDM_OPENATTACHMENTWITH
         MENUITEM "Delete",                      IDM_DELETEATTACHMENT
-        MENUITEM "Rename...",                   IDM_RENAMEATTACHMENT
+        MENUITEM "Save As...",                  IDM_RENAMEATTACHMENT
     END
     POPUP "(Pop9)"
     BEGIN
@@ -5952,7 +5952,7 @@ BEGIN
     IDS_PREVMARKED          "Display the previous bookmarked message"
     IDS_TT_PREVMARKED       "Previous Bookmark"
     IDS_DECODE              "Decode any binary attachments embedded in the message"
-    IDS_TT_DECODE           "Decode Binary Attachment"
+    IDS_TT_DECODE           "Decode Attachment"
     IDS_STR1060             "User %s is already logged on"
     IDS_STR1061             "Error opening the users index file. You may have run out of memory or the file may be corrupted. Delete USERS\\USERS.DAT and try again. If this error persists, contact CIX Technical Support."
     IDS_STR672              "This database is not compatible with the current version of Ameol"

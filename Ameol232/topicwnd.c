@@ -2514,7 +2514,7 @@ BOOL FASTCALL RenameAttachment( HWND hwnd )
    ofn.lpstrFileTitle = NULL;
    ofn.nMaxFileTitle = 0;
    ofn.lpstrInitialDir = lszAttachDir;
-   ofn.lpstrTitle = "Rename Decoded Attachment";
+   ofn.lpstrTitle = "Save Decoded Attachment As...";
    ofn.Flags = OFN_NOCHANGEDIR|OFN_HIDEREADONLY|OFN_PATHMUSTEXIST|OFN_OVERWRITEPROMPT;
    ofn.nFileOffset = 0;
    ofn.nFileExtension = 0;

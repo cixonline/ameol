@@ -71,7 +71,7 @@ static BOOL fQuotedPrintable;             /* Data is quoted printable encoding *
 static char FAR szBoundary[ 100 ];        /* Multipart content separator boundary */
 static char FAR szOutBuf[ _MAX_PATH ];    /* Full path to filename */
 static char FAR szFilename[ _MAX_FNAME ]; /* A filename */
-static char szExt[ 4 ];                   /* The file extension */
+static char szExt[ 5 ];                   /* The file extension */
 static HNDFILE hfile;                     /* The active file handle */
 static int nMimeFormat;                   /* MIME format */
 static BOOL fAlternative = FALSE;         /* TRUE if we have an alternative part MIME message */
@@ -530,7 +530,7 @@ void GetExtensionForMime(char* szType, char* szSubtype) {
 	if (_strcmpi(szSubtype, "plain") == 0) {
 		strcpy(szExt, "txt");
 	} else if (_strcmpi(szSubtype, "html") == 0) {
-		strcpy(szExt, "htm");
+		strcpy(szExt, "html");
 	}
 }
 
