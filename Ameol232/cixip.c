@@ -233,7 +233,7 @@ BOOL FASTCALL InitialiseCIXIPInterface( HWND hwnd )
     */
    hMessageMenu = GetSubMenu( hMainMenu, 7 );
    InsertMenu( hMessageMenu, -1, MF_BYPOSITION|MF_SEPARATOR, 0, NULL);
-   InsertMenu( hMessageMenu, -1, MF_BYPOSITION|MF_STRING, IDM_DECODE, "&Decode Attachment" );
+   InsertMenu( hMessageMenu, -1, MF_BYPOSITION|MF_STRING, IDM_DECODE, "De&code Attachment" );
    InsertMenu( hMessageMenu, -1, MF_BYPOSITION|MF_STRING, IDM_RUNATTACHMENT, "Open Selected &Attachment" );
 
    /* Add New Mailbox command
