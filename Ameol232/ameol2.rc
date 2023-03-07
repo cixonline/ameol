@@ -5951,7 +5951,7 @@ BEGIN
     IDS_TT_NEXTMARKED       "Next Bookmark"
     IDS_PREVMARKED          "Display the previous bookmarked message"
     IDS_TT_PREVMARKED       "Previous Bookmark"
-    IDS_DECODE              "Decode any binary attachments embedded in the message"
+    IDS_DECODE              "Decode any attachments embedded in the message"
     IDS_TT_DECODE           "Decode Attachment"
     IDS_STR1060             "User %s is already logged on"
     IDS_STR1061             "Error opening the users index file. You may have run out of memory or the file may be corrupted. Delete USERS\\USERS.DAT and try again. If this error persists, contact CIX Technical Support."
@@ -6094,7 +6094,7 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_STR966              "Decoding binary attachment"
+    IDS_STR966              "Decoding attachment"
     IDS_STR783              "You must enter a mail address"
     IDS_STR784              "You must enter a full name"
     IDS_STR785              "Connecting to CIX Forums"
