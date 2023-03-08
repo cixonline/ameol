@@ -6454,7 +6454,7 @@ BEGIN
     IDS_STR885              "You are not a member of the %s forum. Do you want to be joined to %s automatically ?"
     IDS_STR886              "You are not a member of the %s forum. Your report will be posted to the %s forum instead."
     IDS_STR887              "If this is an addon report, please select or enter the name of the addon."
-    IDS_STR888              " Ameol Revision: %s%s\r\n"
+    IDS_STR888              "   Ameol Version: %s%s\r\n"
     IDS_STR889              "    Comms Driver: %s\r\n"
     IDS_STR890              "Operating System: %s\r\n"
     IDS_STR891              "       Processor: %s\r\n"
