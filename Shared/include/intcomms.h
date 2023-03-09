@@ -36,6 +36,7 @@
 
 #include "winsock.h"
 #include "amcomms.h"
+#include "crypto.h"
 
 #ifdef WIN32
 typedef HANDLE HCOMM;
