@@ -1528,8 +1528,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,195,236,10
     CONTROL         "Remove encoded text from message after &decode",IDD_REPLACETEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,207,231,10
-    CONTROL         "Automatically decode messages",IDD_AUTODECODE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,147,231,10
     CONTROL         "C&heck for the word ""attach"" when sending mails",IDD_CHECKFORATTACH,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,114,202,10
 END
