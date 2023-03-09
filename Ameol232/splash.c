@@ -199,9 +199,6 @@ void FASTCALL SplashScreen_OnPaint( HWND hwnd )
           /* Show the new logo.
            */
           SetTextColor( hdc, RGB( aSplashRGB[ 0 ], aSplashRGB[ 1 ], aSplashRGB[ 2 ] ) );
-          GetClientRect( hwnd, &rc );
-          rc.top = 7;
-          DrawText( hdc, lpTmpBuf, -1, &rc, DT_CENTER|DT_NOCLIP|DT_NOPREFIX );
 
           /* Show copyright information
            */
