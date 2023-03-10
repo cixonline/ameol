@@ -25,7 +25,7 @@
 #define  cbMaxComBuf       32767
 
 #define  IPPORT_NNTP       119
-#define  IPPORT_POP3       110s
+#define  IPPORT_POP3       110
 #define  IPPORT_FINGER     79
 
 #ifdef WIN32
@@ -36,7 +36,28 @@
 
 #include "winsock.h"
 #include "amcomms.h"
-#include "crypto.h"
+
+// Defined here in order to avoid circular dependency
+#define TLS_MAX_PACKET_SIZE (16384+512) // payload + extra over head for header/mac/padding (probably an overestimate)
+#define SECURITY_WIN32
+
+#include <sspi.h>
+#include <schannel.h>
+#include <security.h>
+#include <shlwapi.h>
+int tls_connect(SOCKET sock, struct TlsState* s);
+struct TlsState {
+	CredHandle handle;
+    CtxtHandle context;
+    SecPkgContext_StreamSizes sizes;
+    int received;    // byte count in incoming buffer (ciphertext)
+    int used;        // byte count used from incoming buffer to decrypt current packet
+    int available;   // byte count available for decrypted bytes
+    char* decrypted; // points to incoming buffer where data is decrypted inplace
+    char incoming[TLS_MAX_PACKET_SIZE];
+};
+
+
 
 #ifdef WIN32
 typedef HANDLE HCOMM;
@@ -273,7 +294,7 @@ BOOL FASTCALL ConnectViaRas( void );
 
 /* COMMSHRD.C */
 LRESULT EXPORT CALLBACK CommsClientWndProc( HWND, UINT, WPARAM, LPARAM );
-LPCOMMDEVICE FASTCALL Amcomm_OpenSocket( LPCOMMDEVICE, IPCOMM FAR *, HWND );
+LPCOMMDEVICE FASTCALL Amcomm_OpenSocket( LPCOMMDEVICE, IPCOMM FAR *, HWND, BOOL );
 LPCOMMDEVICE FASTCALL Amcomm_OpenModem( LPCOMMDEVICE, SERIALCOMM FAR *, HWND );
 BOOL FASTCALL Amcomm_Dial( LPCOMMDEVICE, SERIALCOMM FAR *, HWND );
 void FASTCALL Amcomm_TranslateString( LPSTR, BOOL );

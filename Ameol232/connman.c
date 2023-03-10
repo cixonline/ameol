@@ -1225,7 +1225,7 @@ BOOL FASTCALL AutoDetect( HWND hwnd, int idModems, int idPorts, int idSpeeds )
          /* Try to open this port. If we couldn't, skip the other
           * baud rates.
           */
-         if( !Amcomm_OpenCard( hwnd, &lpcdev, lpcd, NULL, 0L, NULL, NULL, FALSE ) )
+         if( !Amcomm_OpenCard( hwnd, &lpcdev, lpcd, NULL, 0L, NULL, NULL, FALSE, FALSE ) )
             x = 0;
          else
             {

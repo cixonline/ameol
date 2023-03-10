@@ -1266,7 +1266,7 @@ LPNNTPSRVR FASTCALL EnsureNewsWindow( char * pszNewsServer, NEWSSERVERINFO * pns
     */
    fAuthenticated = FALSE;
    OnlineStatusText( GS(IDS_STR693), pszNewsServer );
-   if( Amcomm_OpenCard( hwndFrame, &lpcdevNNTP, lpcdNNTP, NewsClientWndProc, 0L, pszLogFile, NULL, FALSE ) )
+   if( Amcomm_OpenCard( hwndFrame, &lpcdevNNTP, lpcdNNTP, NewsClientWndProc, 0L, pszLogFile, NULL, FALSE, FALSE ) )
       {
       /* All okay.
        */

@@ -1739,7 +1739,7 @@ BOOL FASTCALL Terminal_CreateConnection( HWND hwnd, LPSTR lpszName, BOOL fConnec
 
           /* Open this connection card.
            */
-          if( !Amcomm_OpenCard( hwndFrame, &ptwnd->lpcdev, lpcd, TerminalCallback, (DWORD)(LPSTR)hwnd, NULL, NULL, TRUE ) )
+          if( !Amcomm_OpenCard( hwndFrame, &ptwnd->lpcdev, lpcd, TerminalCallback, (DWORD)(LPSTR)hwnd, NULL, NULL, TRUE, FALSE ) )
                {
                fMessageBox( hwnd, 0, GS(IDS_STR630), MB_ICONEXCLAMATION|MB_OK );
                return( FALSE );
@@ -1747,7 +1747,7 @@ BOOL FASTCALL Terminal_CreateConnection( HWND hwnd, LPSTR lpszName, BOOL fConnec
           ptwnd->lpcdev->fOwnDescriptors = TRUE;
           }
 #ifdef WIN32
-     else if( !Amcomm_Open( &ptwnd->lpcdev, ptwnd->tp.szConnCard, TerminalCallback, (DWORD)(LPSTR)hwnd, NULL, NULL, &rdDef, TRUE ) )
+     else if( !Amcomm_Open( &ptwnd->lpcdev, ptwnd->tp.szConnCard, TerminalCallback, (DWORD)(LPSTR)hwnd, NULL, NULL, &rdDef, TRUE, FALSE ) )
 #else
      else if( !Amcomm_Open( &ptwnd->lpcdev, ptwnd->tp.szConnCard, TerminalCallback, (DWORD)(LPSTR)hwnd, NULL, NULL, NULL ) )
 #endif

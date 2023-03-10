@@ -938,7 +938,7 @@ BOOL FASTCALL EnsureSMTPWindow( void )
     */
    nSMTPState = NWS_IDLE;
    OnlineStatusText( GS(IDS_STR1021) );
-   if( Amcomm_OpenCard( hwndFrame, &lpcdevSMTP, lpcdSMTP, SMTPClientWndProc, 0L, pszLogFile, NULL, FALSE ) )
+   if( Amcomm_OpenCard( hwndFrame, &lpcdevSMTP, lpcdSMTP, SMTPClientWndProc, 0L, pszLogFile, NULL, FALSE, FALSE ) )
       {
       SuspendDisconnectTimeout();
       OnlineStatusText( GS(IDS_STR1022) );

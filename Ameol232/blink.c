@@ -1780,7 +1780,7 @@ int FASTCALL Exec_CIX2( void )
     * callback will be useful.
     */
 #ifdef WIN32
-   if( Amcomm_Open( &lpcdevCIX, beCur.szConnCard, NULL, 0L, pszLogFile, hwndCixTerminal, &beCur.rd, TRUE ) )
+   if( Amcomm_Open( &lpcdevCIX, beCur.szConnCard, NULL, 0L, pszLogFile, hwndCixTerminal, &beCur.rd, TRUE, TRUE ) )
 #else
    if( Amcomm_Open( &lpcdevCIX, beCur.szConnCard, NULL, 0L, pszLogFile, hwndCixTerminal, NULL ) )
 #endif

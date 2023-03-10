@@ -299,7 +299,7 @@ BOOL FASTCALL EnsureMailWindow( void )
    OnlineStatusText( GS(IDS_STR709) );
    if( fLogPOP3 )
       WriteToBlinkLog( GS(IDS_STR709) );
-   if( Amcomm_OpenCard( hwndFrame, &lpcdevMail, lpcdMail, MailClientWndProc, 0L, pszLogFile, NULL, FALSE ) )
+   if( Amcomm_OpenCard( hwndFrame, &lpcdevMail, lpcdMail, MailClientWndProc, 0L, pszLogFile, NULL, FALSE, FALSE ) )
       {
       SuspendDisconnectTimeout();
       OnlineStatusText( GS(IDS_STR713) );

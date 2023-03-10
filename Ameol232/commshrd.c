@@ -64,7 +64,7 @@ static int cInCache = 0;                        /* Number of items in cache */
  * used in subsequent calls to other Amcomm functions.
  */
 BOOL EXPORT WINAPI Amcomm_Open( LPCOMMDEVICE FAR * lppcdev, LPSTR lpConnectionCard, COMMCALLBACK lpfCallback, 
-                        DWORD dwAppData, char * pszLogFile, HWND hwndLog, LPRASDATA lprd, BOOL pSendInit /*2.56.2052 FS#148*/ )
+                        DWORD dwAppData, char * pszLogFile, HWND hwndLog, LPRASDATA lprd, BOOL pSendInit /*2.56.2052 FS#148*/, BOOL useTls )
 {
    LPCOMMDESCRIPTOR lpcd;
    LPCOMMDEVICE lpcdev;
@@ -101,7 +101,7 @@ BOOL EXPORT WINAPI Amcomm_Open( LPCOMMDEVICE FAR * lppcdev, LPSTR lpConnectionCa
    
    /* Open this connection card.
     */
-   if( Amcomm_OpenCard( hwndFrame, lppcdev, lpcd, lpfCallback, dwAppData, pszLogFile, hwndLog, pSendInit) )
+   if( Amcomm_OpenCard( hwndFrame, lppcdev, lpcd, lpfCallback, dwAppData, pszLogFile, hwndLog, pSendInit, useTls) )
       {
       lpcdev = *lppcdev;
       lpcdev->fOwnDescriptors = TRUE;
@@ -115,7 +115,7 @@ BOOL EXPORT WINAPI Amcomm_Open( LPCOMMDEVICE FAR * lppcdev, LPSTR lpConnectionCa
 /* This function opens the specified connection card.
  */
 BOOL WINAPI Amcomm_OpenCard( HWND hwnd, LPCOMMDEVICE FAR * lppcdev, LPCOMMDESCRIPTOR lpcd, COMMCALLBACK lpfCallback, 
-                     DWORD dwAppData, char * pszLogFile, HWND hwndLog, BOOL pSendInit/*2.56.2052 FS#148*/ )
+                     DWORD dwAppData, char * pszLogFile, HWND hwndLog, BOOL pSendInit/*2.56.2052 FS#148*/, BOOL useTls )
 {
    LPCOMMDEVICE lpcdev;
 
@@ -203,7 +203,7 @@ BOOL WINAPI Amcomm_OpenCard( HWND hwnd, LPCOMMDEVICE FAR * lppcdev, LPCOMMDESCRI
     */
    if( lpcd->wProtocol == PROTOCOL_NETWORK )
       {
-      if( Amcomm_OpenSocket( lpcdev, lpcd->lpic, hwndLog ) )
+      if( Amcomm_OpenSocket( lpcdev, lpcd->lpic, hwndLog, useTls ) )
          return( TRUE );
       else
          if( fDebugMode )
@@ -235,7 +235,7 @@ BOOL WINAPI Amcomm_OpenCard( HWND hwnd, LPCOMMDEVICE FAR * lppcdev, LPCOMMDESCRI
 /* This function opens the socket device specified by the
  * IPCOMM connection card entry.
  */
-LPCOMMDEVICE FASTCALL Amcomm_OpenSocket( LPCOMMDEVICE lpcdev, IPCOMM FAR * lpic, HWND hwndLog )
+LPCOMMDEVICE FASTCALL Amcomm_OpenSocket( LPCOMMDEVICE lpcdev, IPCOMM FAR * lpic, HWND hwndLog, BOOL useTls )
 {
    SOCKADDR_IN dest_sin;
    LPHOSTENT phe;
@@ -420,6 +420,11 @@ LPCOMMDEVICE FASTCALL Amcomm_OpenSocket( LPCOMMDEVICE lpcdev, IPCOMM FAR * lpic,
       wsprintf( buf, "%c%c%c", IAC, WILLTEL, TERMTYPE ); /* Will send termtype */
       Pal_send( lpcdev->sock, buf, 3, 0 );
    }
+
+   if (useTls) {
+	   tls_connect(lpcdev->sock, &lpcdev->tlsState);
+   }
+   
 
    /* Attach this connection to the debug terminal
     */

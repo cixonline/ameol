@@ -3,13 +3,7 @@
 
 // https://gist.github.com/mmozeiko/c0dfcc8fec527a90a02145d2cc0bfb6d
 
-#define SECURITY_WIN32
-#include <sspi.h>
-#include <schannel.h>
-#include <security.h>
-#include <shlwapi.h>
 
-#define TLS_MAX_PACKET_SIZE (16384+512) // payload + extra over head for header/mac/padding (probably an overestimate)
 
 
 
