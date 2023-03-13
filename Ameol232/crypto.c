@@ -1,72 +1,115 @@
-#include "main.h"
-#include "crypto.h"
+#define WIN32_LEAN_AND_MEAN
+#include <winsock2.h>
+#include <windows.h>
+#define SECURITY_WIN32
+#include <security.h>
+#include <schannel.h>
+#include <shlwapi.h>
+#include <assert.h>
+#include <stdio.h>
 
-// https://gist.github.com/mmozeiko/c0dfcc8fec527a90a02145d2cc0bfb6d
+#pragma comment (lib, "ws2_32.lib")
+#pragma comment (lib, "secur32.lib")
+#pragma comment (lib, "shlwapi.lib")
 
+#define TLS_MAX_PACKET_SIZE (16384+512) // payload + extra over head for header/mac/padding (probably an overestimate)
 
+typedef struct {
+    SOCKET sock;
+    CredHandle handle;
+    CtxtHandle context;
+    SecPkgContext_StreamSizes sizes;
+    int received;    // byte count in incoming buffer (ciphertext)
+    int used;        // byte count used from incoming buffer to decrypt current packet
+    int available;   // byte count available for decrypted bytes
+    char* decrypted; // points to incoming buffer where data is decrypted inplace
+    char incoming[TLS_MAX_PACKET_SIZE];
+} tls_socket;
 
-
-
-// Will connect to the server such that tls_read and tls_write can function
-int tls_connect(SOCKET sock, struct TlsState* s) {
+// returns 0 on success or negative value on error
+static int tls_connect(tls_socket* s, const char* hostname, unsigned short port)
+{
+	char sport[64];
 	SCHANNEL_CRED cred;
-	CredHandle handle;
-	HRESULT result;
-	CtxtHandle* context = NULL;
+	CtxtHandle* context;
+	int result;
 
-	cred.dwVersion = SCHANNEL_CRED_VERSION;
-	cred.dwFlags = SCH_CRED_AUTO_CRED_VALIDATION | SCH_CRED_NO_DEFAULT_CREDS;
-	cred.grbitEnabledProtocols = 0xc00; // SP_PROT_TLS1_2
+    // initialize windows sockets
+    WSADATA wsadata;
+    if (WSAStartup(MAKEWORD(2, 2), &wsadata) != 0)
+    {
+        return -1;
+    }
 
-	result = AcquireCredentialsHandleA(
-		NULL, // pszPrincipal
-		UNISP_NAME, // pszPackage
-		SECPKG_CRED_OUTBOUND, // fCredentialUse
-		NULL, // pvLogonID
-		&cred, // pAuthData
-		NULL, NULL, &handle, NULL
-	);
+    // create TCP IPv4 socket
+    s->sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (s->sock == INVALID_SOCKET)
+    {
+        WSACleanup();
+        return -1;
+    }
 
-	if (result != SEC_E_OK) {
-		perror("Invalid result");
-		abort();
-	}
-	
-	s->received = 0;
-	s->used = 0;
-	s->available = 0;
+    wnsprintfA(sport, sizeof(sport), "%u", port);
+
+    // connect to server
+    if (!WSAConnectByNameA(s->sock, hostname, sport, NULL, NULL, NULL, NULL, NULL, NULL))
+    {
+        closesocket(s->sock);
+        WSACleanup();
+        return -1;
+    }
+
+    // initialize schannel
+    {
+        cred.dwVersion = SCHANNEL_CRED_VERSION;
+		cred.dwFlags = SCH_USE_STRONG_CRYPTO          // use only strong crypto alogorithms
+                     | SCH_CRED_AUTO_CRED_VALIDATION  // automatically validate server certificate
+                     | SCH_CRED_NO_DEFAULT_CREDS;     // no client certificate authentication
+
+		cred.grbitEnabledProtocols = SP_PROT_TLS1_2;
+
+        if (AcquireCredentialsHandleA(NULL, UNISP_NAME_A, SECPKG_CRED_OUTBOUND, NULL, &cred, NULL, NULL, &s->handle, NULL) != SEC_E_OK)
+        {
+            closesocket(s->sock);
+            WSACleanup();
+            return -1;
+        }
+    }
+
+    s->received = s->used = s->available = 0;
     s->decrypted = NULL;
 
+    // perform tls handshake
+    // 1) call InitializeSecurityContext to create/update schannel context
+    // 2) when it returns SEC_E_OK - tls handshake completed
+    // 3) when it returns SEC_I_INCOMPLETE_CREDENTIALS - server requests client certificate (not supported here)
+    // 4) when it returns SEC_I_CONTINUE_NEEDED - send token to server and read data
+    // 5) when it returns SEC_E_INCOMPLETE_MESSAGE - need to read more data from server
+    // 6) otherwise read data from server and go to step 1
 
-
-
-
-
-
+    context = NULL;
     result = 0;
     for (;;)
     {
-		DWORD flags;
-		SECURITY_STATUS sec;
-        SecBuffer inbuffers[2] = { 0 };
-		SecBuffer outbuffers[1] = { 0 };
-        SecBufferDesc indesc = { SECBUFFER_VERSION, ARRAYSIZE(inbuffers), inbuffers };
-        SecBufferDesc outdesc = { SECBUFFER_VERSION, ARRAYSIZE(outbuffers), outbuffers };
 		int r;
 
+        SecBuffer inbuffers[2] = { 0 };
         inbuffers[0].BufferType = SECBUFFER_TOKEN;
         inbuffers[0].pvBuffer = s->incoming;
         inbuffers[0].cbBuffer = s->received;
         inbuffers[1].BufferType = SECBUFFER_EMPTY;
 
-       
+        SecBuffer outbuffers[1] = { 0 };
         outbuffers[0].BufferType = SECBUFFER_TOKEN;
 
-        flags = ISC_REQ_USE_SUPPLIED_CREDS | ISC_REQ_ALLOCATE_MEMORY | ISC_REQ_CONFIDENTIALITY | ISC_REQ_REPLAY_DETECT | ISC_REQ_SEQUENCE_DETECT | ISC_REQ_STREAM;
-        sec = InitializeSecurityContextA(
+        SecBufferDesc indesc = { SECBUFFER_VERSION, ARRAYSIZE(inbuffers), inbuffers };
+        SecBufferDesc outdesc = { SECBUFFER_VERSION, ARRAYSIZE(outbuffers), outbuffers };
+
+        DWORD flags = ISC_REQ_USE_SUPPLIED_CREDS | ISC_REQ_ALLOCATE_MEMORY | ISC_REQ_CONFIDENTIALITY | ISC_REQ_REPLAY_DETECT | ISC_REQ_SEQUENCE_DETECT | ISC_REQ_STREAM;
+        SECURITY_STATUS sec = InitializeSecurityContextA(
             &s->handle,
             context,
-            "cix.co.uk",
+            context ? NULL : (SEC_CHAR*)hostname,
             flags,
             0,
             0,
@@ -109,7 +152,7 @@ int tls_connect(SOCKET sock, struct TlsState* s) {
 
             while (size != 0)
             {
-                int d = send(sock, buffer, size, 0);
+                int d = send(s->sock, buffer, size, 0);
                 if (d <= 0)
                 {
                     break;
@@ -143,7 +186,7 @@ int tls_connect(SOCKET sock, struct TlsState* s) {
             break;
         }
 
-        r = recv(sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
+        r = recv(s->sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
         if (r == 0)
         {
             // server disconnected socket
@@ -158,28 +201,81 @@ int tls_connect(SOCKET sock, struct TlsState* s) {
         s->received += r;
     }
 
+    if (result != 0)
+    {
+        DeleteSecurityContext(context);
+        FreeCredentialsHandle(&s->handle);
+        closesocket(s->sock);
+        WSACleanup();
+        return result;
+    }
 
-	return 0;
+    QueryContextAttributes(context, SECPKG_ATTR_STREAM_SIZES, &s->sizes);
+    return 0;
+}
 
+// disconnects socket & releases resources (call this even if tls_write/tls_read function return error)
+static void tls_disconnect(tls_socket* s)
+{
+	SecBuffer inbuffers[1];
+	SecBuffer outbuffers[1];
 
+    DWORD type = SCHANNEL_SHUTDOWN;
+    
+    inbuffers[0].BufferType = SECBUFFER_TOKEN;
+    inbuffers[0].pvBuffer = &type;
+    inbuffers[0].cbBuffer = sizeof(type);
+
+    SecBufferDesc indesc = { SECBUFFER_VERSION, ARRAYSIZE(inbuffers), inbuffers };
+    ApplyControlToken(&s->context, &indesc);
+
+    
+    outbuffers[0].BufferType = SECBUFFER_TOKEN;
+
+    SecBufferDesc outdesc = { SECBUFFER_VERSION, ARRAYSIZE(outbuffers), outbuffers };
+    DWORD flags = ISC_REQ_ALLOCATE_MEMORY | ISC_REQ_CONFIDENTIALITY | ISC_REQ_REPLAY_DETECT | ISC_REQ_SEQUENCE_DETECT | ISC_REQ_STREAM;
+    if (InitializeSecurityContextA(&s->handle, &s->context, NULL, flags, 0, 0, &outdesc, 0, NULL, &outdesc, &flags, NULL) == SEC_E_OK)
+    {
+        char* buffer = outbuffers[0].pvBuffer;
+        int size = outbuffers[0].cbBuffer;
+        while (size != 0)
+        {
+            int d = send(s->sock, buffer, size, 0);
+            if (d <= 0)
+            {
+                // ignore any failures socket will be closed anyway
+                break;
+            }
+            buffer += d;
+            size -= d;
+        }
+        FreeContextBuffer(outbuffers[0].pvBuffer);
+    }
+    shutdown(s->sock, SD_BOTH);
+
+    DeleteSecurityContext(&s->context);
+    FreeCredentialsHandle(&s->handle);
+    closesocket(s->sock);
+    WSACleanup();
 }
 
 // returns 0 on success or negative value on error
-static int tls_write(SOCKET sock, struct TlsState* s, const void* buffer, unsigned int size)
+static int tls_write(tls_socket* s, const void* buffer, int size)
 {
+	SecBufferDesc desc;
+	SECURITY_STATUS sec;
+	int total;
+	int sent;
+
     while (size != 0)
     {
 		SecBuffer buffers[3];
-		SecBufferDesc desc = { SECBUFFER_VERSION, ARRAYSIZE(buffers), buffers };
-		SECURITY_STATUS sec;
-		int total;
-		int sent;
 
         int use = min(size, s->sizes.cbMaximumMessage);
 
         char wbuffer[TLS_MAX_PACKET_SIZE];
-        // assert(s->sizes.cbHeader + s->sizes.cbMaximumMessage + s->sizes.cbTrailer <= sizeof(wbuffer));
-
+        assert(s->sizes.cbHeader + s->sizes.cbMaximumMessage + s->sizes.cbTrailer <= sizeof(wbuffer));
+        
         buffers[0].BufferType = SECBUFFER_STREAM_HEADER;
         buffers[0].pvBuffer = wbuffer;
         buffers[0].cbBuffer = s->sizes.cbHeader;
@@ -192,8 +288,7 @@ static int tls_write(SOCKET sock, struct TlsState* s, const void* buffer, unsign
 
         CopyMemory(buffers[1].pvBuffer, buffer, use);
 
-
-
+        desc = { SECBUFFER_VERSION, ARRAYSIZE(buffers), buffers };
         sec = EncryptMessage(&s->context, 0, &desc, 0);
         if (sec != SEC_E_OK)
         {
@@ -205,7 +300,7 @@ static int tls_write(SOCKET sock, struct TlsState* s, const void* buffer, unsign
         sent = 0;
         while (sent != total)
         {
-            int d = send(sock, wbuffer + sent, total - sent, 0);
+            int d = send(s->sock, wbuffer + sent, total - sent, 0);
             if (d <= 0)
             {
                 // error sending data to socket, or server disconnected
@@ -223,10 +318,9 @@ static int tls_write(SOCKET sock, struct TlsState* s, const void* buffer, unsign
 
 // blocking read, waits & reads up to size bytes, returns amount of bytes received on success (<= size)
 // returns 0 on disconnect or negative value on error
-static int tls_read(SOCKET sock, struct TlsState* s, void* buffer, int size)
+static int tls_read(tls_socket* s, void* buffer, int size)
 {
     int result = 0;
-	int r;
 
     while (size != 0)
     {
@@ -256,13 +350,14 @@ static int tls_read(SOCKET sock, struct TlsState* s, void* buffer, int size)
         }
         else
         {
+			int r;
             // if any ciphertext data available then try to decrypt it
             if (s->received != 0)
             {
                 SecBuffer buffers[4];
-				SecBufferDesc desc = { SECBUFFER_VERSION, ARRAYSIZE(buffers), buffers };
+				SecBufferDesc desc;
 				SECURITY_STATUS sec;
-                // assert(s->sizes.cBuffers == ARRAYSIZE(buffers));
+                assert(s->sizes.cBuffers == ARRAYSIZE(buffers));
 
                 buffers[0].BufferType = SECBUFFER_DATA;
                 buffers[0].pvBuffer = s->incoming;
@@ -271,15 +366,14 @@ static int tls_read(SOCKET sock, struct TlsState* s, void* buffer, int size)
                 buffers[2].BufferType = SECBUFFER_EMPTY;
                 buffers[3].BufferType = SECBUFFER_EMPTY;
 
-                
+                desc = { SECBUFFER_VERSION, ARRAYSIZE(buffers), buffers };
 
-
-				sec = DecryptMessage(&s->context, &desc, 0, NULL);
+                sec = DecryptMessage(&s->context, &desc, 0, NULL);
                 if (sec == SEC_E_OK)
                 {
-                    //assert(buffers[0].BufferType == SECBUFFER_STREAM_HEADER);
-                    //assert(buffers[1].BufferType == SECBUFFER_DATA);
-                    //assert(buffers[2].BufferType == SECBUFFER_STREAM_TRAILER);
+                    assert(buffers[0].BufferType == SECBUFFER_STREAM_HEADER);
+                    assert(buffers[1].BufferType == SECBUFFER_DATA);
+                    assert(buffers[2].BufferType == SECBUFFER_STREAM_TRAILER);
 
                     s->decrypted = buffers[1].pvBuffer;
                     s->available = buffers[1].cbBuffer;
@@ -321,7 +415,7 @@ static int tls_read(SOCKET sock, struct TlsState* s, void* buffer, int size)
             }
 
             // wait for more ciphertext data from server
-            r = recv(sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
+            r = recv(s->sock, s->incoming + s->received, sizeof(s->incoming) - s->received, 0);
             if (r == 0)
             {
                 // server disconnected socket
