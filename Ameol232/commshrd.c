@@ -24,6 +24,7 @@
 #include <memory.h>
 #include "telnet.h"
 #include "log.h"
+#include "stunnel.h"
 
 #define  THIS_FILE   __FILE__
 

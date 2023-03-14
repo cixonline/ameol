@@ -2690,6 +2690,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\stunnel.c"
+				>
+			</File>
+			<File
 				RelativePath="subscrbe.c"
 				>
 				<FileConfiguration
@@ -3154,6 +3158,10 @@
 			</File>
 			<File
 				RelativePath="ssce.h"
+				>
+			</File>
+			<File
+				RelativePath=".\stunnel.h"
 				>
 			</File>
 			<File

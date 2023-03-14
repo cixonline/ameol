@@ -35,6 +35,7 @@
 #include "demo.h"
 #include "admin.h"
 #include "rules.h"
+#include "stunnel.h"
 
 #include <limits.h> // 2.55.2034
 
@@ -482,6 +483,7 @@ BOOL FASTCALL BeginBlink( LPBLINKENTRY lpbe )
     */
    lpobCurrent = NULL;
    fInitiatingBlink = FALSE;
+   start_stunnel();
    return( Blink( 0xFFFF ) );
 }
 
@@ -1775,6 +1777,7 @@ int FASTCALL Exec_CIX2( void )
    if( ( NULL == hwndCixTerminal && fViewCixTerminal ) || ( beCur.dwBlinkFlags & BF_STAYONLINE ) )
       hwndCixTerminal = NewTerminal( hwndFrame, "Dumb Terminal", TRUE );
 
+	start_stunnel();
    /* Connect to CIX using the CIX connection card. No need for a
     * callback as we're working asynchronously. But if this changes, the
     * callback will be useful.
@@ -1961,6 +1964,7 @@ int FASTCALL Exec_CIX2( void )
    fCIXSyncInProgress = FALSE;
    fEntry = FALSE;
    EndProcessing( 0xFFFF );
+   stop_stunnel();
    return( 0 );
 }
 
