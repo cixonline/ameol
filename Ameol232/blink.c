@@ -483,7 +483,7 @@ BOOL FASTCALL BeginBlink( LPBLINKENTRY lpbe )
     */
    lpobCurrent = NULL;
    fInitiatingBlink = FALSE;
-   start_stunnel();
+   start_stunnel(beCur);
    return( Blink( 0xFFFF ) );
 }
 
@@ -1777,7 +1777,7 @@ int FASTCALL Exec_CIX2( void )
    if( ( NULL == hwndCixTerminal && fViewCixTerminal ) || ( beCur.dwBlinkFlags & BF_STAYONLINE ) )
       hwndCixTerminal = NewTerminal( hwndFrame, "Dumb Terminal", TRUE );
 
-	start_stunnel();
+	// start_stunnel(beCur);
    /* Connect to CIX using the CIX connection card. No need for a
     * callback as we're working asynchronously. But if this changes, the
     * callback will be useful.
