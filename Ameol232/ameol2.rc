@@ -5992,7 +5992,6 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_STR965              "Decoding complete"
     IDS_STR732              "The folder name contains illegal characters"
     IDS_STR733              "Remove attachment %s ?"
     IDS_POSTARTICLE         "Post an article to the current newsgroup"

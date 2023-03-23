@@ -183,8 +183,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
          /* Parse one message.
           */
          fOk = ParseAttachments( hwnd, pthStart, TRUE, TRUE );
-         OfflineStatusText( GS(IDS_STR965) );
-
+         ShowUnreadMessageCount();
          }
       else
          {
@@ -373,7 +372,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
                   SendMessage( hwnd, WM_UPDMSGFLAGS, 0, (LPARAM)pthArray[ iIndex ] );
                   }
                }
-            OfflineStatusText( GS(IDS_STR965) );
+            ShowUnreadMessageCount();
             FreeMemory( (LPVOID FAR *)&pthArray );
             SetCursor( hOldCursor );
             }

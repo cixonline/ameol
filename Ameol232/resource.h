@@ -236,7 +236,6 @@
 #define IDD_RIGHT                       207
 #define IDS_STR730                      207
 #define IDD_BOTTOM                      208
-#define IDS_STR965                      208
 #define IDD_TOP                         209
 #define IDS_STR732                      209
 #define IDS_STR733                      210
