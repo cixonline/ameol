@@ -5494,6 +5494,8 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
 	size_t len1 = strlen(needle1);
 	char* needle2 = "Content-Transfer-Encoding: quoted-printable";
 	size_t len2 = strlen(needle2);
+	char* needle3 = "Content-Type: text/html";
+	size_t len3 = strlen(needle3);
 
     if (fAutoDecode == FALSE) {
 		return FALSE;
@@ -5501,7 +5503,8 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
 
 
 	while (_strnicmp(line, needle1, len1) != 0 &&
-		   _strnicmp(line, needle2, len2)) {
+		   _strnicmp(line, needle2, len2) != 0 &&
+		   _strnicmp(line, needle3, len3) != 0) {
 
 		// Reached the end of the headers without finding content-type
 		if (strncmp(line, "\r\n", 2) == 0) {

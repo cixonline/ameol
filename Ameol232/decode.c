@@ -533,6 +533,47 @@ void GetExtensionForMime(char* szType, char* szSubtype) {
 	}
 }
 
+/*
+	Decodes single-byte numerical HTML entities into a new char*
+	The returned char* must be freed after use.
+*/
+char* DecodeHTMLEntities(char* input) {
+	char* output_buf;
+	char* output_cursor;
+
+	output_buf = calloc(strlen(input) + 1, 1);
+	output_cursor = output_buf;
+
+	while (*input != 0) {
+		if (*input == '&') {
+			char* end_str = NULL;
+			long value = strtol(input+1, &end_str, 10);
+			if (end_str == input+1 || value >= 256 || value <= 0) {
+				// There was an error parsing this entity, this is
+				// probably not a HTML entity. Just emit it as-is
+				// Also, don't attempt to emit multibyte entities.
+				*output_cursor = '&';
+				output_cursor++;
+				input++;
+			} else {
+				*output_cursor = (char) value;
+				output_cursor++;
+				input = end_str;
+				// Optionally try and skip semicolons at the end of entities.
+				if (*input == ';') {
+					input++;
+				}
+			}
+		} else {
+			*output_cursor = *input;
+			output_cursor++;
+			input++;
+		}
+	}
+
+	return output_buf;
+}
+
 /* This function parses an attachment in the specified message. It may be
  * a MIME or uuencoded attachment, but this function will handle both.
  */
@@ -1038,10 +1079,13 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                c = DecodeLine64( lpszLinePtr, lpszLinePtr, LEN_RAWLINE );
 
                if( _strcmpi( szSubtype, "plain" ) == 0) {
+				   char* result;
                    // We found some base64 plain text to write, now don't write other data.
                    fAlreadyEmit = TRUE;
                    lpszLinePtr[c] = 0;
-                   AddToTextBuffer( lpszLinePtr );
+				   result = DecodeHTMLEntities( lpszLinePtr );
+                   AddToTextBuffer( result );
+				   free(result);
 			   } else {
                if( HNDFILE_ERROR == hfile )
 			     {
@@ -1395,6 +1439,33 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
 }
 //#pragma optimize("", on)
 
+
+char* FASTCALL AddSuffixToName( LPSTR pszName, int suffix )
+{
+	char* ret;
+	char buf[10];
+	size_t len;
+
+    wsprintf(buf, "%d", suffix);
+
+	// 10 is the maximum length of a (32 bit) int. We shouldn't need that much space, but it's cheap anyways.
+	ret = calloc(strlen(pszName) + 10, 1);
+	len = strlen(pszName);
+	while (pszName[len] != '.') {
+		len--;
+		if (len == 0 || (pszName[len] == '\\')) {
+			strcat(ret, pszName);
+			strcat(ret, buf);
+			return ret;
+		}
+	}
+	strncpy(ret, pszName, len);
+	strcat(ret, buf);
+	strcat(ret, &pszName[len]);
+
+	return ret;
+}
+
 /* This function opens the output file for any decoded
  * attachment.
  */
@@ -1419,46 +1490,33 @@ BOOL FASTCALL OpenOutputFile( HWND hwnd, BOOL fFirst, PTH pth)
 
    if( szFilename[ 0 ] )
       {
+      char* original_filename;
+      char* filename;
+      int counter;
+
       if( !Ameol2_MakeLocalFileName( hwnd, szFilename, szOutBuf, TRUE ) )
          return( FALSE );
       strcpy( szFilename, szOutBuf );
+
+
       wsprintf( szOutBuf, "%s\\%s", (LPSTR)&lszAttachDir, (LPSTR)szFilename );
       if( fFirst )
       {
-         /* If the output file already exists, prompt before overwriting it.
-          */
-T1:         if( Amfile_QueryFile( szOutBuf ) )
+T1:
+         counter = 1;
+         original_filename = malloc(260);
+         filename = malloc(260);
+         strcpy(original_filename, szOutBuf);
+         strcpy(filename, szOutBuf);
+
+         while( Amfile_QueryFile( filename ) )
          {
-            LPSTR lpStr;
-            int cbStr;
-
-            INITIALISE_PTR(lpStr);
-            cbStr = strlen( szOutBuf ) + strlen( GS(IDS_STR673) ) + 1;
-            if( fNewMemory( &lpStr, cbStr ) )
-            {
-               int r;
-
-               wsprintf( lpStr, GS(IDS_STR673), szOutBuf );
-               r = fDlgMessageBox( hwnd, idsFDLPROMPT, IDDLG_DECODEEXISTS, szOutBuf, 0, 0 );
-               FreeMemory( &lpStr );
-               if( IDNO == r || IDCANCEL == r )
-               {
-                  if( IDCANCEL == r || IDYES == fMessageBox( hwnd, 0, "Are you sure, this will abort all other decodes?", MB_YESNO|MB_ICONEXCLAMATION ) )
-                     return( FALSE );
-                  else
-                     goto T1;
-               }
-               if( IDD_RENAME == r )
-               {
-                     strcpy(szOutBuf, szFilename);
-                     if( !RenameOutputFile( hwnd, pth ) )
-                        return( FALSE );
-                     else
-                        goto T1;
-               }
-            }
+            free(filename);
+            filename = AddSuffixToName(original_filename, counter);
+            counter++;
          }
-         hfile = Amfile_Create( szOutBuf, 0 );
+         hfile = Amfile_Create( filename, 0 );
+         strcpy(szOutBuf, filename);
       }
       else
       {

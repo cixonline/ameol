@@ -349,6 +349,8 @@ int FASTCALL ChangeExtension( LPSTR pszName, LPSTR pszExt )
    return( TRUE );
 }
 
+
+
 /* This function displays the common Open File dialog
  */
 BOOL FASTCALL CommonGetOpenFilename( HWND hwnd, char * pszFilePath, char * pszTitle,
