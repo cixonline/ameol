@@ -545,14 +545,17 @@ char* DecodeHTMLEntities(char* input) {
 	output_cursor = output_buf;
 
 	while (*input != 0) {
-		if (*input == '&') {
+		if (*input == '&' && input[1] == '#') {
 			char* end_str = NULL;
-			long value = strtol(input+1, &end_str, 10);
-			if (end_str == input+1 || value >= 256 || value <= 0) {
+			long value = strtol(input+2, &end_str, 10);
+			if (end_str == input+2 || value >= 256 || value <= 0) {
 				// There was an error parsing this entity, this is
 				// probably not a HTML entity. Just emit it as-is
 				// Also, don't attempt to emit multibyte entities.
 				*output_cursor = '&';
+				output_cursor++;
+				input++;
+				*output_cursor = '#';
 				output_cursor++;
 				input++;
 			} else {
@@ -1243,8 +1246,11 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                 */
                if( fNewline )
                   lstrcat( lpszLinePtr, "\r\n" );
-               if (fAlreadyEmit == FALSE)
-                  AddToTextBuffer( lpszLinePtr );
+               if (fAlreadyEmit == FALSE) {
+                  char* decoded = DecodeHTMLEntities(lpszLinePtr);
+                  AddToTextBuffer( decoded );
+                  free(decoded);
+               }
                break;
                }
 
