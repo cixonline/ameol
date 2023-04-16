@@ -1388,7 +1388,6 @@
 #define IDD_SETTING                     6032
 #define IDD_TERMINALWIDTH               6032
 #define IDD_DIALTONE                    6033
-#define IDD_PASSWORD3                   6033
 #define IDD_DIR                         6033
 #define IDD_MAXMSGSIZE                  6033
 #define IDD_MARK                        6034

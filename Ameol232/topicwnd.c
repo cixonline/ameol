@@ -5489,36 +5489,39 @@ void FASTCALL SetMessageWindowTitle( HWND hwnd, PTL ptl )
 }
 
 BOOL FASTCALL ShouldDecode(LPSTR msg) {
-	LPSTR line = msg;
-	char* needle1 = "Content-Type: multipart";
-	size_t len1 = strlen(needle1);
-	char* needle2 = "Content-Transfer-Encoding: quoted-printable";
-	size_t len2 = strlen(needle2);
-	char* needle3 = "Content-Type: text/html";
-	size_t len3 = strlen(needle3);
+    LPSTR line = msg;
+    char* needle1 = "Content-Type: multipart";
+    size_t len1 = strlen(needle1);
+    char* needle2 = "Content-Transfer-Encoding: quoted-printable";
+    size_t len2 = strlen(needle2);
+    char* needle3 = "Content-Type: text/html";
+    size_t len3 = strlen(needle3);
+    char* needle4 = "Content-Transfer-Encoding: base64";
+    size_t len4 = strlen(needle2);
 
     if (fAutoDecode == FALSE) {
-		return FALSE;
-	}
+        return FALSE;
+    }
 
 
-	while (_strnicmp(line, needle1, len1) != 0 &&
-		   _strnicmp(line, needle2, len2) != 0 &&
-		   _strnicmp(line, needle3, len3) != 0) {
+    while (_strnicmp(line, needle1, len1) != 0 &&
+           _strnicmp(line, needle2, len2) != 0 &&
+           _strnicmp(line, needle3, len3) != 0 &&
+           _strnicmp(line, needle4, len4) != 0) {
 
-		// Reached the end of the headers without finding content-type
-		if (strncmp(line, "\r\n", 2) == 0) {
-			return FALSE;
-		}
+        // Reached the end of the headers without finding content-type
+        if (strncmp(line, "\r\n", 2) == 0) {
+            return FALSE;
+        }
 
-		line = _fstrstr(line, "\r\n");
-		if (line == NULL) {
-			return FALSE;
-		}
-		line += 2;
-	}
+        line = _fstrstr(line, "\r\n");
+        if (line == NULL) {
+            return FALSE;
+        }
+        line += 2;
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 

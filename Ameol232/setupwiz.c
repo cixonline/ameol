@@ -515,7 +515,6 @@ BOOL FASTCALL SetupWizard_P3_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lPa
     */
    Edit_LimitText( GetDlgItem( hwnd, IDD_USERNAME ), 14 );
    Edit_LimitText( GetDlgItem( hwnd, IDD_PASSWORD ), 14 );
-   Edit_LimitText( GetDlgItem( hwnd, IDD_PASSWORD3 ), 14 );
 
    /* Set the current nickname and password.
     */
@@ -523,7 +522,6 @@ BOOL FASTCALL SetupWizard_P3_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lPa
    memcpy( szPassword, szCIXPassword, sizeof(szCIXPassword) );
    Amuser_Decrypt( szPassword, rgEncodeKey );
    SetDlgItemText( hwnd, IDD_PASSWORD, szPassword );
-   SetDlgItemText( hwnd, IDD_PASSWORD3, szPassword );
 
    /* Set the picture bitmap.
     */
@@ -543,12 +541,10 @@ void FASTCALL SetupWizard_P3_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT co
       {
       case IDD_USERNAME:
       case IDD_PASSWORD:
-      case IDD_PASSWORD3:
          if( codeNotify == EN_CHANGE && IsWindowVisible( hwndCtl ) )
             {
             if( Edit_GetTextLength( GetDlgItem( hwnd, IDD_USERNAME ) ) > 0 &&
-                Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD ) ) > 0 &&
-                Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD3 ) ) )
+                Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD ) ) > 0  )
                PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_NEXT|PSWIZB_BACK );
             else
                PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_BACK );
@@ -571,8 +567,7 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          SetDlgItemText( hwnd, IDD_FULLNAME, szFullName );
          SetDlgItemText( hwnd, IDD_PAD1, GS(IDS_STR1180) );
          if( Edit_GetTextLength( GetDlgItem( hwnd, IDD_USERNAME ) ) > 0 &&
-             Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD ) ) > 0 &&
-             Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD3 ) ) )
+             Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD ) ) > 0  )
             PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_NEXT|PSWIZB_BACK );
          else
             PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_BACK );
@@ -582,8 +577,6 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          return( (nSetupAccountType == ACTYP_CONFERENCING) ? IDDLG_SETUPWIZ_P2_1 : IDDLG_SETUPWIZ_P2 );
 
       case PSN_WIZNEXT: {
-         char szPassword3[ 40 ];
-
          GetDlgItemText( hwnd, IDD_USERNAME, szCIXNickname, 16 );
          if( !IsValidCIXNickname( szCIXNickname ) )
             {
@@ -591,15 +584,9 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
             return( -1 );
             }
          GetDlgItemText( hwnd, IDD_PASSWORD, szCIXPassword, 16 );
-         GetDlgItemText( hwnd, IDD_PASSWORD3, szPassword3, 16 );
          if( !IsValidCIXPassword( szCIXPassword ) )
             {
             fMessageBox( hwnd, 0, GS(IDS_STR905), MB_OK|MB_ICONINFORMATION );
-            return( -1 );
-            }
-         if( strcmp( szCIXPassword, szPassword3 ) != 0 )
-            {
-            fMessageBox( hwnd, 0, GS(IDS_STR264), MB_OK|MB_ICONINFORMATION );
             return( -1 );
             }
          Amuser_Encrypt( szCIXPassword, rgEncodeKey );
@@ -617,19 +604,11 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          wsprintf( szMailAddress, "%s@cix.co.uk", szMailLogin );
 
          GetDlgItemText( hwnd, IDD_PASSWORD, szMailPassword, sizeof( szMailPassword ) );
-         GetDlgItemText( hwnd, IDD_PASSWORD3, szEmail2, sizeof( szEmail2 ) );
 
-         if ( strcmp(szMailPassword,szEmail2)==0 )
-         {
-            strcpy(szCIXPassword, szMailPassword );
-            Amuser_Encrypt( szMailPassword, rgEncodeKey );
-            Amuser_Encrypt( szCIXPassword, rgEncodeKey );
-         }
-         else
-         {
-            fMessageBox( hwnd, 0, GS(IDS_STR264), MB_OK|MB_ICONINFORMATION );
-            return( -1 );
-         }
+         strcpy(szCIXPassword, szMailPassword );
+         Amuser_Encrypt( szMailPassword, rgEncodeKey );
+         Amuser_Encrypt( szCIXPassword, rgEncodeKey );
+
          if ( nSetupAccountType == ACTYP_CONFERENCING_AND_INTERNET )
             return( IDDLG_SETUPWIZ_P4 );
 
@@ -661,6 +640,8 @@ BOOL FASTCALL SetupWizard_P4_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lPa
    Edit_LimitText( GetDlgItem( hwnd, IDD_POP3SERVER ), sizeof(szMailServer) - 1 );
    //Edit_LimitText( GetDlgItem( hwnd, IDD_NEWSSERVER ), sizeof(szNewsServer) - 1 );
    Edit_LimitText( GetDlgItem( hwnd, IDD_MAILSERVER ), sizeof(szSMTPMailServer) - 1 );
+   SetDlgItemText( hwnd, IDD_MAILSERVER, "mail.cix.co.uk" );
+   SetDlgItemText( hwnd, IDD_POP3SERVER, "mail.cix.co.uk" );
 
    /* Set the picture bitmap.
     */
