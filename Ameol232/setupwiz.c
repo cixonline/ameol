@@ -584,6 +584,7 @@ LRESULT FASTCALL SetupWizard_P3_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
             return( -1 );
             }
          GetDlgItemText( hwnd, IDD_PASSWORD, szCIXPassword, 16 );
+         GetDlgItemText( hwnd, IDD_PASSWORD, szCIXClearPassword, 16 );
          if( !IsValidCIXPassword( szCIXPassword ) )
             {
             fMessageBox( hwnd, 0, GS(IDS_STR905), MB_OK|MB_ICONINFORMATION );
@@ -734,7 +735,7 @@ BOOL FASTCALL SetupWizard_P5_OnInitDialog( HWND hwnd, HWND hwndFocus, LPARAM lPa
 
    VERIFY( hwndEdit = GetDlgItem( hwnd, IDD_EMAIL2 ) );
    Edit_LimitText( hwndEdit, sizeof(szEmail2) - 1 );
-   SetDlgItemText( hwnd, IDD_EMAIL2, szDomain);
+   SetDlgItemText( hwnd, IDD_EMAIL2, "cix.co.uk");
 
    /* Set the picture bitmap.
     */
@@ -861,13 +862,17 @@ LRESULT FASTCALL SetupWizard_P6_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
          HtmlHelp( hwnd, szHelpFile, HH_HELP_CONTEXT, idsSETUPWIZ_P6 );
          break;
 
-      case PSN_SETACTIVE:
+      case PSN_SETACTIVE: {
+         SetDlgItemText( hwnd, IDD_FULLNAME, szCIXNickname );
+         SetDlgItemText( hwnd, IDD_PASSWORD, szCIXClearPassword );
+
          if( Edit_GetTextLength( GetDlgItem( hwnd, IDD_FULLNAME ) ) > 0 &&
              Edit_GetTextLength( GetDlgItem( hwnd, IDD_PASSWORD ) ) )
             PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_NEXT|PSWIZB_BACK );
          else
             PropSheet_SetWizButtons( GetParent( hwnd ), PSWIZB_BACK );
          break;
+      }
 
       case PSN_WIZBACK:
          return( IDDLG_SETUPWIZ_P5 );
@@ -875,6 +880,7 @@ LRESULT FASTCALL SetupWizard_P6_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
       case PSN_WIZNEXT:
          GetDlgItemText( hwnd, IDD_FULLNAME, szMailLogin, sizeof( szMailLogin ) );
          GetDlgItemText( hwnd, IDD_PASSWORD, szMailPassword, sizeof( szMailPassword ) );
+         GetDlgItemText( hwnd, IDD_PASSWORD, szMailClearPassword, sizeof( szMailClearPassword ) );
          Amuser_Encrypt( szMailPassword, rgEncodeKey );
          strcpy( szHostname, szMailLogin );
          return( IDDLG_SETUPWIZ_P6_1 );
@@ -949,6 +955,8 @@ LRESULT FASTCALL SetupWizard_P6_1_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr
          break;
 
       case PSN_SETACTIVE:
+         SetDlgItemText( hwnd, IDD_FULLNAME, szMailLogin );
+         SetDlgItemText( hwnd, IDD_PASSWORD, szMailClearPassword );
          SetupWizard_P6_1_EnableButtons( hwnd );
          break;
 

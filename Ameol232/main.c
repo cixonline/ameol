@@ -436,6 +436,7 @@ char FAR szSMTPMailServer[ 64 ];    /* SMTP Mail server */
 char FAR szMailServer[ 64 ];        /* POP3 Mail server */
 char FAR szMailLogin[ 64 ];         /* Mail server login name */
 char FAR szMailPassword[ 40 ];      /* Mail server login password */
+char FAR szMailClearPassword[ 40 ]; /* Mail server login password (unencrypted! Only used for setupwiz) */
 char FAR szSMTPMailLogin[ 64 ];     /* SMTP Mail server login name */
 char FAR szSMTPMailPassword[ 40 ];  /* SMTP Mail server login password */
 char FAR szMailAddress[ 64 ];       /* User's mail address */
@@ -449,6 +450,7 @@ char FAR szCixProtocol[ 16 ];       /* Name of CIX file transfer protocol */
 
 char FAR szCIXNickname[ 16 ];       /* CIX nickname */
 char FAR szCIXPassword[ 40 ];       /* CIX password */
+char FAR szCIXClearPassword[ 40 ];  /* CIX password (unencrypted! Only used for setupwiz) */
 char FAR szOrganisation[ 64 ];      /* Organisation */
 char FAR szUsenetGateway[ 10 ];     /* Name of Usenet gateway */
 
