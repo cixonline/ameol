@@ -140,7 +140,7 @@ static char FAR * pszServices[] = {
    "POP3",
    "FTP",
    "Finger",
-   "Telnet",
+   "CIXcom",
    NULL };
 
 static WORD nPorts[] = {
@@ -149,7 +149,7 @@ static WORD nPorts[] = {
    IPPORT_POP3,
    IPPORT_FTP,
    IPPORT_FINGER,
-   IPPORT_TELNET
+   PORT_CIXCOM
    };
 
 /* This function displays the Connections Manager dialog.
@@ -1765,7 +1765,7 @@ BOOL FASTCALL NewConnCard( HWND hwnd, char * pszTitle )
    cd.lpic = &ic;
    cd.szScript[ 0 ] = '\0';
    cd.nTimeout = 60;
-   ic.wPort = IPPORT_TELNET;
+   ic.wPort = PORT_CIXCOM;
 
    /* Initialise TAPI
     */

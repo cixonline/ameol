@@ -283,7 +283,7 @@ BOOL FASTCALL LoadCommDescriptor( LPCOMMDESCRIPTOR lpcd )
          FreeMemory( &lpcd->lpic );
       if( fNewMemory( &lpcd->lpic, sizeof(IPCOMM) ) )
          {
-         lpcd->lpic->wPort = (WORD)Amuser_GetPPInt( szTitle, "IP Port", IPPORT_TELNET );
+         lpcd->lpic->wPort = (WORD)Amuser_GetPPInt( szTitle, "IP Port", PORT_CIXCOM );
          Amuser_GetPPString( szTitle, "Address", "", lpcd->lpic->szAddress, sizeof(lpcd->lpic->szAddress) );
          Amuser_GetPPString( szTitle, "Startup Script", "", lpcd->szScript, sizeof(lpcd->szScript) );
 

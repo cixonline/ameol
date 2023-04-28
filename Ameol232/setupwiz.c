@@ -1226,7 +1226,7 @@ LRESULT FASTCALL SetupWizard_P8_OnNotify( HWND hwnd, int code, LPNMHDR lpnmhdr )
             cd.wProtocol = PROTOCOL_NETWORK;
             cd.nTimeout = 60;
             cd.lpic = &ic;
-            ic.wPort = IPPORT_TELNET;
+            ic.wPort = PORT_CIXCOM;
             strcpy( ic.szAddress, szDefCIXTelnet );
             strcpy( cd.szTitle, szDefNAIPConf );
             strcpy( cd.szScript, "connect.scr" );

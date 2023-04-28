@@ -290,6 +290,8 @@ typedef WINDINFO FAR * LPWINDINFO;
 #define  GetBlock(h)       (WINDINFO FAR *)GetWindowLong((h), 0 )
 #define  PutBlock(h,b)     (WINDINFO FAR *)SetWindowLong((h), 0, (LONG)(b))
 
+#define PORT_CIXCOM        2523
+
 /* DrawCheckBox flags
  */
 #define  CXB_NORMAL        0
