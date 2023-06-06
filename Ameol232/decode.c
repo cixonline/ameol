@@ -162,6 +162,11 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
       hwndList = GetDlgItem( hwnd, IDD_LIST );
       pthStart = (PTH)ListBox_GetItemData( hwndList, lpi[ 0 ] );
       Amdb_GetMsgInfo( pthStart, &msginfo );
+
+      if (msginfo.dwFlags & MF_MSGDECODED) {
+          return TRUE;
+      }
+
       szFilename[ 0 ] = '\0';
       szPartSubj[ 0 ] = '\0';
       strcpy( szExt, "dat" );
