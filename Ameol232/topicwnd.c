@@ -5497,7 +5497,7 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
     char* needle3 = "Content-Type: text/html";
     size_t len3 = strlen(needle3);
     char* needle4 = "Content-Transfer-Encoding: base64";
-    size_t len4 = strlen(needle2);
+    size_t len4 = strlen(needle4);
 
     if (fAutoDecode == FALSE) {
         return FALSE;
