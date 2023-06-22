@@ -1204,7 +1204,7 @@ BOOL FASTCALL SetCurrentMsgEx( CURMSG FAR *, BOOL, BOOL, BOOL );
 DWORD FASTCALL MarkTopicRead( HWND, PTL, BOOL );
 void FASTCALL UpdateCurrentMsgDisplay( HWND );
 void FASTCALL UpdateStatusDisplay( HWND );
-void FASTCALL ShowMsg( HWND, PTH, BOOL, BOOL, BOOL );
+void FASTCALL ShowMsg( HWND, PTH, BOOL, BOOL, BOOL, char* );
 BOOL FASTCALL SetCurrentMsg( CURMSG FAR *, BOOL, BOOL );
 LPINT FASTCALL GetThread( HWND );
 LPINT FASTCALL GetSelectedItems( HWND );
@@ -1280,7 +1280,7 @@ WORD FASTCALL CountTopicsInFolder( PCL );
 BOOL FASTCALL CmdPurgeSettings( HWND );
 
 /* DECODE.C */
-BOOL FASTCALL DecodeMessage( HWND, BOOL );
+BOOL FASTCALL DecodeMessage( HWND, BOOL, HPSTR* );
 int FASTCALL DecodeLine64( LPSTR, LPSTR, int );
 
 /* SIG.C */

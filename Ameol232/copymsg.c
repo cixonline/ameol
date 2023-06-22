@@ -384,7 +384,7 @@ BOOL FASTCALL DoCopyLocalRange( HWND hwnd, PTH FAR * lppth, int count, PTL ptlDs
          /* Show the message after the drop.
           */
          if( fMove && NULL != lpWindInfo )
-            ShowMsg( hwndTopic, pthNext, TRUE, TRUE, FALSE );
+            ShowMsg( hwndTopic, pthNext, TRUE, TRUE, FALSE, NULL );
          }
       FreeMemory( &nMapped );
       }

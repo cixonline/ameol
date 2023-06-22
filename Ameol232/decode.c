@@ -100,7 +100,7 @@ int fStripHTML;                        /* TRUE if we strip out HTML from message
 BOOL fReplaceAttachmentText;
 BOOL fBackupAttachmentMail;
 
-BOOL FASTCALL ParseAttachments( HWND, PTH, BOOL, BOOL );
+BOOL FASTCALL ParseAttachments( HWND, PTH, BOOL, BOOL, BOOL );
 BOOL FASTCALL ParseAttachmentHeader( char *, int *, int *, char * );
 LPSTR FASTCALL ReadField( LPSTR,  char *, size_t );
 void FASTCALL ParseTypeSubtype( char *, char *, char * );
@@ -137,7 +137,7 @@ BOOL FASTCALL DecodeWriteHugeMsgText( HNDFILE fh, HPSTR hpText, DWORD dwSize );
  * whether this is part of a multi-part message and, if so, it builds
  * an array of message pointers to each part.
  */
-BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
+BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode, HPSTR *buf )
 {
    LPINT lpi;
    BOOL fOk;
@@ -187,7 +187,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
          }
          /* Parse one message.
           */
-         fOk = ParseAttachments( hwnd, pthStart, TRUE, TRUE );
+         fOk = ParseAttachments( hwnd, pthStart, TRUE, TRUE, buf == NULL );
          ShowUnreadMessageCount();
          }
       else
@@ -359,7 +359,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
             OfflineStatusText( GS(IDS_STR966) );
             for( iIndex = 0; fOk && iIndex< iTotal; ++iIndex )
                {
-               fOk = ParseAttachments( hwnd, pthArray[ iIndex ], iIndex == 0, TRUE );
+               fOk = ParseAttachments( hwnd, pthArray[ iIndex ], iIndex == 0, TRUE, buf == NULL );
                if( fOk )
                   {
                   wsprintf( lpTmpBuf, GS(IDS_STR967), (LPSTR)szFilename, iIndex + 1 );
@@ -384,12 +384,15 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode )
          }
       FreeMemory( &lpi );
 
-	  if (fOk){
+	  if (fOk && buf == NULL){
 		  Amdb_MarkMsgDecoded(pthStart);
+
 	  }
       }
 
-
+	  if (fOk && buf != NULL) {
+		  *buf = hpTxtBuf;
+	  }
    return( fOk );
 }
 
@@ -588,7 +591,7 @@ char* DecodeHTMLEntities(char* input) {
 #ifndef WIN32
 #pragma optimize("", off)
 #endif
-BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
+BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles, BOOL fOverwriteAttachment )
 {
    HPSTR hpBuf;
    BOOL fOk;
@@ -600,11 +603,13 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
    BOOL fAlreadyEmit;
    char szType[ LEN_RFCTYPE+1 ];
    char szSubtype[ 100 ];
+   BOOL fAlreadyHasAttachmentFlag;
 
    /* First get the pointer to the actual message. If we can't get it
     * all, no point in continuing.
     */
    hpMsg = hpBuf = Amdb_GetMsgText( pth );
+   fAlreadyHasAttachmentFlag = Amdb_IsMsgHasAttachments( pth );
    if( NULL == hpMsg )
       {
       OutOfMemoryError( hwnd, FALSE, FALSE );
@@ -967,7 +972,9 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                      {
                      Amfile_Close( hfile );
                      hfile = HNDFILE_ERROR;
-                     Amdb_CreateAttachment( pth, szOutBuf );
+					 if (! fAlreadyHasAttachmentFlag) {
+						Amdb_CreateAttachment( pth, szOutBuf );
+					 }
                      }
 
                   /* If the boundary is followed by '--' then we're finished. Ignore
@@ -1292,7 +1299,9 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
                      {
                      Amfile_Close( hfile );
                      hfile = HNDFILE_ERROR;
-                     Amdb_CreateAttachment( pth, szOutBuf );
+					 if (! fAlreadyHasAttachmentFlag) {
+						Amdb_CreateAttachment( pth, szOutBuf );
+					 }
                      }
                   }
                }
@@ -1396,7 +1405,8 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
     */
    if( fBackupAttachmentMail )
       BackupMessage( pth );
-   if( fOk && fReplaceAttachmentText && hpTxtBuf )
+
+   if( fOk && fReplaceAttachmentText && hpTxtBuf && fOverwriteAttachment )
    {
       CURMSG curmsg;
       MSGINFO msginfo;
@@ -1437,7 +1447,7 @@ BOOL FASTCALL ParseAttachments( HWND hwnd, PTH pth, BOOL fFirst, BOOL fFiles )
    if( HNDFILE_ERROR != hfile )
       {
       Amfile_Close( hfile );
-      if( fOk )
+      if( fOk && !fAlreadyHasAttachmentFlag )
          Amdb_CreateAttachment( pth, szOutBuf );
       hfile = HNDFILE_ERROR;
       }

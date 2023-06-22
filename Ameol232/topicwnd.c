@@ -578,7 +578,7 @@ LRESULT EXPORT CALLBACK MsgViewWndProc( HWND hwnd, UINT message, WPARAM wParam, 
                nTopIndex = ListBox_GetTopIndex( hwndList );
                pth = lpWindInfo->lpMessage;
                SetMsgViewerWindow( hwnd, lpWindInfo->lpTopic, nTopIndex );
-               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE );
+               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE, NULL );
                }
             }
          if( WIN_INBASK & wParam )
@@ -798,7 +798,7 @@ LRESULT EXPORT CALLBACK MsgViewWndProc( HWND hwnd, UINT message, WPARAM wParam, 
 #endif USEBIGEDIT
          }
 
-         ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE );
+         ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE, NULL );
          break;
          }
 
@@ -906,7 +906,7 @@ LRESULT EXPORT CALLBACK MsgViewWndProc( HWND hwnd, UINT message, WPARAM wParam, 
             /* If this message is selected, update contents.
              */
             if( ListBox_GetCaretIndex( hwndList ) == index )
-               ShowMsg( hwnd, pth, FALSE, TRUE, FALSE );
+               ShowMsg( hwnd, pth, FALSE, TRUE, FALSE, NULL );
 
             /* Get the view rectangle of the message. If it is an
              * empty rectangle, do nothing. Otherwise invalidate it.
@@ -1028,7 +1028,7 @@ LRESULT EXPORT CALLBACK MsgViewWndProc( HWND hwnd, UINT message, WPARAM wParam, 
             pth = Amdb_GetNearestMsg( pth, lpWindInfo->vd.nViewMode );
          else
             pth = Amdb_GetFirstMsg( ptl, lpWindInfo->vd.nViewMode );
-         ShowMsg( hwnd, pth, TRUE, TRUE, FALSE );
+         ShowMsg( hwnd, pth, TRUE, TRUE, FALSE, NULL );
          break;
          }
 
@@ -2938,9 +2938,9 @@ void FASTCALL MsgViewWnd_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNo
          if( lpWindInfo->lpMessage )
             if( ( NULL != lpWindInfo->lpTopic ) && Amdb_GetTopicType( lpWindInfo->lpTopic ) != FTYPE_CIX )
                if( !Amdb_IsHeaderMsg( lpWindInfo->lpMessage ) )
-                  if( DecodeMessage( hwnd, FALSE ) )
+                  if( DecodeMessage( hwnd, FALSE, NULL ) )
                      {
-                     ShowMsg( hwnd, lpWindInfo->lpMessage, FALSE, TRUE, FALSE );
+                     ShowMsg( hwnd, lpWindInfo->lpMessage, FALSE, TRUE, FALSE, NULL );
                      if( Amdb_IsMsgHasAttachments( lpWindInfo->lpMessage ) && fLaunchAfterDecode )
                         {
                         HWND hwndAttach;
@@ -3266,7 +3266,7 @@ void FASTCALL MsgViewWnd_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNo
                nSel = ListBox_GetTopIndex( hwndList );
                SetMsgViewerWindow( hwnd, lpWindInfo->lpTopic, nSel );
                fQuickUpdate = TRUE;
-               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE );
+               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE, NULL );
                fQuickUpdate = FALSE;
                }
          break;
@@ -3283,7 +3283,7 @@ Shrink:  if( pth = lpWindInfo->lpMessage )
                SetMsgViewerWindow( hwnd, lpWindInfo->lpTopic, nSel );
                pth = Amdb_GetRootMsg( pth, TRUE );
                fQuickUpdate = TRUE;
-               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE );
+               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE, NULL );
                fQuickUpdate = FALSE;
                }
          break;
@@ -5499,10 +5499,6 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
     char* needle4 = "Content-Transfer-Encoding: base64";
     size_t len4 = strlen(needle4);
 
-    if (fAutoDecode == FALSE) {
-        return FALSE;
-    }
-
 
     while (_strnicmp(line, needle1, len1) != 0 &&
            _strnicmp(line, needle2, len2) != 0 &&
@@ -5527,7 +5523,7 @@ BOOL FASTCALL ShouldDecode(LPSTR msg) {
 
 /* This function shows the specified message in the message window.
  */
-void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL fCenter )
+void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL fCenter, char *overrideMsgText )
 {
    LPWINDINFO lpWindInfo;
    LPSTR lpszPostText;
@@ -5637,6 +5633,10 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
          HPSTR lpText2;
          PTL ptl;
          PCL pcl;
+
+		 if (overrideMsgText != NULL) {
+			lpText = overrideMsgText;
+		 }
 
          /* Add lpszPreText to start of message and lpszPostText to
           * end of message.
@@ -5773,10 +5773,22 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
       DestroyWindow( hwndBill );
    Amuser_CallRegistered( AE_MSGCHANGE, (LPARAM)pth, (LPARAM)lpWindInfo->lpTopic );
 
-   if (shouldDecode && !Amdb_IsDecoded(pth)) {
-	   if (DecodeMessage(hwnd, TRUE)) {
-		   // HACK: if we decoded something, go and recall showmsg to redraw.
-		   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter);
+   {
+	   char* textBuf = NULL;
+	   if (fAutoDecode) {
+		   if (shouldDecode && !Amdb_IsDecoded(pth)) {
+			   if (DecodeMessage(hwnd, TRUE, NULL)) {
+				   // HACK: if we decoded something, go and recall showmsg to redraw.
+				   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, NULL);
+			   }
+		   }
+	   } else {
+		    if (shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL) {
+			   if (DecodeMessage(hwnd, TRUE, &textBuf)) {
+				   // HACK: if we decoded something, go and recall showmsg to redraw with the text we got.
+				   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, textBuf);
+			   }
+		   }
 	   }
    }
 }
@@ -6401,7 +6413,7 @@ BOOL FASTCALL InternalSetCurrentMsg( PTL ptl, PTH pth, BOOL fSetSel, BOOL fCente
          }
       if( fExpand )
          fSetSel = TRUE;
-      ShowMsg( hwndTopic, pth, fSetSel, fForcedShow, fCenter );
+      ShowMsg( hwndTopic, pth, fSetSel, fForcedShow, fCenter, NULL );
       }
    return( hwndTopic != NULL );
 }
@@ -7095,7 +7107,7 @@ void FASTCALL MarkTaggedRange( HWND hwnd, LPINT lpi )
       fMove = lpWindInfo->lpMessage != pthCurrent;
       }
    if( !fMove )
-      ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE );
+      ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE, NULL );
 }
 
 /* This function ignores all messages specified by the
@@ -7154,7 +7166,7 @@ void FASTCALL MarkWatchRange( HWND hwnd, LPINT lpi )
          LPWINDINFO lpWindInfo;
 
          lpWindInfo = GetBlock( hwnd );
-         ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE );
+         ShowMsg( hwnd, lpWindInfo->lpMessage, TRUE, TRUE, FALSE, NULL );
    }
 
 }
@@ -8415,7 +8427,7 @@ BOOL FASTCALL CheckThreadOpen( HWND hwnd )
                nSel = ListBox_GetTopIndex( hwndList );
                SetMsgViewerWindow( hwnd, lpWindInfo->lpTopic, nSel );
                fQuickUpdate = TRUE;
-               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE );
+               ShowMsg( hwnd, pth, TRUE, TRUE, FALSE, NULL );
                fQuickUpdate = FALSE;
                lRet = TRUE;
             }
