@@ -5539,7 +5539,9 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
    DWORD dwMsgLength = 0;
    HWND hwndBill = NULL;
    BOOL shouldDecode = FALSE;
-   
+   BOOL multipleSelected;
+
+   multipleSelected = GetSelectedItemsCount( hwnd ) != 1;
 
    if ( pth )
       {
@@ -5783,7 +5785,7 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
 			   }
 		   }
 	   } else {
-		    if (shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL) {
+		    if (shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL && !multipleSelected) {
 			   if (DecodeMessage(hwnd, TRUE, &textBuf)) {
 				   // HACK: if we decoded something, go and recall showmsg to redraw with the text we got.
 				   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, textBuf);
@@ -6156,6 +6158,14 @@ LPINT FASTCALL GetSelectedItems( HWND hwnd )
       OutOfMemoryError( hwnd, FALSE, FALSE );
       }
    return( NULL );
+}
+
+int FASTCALL GetSelectedItemsCount( HWND hwnd )
+{
+   HWND hwndList;
+
+   hwndList = GetDlgItem( hwnd, IDD_LIST );
+   return ListBox_GetSelCount ( hwndList );
 }
 
 /* This function retrieves a list of selected messages and allocates

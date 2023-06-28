@@ -1208,6 +1208,7 @@ void FASTCALL ShowMsg( HWND, PTH, BOOL, BOOL, BOOL, char* );
 BOOL FASTCALL SetCurrentMsg( CURMSG FAR *, BOOL, BOOL );
 LPINT FASTCALL GetThread( HWND );
 LPINT FASTCALL GetSelectedItems( HWND );
+int FASTCALL GetSelectedItemsCount( HWND );
 PTH FAR * FASTCALL GetSelectedItemsHandles( HWND );
 void FASTCALL GetMarkedFilename( HWND, LPSTR, int );
 void FASTCALL GetMarkedName( HWND, LPSTR, int, BOOL );
