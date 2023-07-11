@@ -1281,7 +1281,7 @@ WORD FASTCALL CountTopicsInFolder( PCL );
 BOOL FASTCALL CmdPurgeSettings( HWND );
 
 /* DECODE.C */
-BOOL FASTCALL DecodeMessage( HWND, BOOL, HPSTR* );
+BOOL FASTCALL DecodeMessage( HWND, BOOL, HPSTR*, PTH );
 int FASTCALL DecodeLine64( LPSTR, LPSTR, int );
 
 /* SIG.C */

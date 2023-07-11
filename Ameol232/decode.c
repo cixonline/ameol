@@ -137,7 +137,7 @@ BOOL FASTCALL DecodeWriteHugeMsgText( HNDFILE fh, HPSTR hpText, DWORD dwSize );
  * whether this is part of a multi-part message and, if so, it builds
  * an array of message pointers to each part.
  */
-BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode, HPSTR *buf )
+BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode, HPSTR *buf, PTH overridePath )
 {
    LPINT lpi;
    BOOL fOk;
@@ -161,6 +161,9 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode, HPSTR *buf )
        */
       hwndList = GetDlgItem( hwnd, IDD_LIST );
       pthStart = (PTH)ListBox_GetItemData( hwndList, lpi[ 0 ] );
+	  if (overridePath) {
+		pthStart = overridePath;
+	  }
       Amdb_GetMsgInfo( pthStart, &msginfo );
 
       if (msginfo.dwFlags & MF_MSGDECODED) {
@@ -174,7 +177,7 @@ BOOL FASTCALL DecodeMessage( HWND hwnd, BOOL fAutodecode, HPSTR *buf )
       fAlternative = FALSE;
       fCtrl = GetKeyState( VK_CONTROL ) & 0x8000;
       cIndex = cTotal = 1;
-      if( ( fCtrl || !ParseAttachmentHeader( msginfo.szTitle, &iIndex, &iTotal, szPartSubj ) ) && lpi[ 1 ] == LB_ERR )
+      if( ( (fCtrl || !ParseAttachmentHeader( msginfo.szTitle, &iIndex, &iTotal, szPartSubj ) ) && lpi[ 1 ] == LB_ERR) || overridePath != NULL )
          {
          /* Try to extract a filename from the
           * part subject.

@@ -2938,7 +2938,7 @@ void FASTCALL MsgViewWnd_OnCommand( HWND hwnd, int id, HWND hwndCtl, UINT codeNo
          if( lpWindInfo->lpMessage )
             if( ( NULL != lpWindInfo->lpTopic ) && Amdb_GetTopicType( lpWindInfo->lpTopic ) != FTYPE_CIX )
                if( !Amdb_IsHeaderMsg( lpWindInfo->lpMessage ) )
-                  if( DecodeMessage( hwnd, FALSE, NULL ) )
+                  if( DecodeMessage( hwnd, FALSE, NULL, NULL ) )
                      {
                      ShowMsg( hwnd, lpWindInfo->lpMessage, FALSE, TRUE, FALSE, NULL );
                      if( Amdb_IsMsgHasAttachments( lpWindInfo->lpMessage ) && fLaunchAfterDecode )
@@ -5777,8 +5777,8 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
 
    {
        char* textBuf = NULL;
-       if (fAutoDecode && shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL && !multipleSelected) {
-           if (DecodeMessage(hwnd, TRUE, &textBuf)) {
+       if (fAutoDecode && shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL) {
+           if (DecodeMessage(hwnd, TRUE, &textBuf, pth)) {
                // HACK: if we decoded something, go and recall showmsg to redraw with the text we got.
                ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, textBuf);
            }
