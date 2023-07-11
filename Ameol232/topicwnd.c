@@ -5776,22 +5776,13 @@ void FASTCALL ShowMsg( HWND hwnd, PTH pth, BOOL fSetSel, BOOL fForcedShow, BOOL 
    Amuser_CallRegistered( AE_MSGCHANGE, (LPARAM)pth, (LPARAM)lpWindInfo->lpTopic );
 
    {
-	   char* textBuf = NULL;
-	   if (fAutoDecode) {
-		   if (shouldDecode && !Amdb_IsDecoded(pth)) {
-			   if (DecodeMessage(hwnd, TRUE, NULL)) {
-				   // HACK: if we decoded something, go and recall showmsg to redraw.
-				   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, NULL);
-			   }
-		   }
-	   } else {
-		    if (shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL && !multipleSelected) {
-			   if (DecodeMessage(hwnd, TRUE, &textBuf)) {
-				   // HACK: if we decoded something, go and recall showmsg to redraw with the text we got.
-				   ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, textBuf);
-			   }
-		   }
-	   }
+       char* textBuf = NULL;
+       if (fAutoDecode && shouldDecode && !Amdb_IsDecoded(pth) && overrideMsgText == NULL && !multipleSelected) {
+           if (DecodeMessage(hwnd, TRUE, &textBuf)) {
+               // HACK: if we decoded something, go and recall showmsg to redraw with the text we got.
+               ShowMsg(hwnd, pth, fSetSel, TRUE, fCenter, textBuf);
+           }
+       }
    }
 }
 
