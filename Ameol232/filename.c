@@ -43,10 +43,10 @@ BOOL FASTCALL ExtractPathAndBasename( OPENFILENAME *, char * );
 BOOL FASTCALL ValidFileNameChr( char ch )
 
 {
-   if( isalnum( ch ) || ch == '_' || ch == '^' || ch == '$' || ch == '~'
+   if( ch >= 0 && (isalnum( ch ) || ch == '_' || ch == '^' || ch == '$' || ch == '~'
       || ch == '!' || ch == '#' || ch == '%' || ch == '&' || ch == '-'
       || ch == '{' || ch == '}' || ch == '(' || ch == ')' || ch == '@'
-      || ch == '\'' || ch == '`' || ch == '+')
+      || ch == '\'' || ch == '`' || ch == '+'))
       return( TRUE );
    return( FALSE );
 }

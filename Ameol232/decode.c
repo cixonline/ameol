@@ -458,7 +458,7 @@ BOOL FASTCALL ParseAttachmentHeader( char * pstrSubject, int * piIndex, int * pi
     */
    for( c = 0; *pstrSubject; )
       {
-      if( *pstrSubject == '(' || *pstrSubject == '[' || isdigit( *pstrSubject ) )
+      if( *pstrSubject == '(' || *pstrSubject == '[' || (*pstrSubject >= '0' && *pstrSubject <= '9') )
          {
          BOOL fDigitAtStart;
          char * pstrSave;

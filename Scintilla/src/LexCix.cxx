@@ -947,13 +947,13 @@ static void ColouriseCixDocSimple(unsigned int startPos, int length, int initSty
 					lChg = 1;
 			}
 			// 20060506 2.56.2051 FS#128
-			else if (ispunct(chNext) && ch != '!' && ch != '+' && ch != '_' && ch != '/' && ch != ';' && j == lEndPos - 2 )
+			else if ((int)chNext >= 0 && ispunct(chNext) && ch != '!' && ch != '+' && ch != '_' && ch != '/' && ch != ';' && j == lEndPos - 2 )
 			{
 					sc.currentPos = j + 1;
 					sc.SetState(GetNewState(sc.state, SCE_CIX_DEFAULT));
 					lChg = 1;
 			}
-			else if(   ( ispunct(ch) && ch != '!' && ch != '+' && ch != '_' && ch != '/' && ch != ';') && 
+			else if(   ( (int)chNext >= 0 && ispunct(ch) && ch != '!' && ch != '+' && ch != '_' && ch != '/' && ch != ';') && 
 				       ( chNext == ' ' || chNext == '\t' || (IsEOL(chNext) && !lWrapURLs ) )
 				   )
 			{

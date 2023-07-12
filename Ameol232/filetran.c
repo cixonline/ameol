@@ -161,7 +161,7 @@ FTPROTOCOL * FASTCALL GetFileTransferProtocolHandle( char * pszName )
  */
 BOOL FASTCALL GetFileTransferProtocolCommands( FTPROTOCOL * pftp, LPSTR lpBuf, int cbMax )
 {
-   if( NULL != pftp->lpfCommand )
+   if( NULL != pftp && NULL != pftp->lpfCommand )
       return( pftp->lpfCommand( lpBuf, cbMax ) );
    return( 0 );
 }
