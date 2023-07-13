@@ -1,0 +1,2 @@
+put "opt syncpointers y q"
+waitfor "M:"

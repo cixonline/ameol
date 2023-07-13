@@ -1,0 +1,16 @@
+REM FTPBATCH.SCR v1.12 "Get batched FTP file from a site"
+REM Contributed by mentha@cix
+REM Ameol script to obtain a single file offline from an FTP site.
+REM If successful, it stores the file in your Cix ip> directory.
+REM A status file BATCHFTP.REP is always also created. 
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Requesting Batched FTP file..."
+put "run internet"
+if waitfor( "M:", "ip>" ) == 1
+put "batchftp %s('BatchFTP','Enter FTP site name:') %s('BatchFTP','Enter full path and filename:\n(e.g. /pub/news.txt)')"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+endif
+status ""
+end

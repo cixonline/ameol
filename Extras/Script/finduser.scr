@@ -1,0 +1,12 @@
+REM FINDUSER.SCR v1.0 by joz@cix 25 Jun 1994
+REM Find CIX User Info"
+status "Running Find CIX User Info"
+put "file show who %s('Search for user', 'Enter search text:')"
+waitfor ":"
+put "download"
+download "%fs('Find CIX User Info destination filename','0','Find CIX User Info\ffinduser.txt\f')"
+put "q"
+waitfor "M:"
+status ""
+end
+

@@ -1,0 +1,79 @@
+REM FTPLSLR.SCR v1.21 "Get FTP recursive directory of a UNIX site" 
+REM Contributed by mentha@cix
+REM Ameol script to give a recursive ls -lR listing of all the files from
+REM a user-specified starting directory on a UNIX anonymous ftp site.
+REM When run, you need to specify:-
+REM 1. your PC filename in which to store the directory (eg lslr.wri)
+REM 2. the Unix ftp site name (eg world.std.com)
+REM 3. the ftp site's initial directory to list (try /pub if unknown).
+REM !!! Full ls -lR listings can run to megabytes !!!
+REM You may find a file on the site that already holds an lslR listing.
+REM Modified 9/94 to check for RFC 250 'Chdir okay' before proceeding.
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Requesting FTP lslR listing..."
+put "run internet"
+if waitfor( "M:", "ip>" ) == 1
+put "ftp %s('lslR of FTP Site','Enter UNIX FTP Site Name:')"
+if waitfor("ftp>","):")==0
+ status "FTP connection failed."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM Connection successful...
+put "anonymous"
+if waitfor("ftp> ","assword:")==0
+ status "FTP site terminated connection."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+putnocr name
+put "@cix.compulink.co.uk"
+waitfor "ftp>"
+put "prompt"
+waitfor "ftp>"
+put "ascii"
+waitfor "ftp>"
+put "cd %s('lslR of FTP Site','Enter top-level directory:\n(Try /pub if not known)')"
+if waitfor("ftp>", "250 ")==0
+ status "Unable to change to specified directory."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+status "Downloading from Site to Cix..."
+put "ls -lR ftplslr.wri"
+waitfor "ftp>"
+put "quit"
+waitfor "ip>"
+put "dir ftplslr.wri"
+if waitfor("ip> ","              ^M^J ")==0
+ status "No FTP lslR listing to download."
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM lslR successful...
+waitfor "ip>"
+status "Receiving lslR from Cix..."
+put "send ftplslr.wri"
+download "%fs('Save ls -lR of FTP Site As','0','ls -lR Listing (*.wri)\f*.wri\f')"
+status "FTP ls -lR received."
+put "erase ftplslr.wri"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+endif
+status ""
+end

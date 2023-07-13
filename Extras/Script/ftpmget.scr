@@ -1,0 +1,74 @@
+REM FTPMGET.SCR v1.22 "Get FTP files from a site to ameol\download"
+REM Contributed by mentha@cix
+REM Ameol script to obtain files from a user-specified directory on an
+REM arbitrary anonymous ftp site. When run, you need to specify:-
+REM The files are put in your Ameol download directory.
+REM 1. the ftp site name (eg world.std.com)
+REM 2. the file directory of the ftp site (eg /pub)
+REM 3. the ftp site's filenames.
+REM Modified 9/94 to use DOSSIFY
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Requesting files from FTP Site..."
+put "run internet"
+if waitfor( "M:", "ip>" ) == 1
+put "ftp %s('Get Files from FTP Site','Enter FTP Site Name:')"
+if waitfor("ftp>","):")==0
+ status "FTP connection failed."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM Connection successful...
+put "anonymous"
+if waitfor("ftp> ","assword:")==0
+ status "FTP site terminated connection."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+putnocr name
+put "@cix.compulink.co.uk"
+waitfor "ftp>"
+put "prompt"
+waitfor "ftp>"
+put "binary"
+waitfor "ftp>"
+put "hash on"
+waitfor "ftp>"
+put "cd %s('Get Files from FTP Site','Specify file directory:')"
+waitfor "ftp>"
+status "Downloading files from Site to Cix..."
+put "mget %s('Get Files from FTP Site','List file(s) to obtain, separated by a space:\n(Wildcards * and ? are usually permitted)')"
+waitfor "ftp>"
+put "quit"
+waitfor "ip>"
+put "dir"
+if waitfor("ip> ","              ^M^J ")==0
+ status "No FTP files to download."
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM mget successful...
+waitfor "ip>"
+put "dossify"
+waitfor "ip>"
+status "Receiving files from Cix..."
+put "send *"
+pause 200
+download ""
+status "FTP files received to ameol\download"
+put "erase *"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+endif
+status ""
+end

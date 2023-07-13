@@ -1,0 +1,12 @@
+REM FINGER.SCR v1.12 "Finger an external address"
+REM Contributed by ansible@cix
+REM +++++++++++++++++++++++++++++++++++++++++++++
+status "Fingering..."
+put "run internet"
+waitfor "ip>"
+put "finger %s('Finger','Specify external address:')"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+status ""
+end

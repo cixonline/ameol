@@ -1,0 +1,15 @@
+REM FAL.SCR V1.0 by joz@cix 25 Jun 1994
+REM * Fixed minor bug in waitfor *
+REM File Archive List - list files in an archive on CIX
+status "List the files in an .ARC or .ZIP file on CIX"
+put "killscratch"
+waitfor "M:"
+put "join %c('Choose file location','1')"
+put "file fal %s('File Archive List','Enter file name')"
+waitfor ":"
+put "download"
+download "%fs('File Archive List destination filename','0','Search\ff:\\dnlds\\searches\\fal.txt\f')"
+put "q"
+waitfor "M:"
+status ""
+

@@ -1,0 +1,165 @@
+2.20
+
+1. Ported to Visual C++ Express 2005.
+2. Renamed "Conferences" to "Forums" in the UI strings.
+
+2.11
+
+1. Fixed GPF exporting non-flisted files from fdir to filepool
+2. Fixed GPF setting read-only status on invalid/deleted topics
+3. Made Mail message windows wrap text.
+
+Beta 15
+
+1.  Fixed Y2K issue with file dates greater than 1999.
+2.  Fixed GPF deleting fdir entries.
+3.  Read Only Topics should now maintain their state 
+    after purging.
+4.  Fixed GPF when creating a new conference and changing 
+    the names of topics.
+
+Beta 14
+
+1.  Fixed problem with OS & Status notify option not sticking.
+2.  Prompt / Multiple / Single message notification is now 
+    settable via the setup dialog.
+3.  Fixed mouse highlighting problem, when multiple items 
+    were selected.
+4.  Added description to fexport mail message for the file 
+    pool mods.
+5.  The fexport mail is now not generated within the filepool
+    conference.
+
+Beta 12
+
+1.  Made adding software status and O/S to notification message 
+    optional.
+2.  Fixed focus problem with main and notification dialogs.
+3.  Turned off word wrap in the notification dialog.
+4.  The RMB text now toggles Hold and Release depending on item 
+    state. (and Hold/Release for multiple selections).
+5.  Fixed highlight problem during spell checks.
+6.  Added minimal support for mail notifications of filepool 
+    exports.
+7.  Fixed Copy/Past problem with Ameol 1.x.
+
+Beta 11.
+
+1.  Changed so that Conf / Edit File List is always enabled. If you 
+    select it in a topic you don't moderate, it will popup the list 
+	of available topics.
+2.  Added some toolbar bitmaps for Help/About and Help/Contents for 
+    Moderate.
+3.  Fixed problem with exporting multiple files to filepool, skipping 
+    files.
+4.  Added Status and O/S to flist Notification fields, left blank for
+    the moderator to fill in (or delete).
+5.  Re-Enabled code to toggle topic read only/read write status.
+6.  Moved Moderate Setup dialog to the configure addon dialog. (though 
+    this does add 3 extra pages, I think it fits in quite well...)
+
+Beta 10.
+
+1. Changed topic read only status code, to revert to the previous
+   version. This is done to confirm this was the cause of a pre-blink
+   GPF.
+2. Hopefully fixed problem with topic size updating code.
+3. Moderate now includes the WinHorus and HCTools support addons 
+   within the main program.
+4. Fixed GPF closing the dialog with Escape.
+
+
+Beta 9.
+
+1. Changed the read only/write update code slightly for when topic information 
+   is re-freshed, but I doubt it will stop the extra updates.
+
+2. Set statistics dialog controls to hidden.
+
+3. Changed the logic of spell checking notification messages, so you shouldn't
+   have to press finish twice.
+
+4. Implemented new setup program.
+
+5. Extended file name length to 14 characters in filepool / mail notification 
+   dialog.
+
+Beta 8.
+
+1. Final attempt to fix the script problems. I've reverted to the original 
+   method of switching the read only status, on reflectionseemed a bit stilly 
+   to use the new method on a newly created conference.
+
+2. Changed drag behaviour so that unless you've pre-highlighted the line you
+   want to drag, it behaves as a normal listbox.
+
+3. Changed drag cursor logic, so it changed to the no drop cursor when not 
+   within the listbox window when dragging.
+   
+Beta 7.
+
+1. Another attempt to fix the script problems.
+
+Beta 6.
+
+1. Fixed problem with toggling conference Read Only status.
+2. Changed read only toggle to only activate if status has actually changed (oops :)).
+3. Adjusted edit buffer on flist descriptions to 1024 bytes, compared to 512,
+   and added checks so this can't be over flowed and cause GPF.
+
+Beta 5.
+
+1. Added Script items to not toggle but set topic read only/read write status.
+2. Changed notification window description back to having the description on 
+   it's own line.
+3. Removed Cancel from delete flist entry query dialog.
+4. Fixed problem with new Topic Notification routine (Modal Dialog) 
+   calling the MDI message editor routine.
+5. Now 'optionally' saves the last upload directory.
+6. Added query cancel dialog to notification edit window.
+7. Completed 16bit port.
+
+Beta 4.
+
+1. The only change in this version is it (hopefully) cures the
+   layout problem using large fonts.
+
+Beta 3.
+
+1. Re-worked dialog creation routine, might cure scaling problem.
+2. Changed page switching code to move the controls when created, this is
+   slightly slower than the previous method, but gets rid of the 'ghost' 
+   dialog that used to come up when you changed pages.
+3. Fixes problem deliberately creating duplicate flist entries.
+4. Changed the notification dialog to be MDI (sort of a cut down Say
+   window, but still has things like auto-spell check).
+5. Fixed help button not working in main dialog (though I've just noticed 
+   it doesn't work in this dialog).
+6. Added drag capability in Flist window, so you can move items up and down
+   with the mouse (I was looking at doing it between flist windows, but
+   that turned out to be a lot more complicated).
+7. Del key in flist dialog now deletes items.
+8. Ins key in flist dialog inserts blank line.
+9. Fixed focus problem after adding an Flist entry (i.e. so that notify was
+   greyed out even thought an item in the flist was highlighted).
+
+To Do:
+
+1. Allow different signatures to be selected.
+2. Add query/cancel to notify dialog.
+3. Discover why sort flist doesn't work (did it before I started messing
+   with it?).
+4. Adjust layout slightly so buttons down RHS match up on both pages.
+
+Beta 2.
+
+1. Fixed problem cancelling the dialog creation.
+2. You can now open more than one Moderate window at a time (this is 
+   quite cool, but I keep wanting to drag'n'drop files).
+3. Changed the Query save dialog to not have a cancel button if Ameol2 
+   is quitting (it did GPF if you tries this).
+
+Beta 1.
+
+1. Changed main dialog code to be MDI.
+

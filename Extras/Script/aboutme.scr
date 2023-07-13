@@ -1,0 +1,14 @@
+REM aboutme.SCR v1.00 My personal information listing
+REM Written by Pete Finnigan, petefin@cix
+REM +++++++++++++++++++++++++++++++++++++++++++++++++
+
+status "Running CiX All About Me...."
+put "allaboutme"
+holdlog
+openlog "%fs('Save All About Me listing As','0','About Me Listing\faboutme.txt\f')"
+waitfor "M:"
+closelog
+resumelog
+status ""
+end
+

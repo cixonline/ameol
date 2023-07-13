@@ -1,0 +1,616 @@
+>>>Tutorials/Welcome 1 Ameol2(832)20Oct96 12:00
+Welcome to Ameol!
+
+Ameol is an all-in-one off-line reader for your internet news, mail and
+CIX Forums messages.  As it is an off-line reader you can read and
+compose messages without being connected to your dial-up service provider 
+or on-line service, so saving time and money. Ameol can be used with an 
+internet account to read usenet news and mail and also to read CIX 
+Forums messages.
+
+This is a brief tutorial for people who are new to off-line readers and
+will help you get started. For more detailed instructions and help please 
+see the Ameol help file by selecting the Help menu, Contents item (in 
+short form, Help|Contents).
+
+Each news, mail and CIX Forums message is displayed on your screen
+individually, just like the message you are reading now. To go to the next 
+message, press the Return key.
+
+Press Return now.
+
+>>>Tutorials/Welcome 2 Ameol2(667)20Oct96 12:00
+Read and Unread messages
+
+This is the second message which you probably reached by pressing Return
+after reading message number 1. Ameol keeps track of the messages you
+have read and those you haven't yet read and displays this information in
+the Thread Window. The Thread Window is above the status bar (the line
+that has the date, time and other message information on it) and you can
+see there is a letterbox icon next to message 2 - this shows that Ameol
+knows this message hasn't been read yet. If you look up to message 1 you
+will see there is no letterbox icon next to it - Ameol knows that you
+have read that message.
+
+Press Return to go to the next message.
+
+>>>Tutorials/Welcome 3 Ameol2(1134)20Oct96 12:00
+Moving up and down messages
+
+If a message is quite long and can not fit in the message viewer window
+(the window you are reading this message in now) then scroll bars will be
+displayed on the right hand side of the window. To carry on reading more
+of the message that isn't currently in view, press the Page Down key.
+
+Press the Page Down key now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press Page Down again
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is the bottom of the message which you reached by pressing the
+Page Down Key. If you want to scroll back up again press the Page Up key
+until you see the beginning of the message. You can also re-size the
+message window so you can see more of a message without using the page up
+and page down keys. To do this just move your mouse pointer over any edge
+of the window until the pointer changes to one with an arrow at each end.
+Then holding down the left mouse button, move the mouse and you will see
+the window change size. Let go of the mouse button when the window is the
+size you want it to be. This method works for nearly all Ameol windows.
+
+This is the end of this message - press Return to go to the next message.
+
+>>>Tutorials/Welcome 4 Ameol2(497)20Oct96 12:00
+Going to a previous message
+
+If you want to go back to the last message to you read for another look
+at it just press the Backspace key. This will always take you to the last
+message you read. Try it now, Ameol will go back to message 3. Press
+Return to come back to this message.
+
+Back again?
+
+The Backspace key can be used many times in succession, so if you want to
+go back to a message you read five messages ago, you would press
+Backspace five times.
+
+Press Return to go to the next message.
+
+>>>Tutorials/Welcome 5 Ameol2(1291)20Oct96 12:00 c4*
+Threading
+
+Ameol is a threaded message reader. This means that when people reply to
+mail (or follow-up to a usenet message, or comment to a CIX Forums
+message) Ameol will show you that the second message is related to the
+first one. For example, the message you are reading now is a comment to
+message number 4. This is shown in two ways
+
+- the status bar says "Comment to message 4"
+- in the graphical Thread Window
+
+The Thread Window shows you the message number, author and the first line
+of the message. It also has a graphic display of the threads - message 4
+(which is called a "Root message" as it is not a comment to any other
+message) is displayed in bold type and has a brown folder icon next to
+it. The current message (message 5, which you are reading now) is
+displayed in normal type.
+
+Usenet and CIX Forums messages threads can be very complicated, the graphical
+thread window lets you see at a glance which message is a comment to which
+other message. Occasionally you will see a message in the thread window that
+is in bold type but which has two dots on the left of it, like this:
+
+.. 187  sp  I posted a message yesterday.
+
+This means the message is a comment but you do not have the original
+message in your database.
+
+
+Remember to press Return to go to the next message.
+
+>>>Tutorials/Welcome 6 Ameol2(1005)20Oct96 12:00
+The In Basket
+
+On the left hand side of the Ameol window you can see a window that is
+titled "In Basket" (if you cannot see this window select the View menu
+and choose the In Basket item). The In Basket lists all the newsgroups
+you have read in Ameol, any mail folders or topics you have created and
+any CIX forums or topics you have read in Ameol.
+
+If this is the first time you have used Ameol you will probably only
+have a few News and Mail folders, plus the current folder (that contains
+the messages you are reading now). The current folder is highlighted in
+the In Basket and as you change topics by reading messages the highlight
+also moves to show you which topic you are in.
+
+Lets try moving to another folder. Make a note of the current highlighted
+topic, then double-click on the Mail/Messages folder. You will be in the
+Messages topic of the Mail folder (the topic itself will probably be
+empty). To come back to this topic double-click the name that you noted
+down earlier, in the In Basket.
+
+>>>Tutorials/Welcome 7 Ameol2(1470)20Oct96 12:00
+Creating messages
+
+Let's create our first message.
+
+Select Mail|New Message. A New Mail Message window will open, re-size it
+so you can still see this message using the window re-size method
+described earlier. The Mail Message window has a number of boxes, but you
+don't have to fill all of them in.
+
+In the box next to To: type in your own e-mail address. If you are not
+sure what this is, copy the e-mail address in the Reply-To field to the
+To: box.
+
+In the box next to Subject: type "Test E-mail".
+
+Then type anything you like in the lower blank area (this is called an
+Edit Window). When you have finished typing your message press the Save
+key. You have now created your first e-mail message! However as Ameol is
+an off-line reader your message has not been sent yet, it will be sent
+when you next connect to your internet provider or to CIX Forums. This
+means you can perform many different actions on the message before it is
+sent, this is done from the Out Basket and it is this that we will cover
+in the next message.
+
+You can create new News and CIX Forums messages by selecting
+News|Post Article and Message|Say respectively. To make a Comment to a
+message select Mail|Reply to Message, News|Follow Up Article or
+Message|Comment depending on whether the message is a Mail, News or
+CIX Forums message. You should always use the Comment command when
+you are replying to a message by someone else so everyone can see that
+the two messages relate to each other.
+
+>>>Tutorials/Welcome 8 Ameol2(1135)20Oct96 12:00
+The Out Basket
+
+To open the Out Basket, select View|Out Basket.
+
+The Out Basket is the storage area for any messages you post, any file
+downloads or uploads you decide to do.. in fact any actions relating to
+files or messages that you do within Ameol. While an item is in the Out
+Basket you can review it, edit it, delete it, Keep it (so it is executed
+every time you connect) or Hold it (so it stays in the Out Basket but is
+not executed).
+
+If you followed the method above for creating a new mail message then
+that message will be in your Out Basket now. You can edit it by
+highlighting the message in the Out Basket and clicking the Edit button
+on the Out Basket window (not the Edit menu at the top of the Ameol
+window). You will see your mail message open in an editor again - here
+you can change any of the details you entered before. You can change the
+text of the message, the Subject: or who the message was addressed To:.
+When you have finished editing the message, click Save again and your
+newly edited message will return to the Out Basket. It will stay there
+until you connect to your internet provider or to CIX Forums.
+
+>>>Tutorials/Welcome 9 Ameol2(541)20Oct96 12:00
+Connecting
+
+Connecting ("Blinking") with Ameol is very simple. To connect to either
+your internet provider or to CIX Forums just click the Blink button
+on the toolbar (on the left with the telephone picture) or select File|Send
+& Receive All.
+
+Ameol will then send any messages that were in your Out Basket, then
+collect any new messages waiting for you. At the end of the blink Ameol
+will disconnect.
+
+As it is an off-line reader you can read and compose messages without 
+being connected to your on-line service, so saving time and money.
+
+>>>Tutorials/Support 1 Ameol2(3223)20Oct96 12:00
+Support for Ameol - what help is available?
+
+If you have a problem or question about Ameol there are various
+resources which may help.
+
+1. _The Help file_
+
+Ameol has a full online Help file. Most dialogs include a Help button
+which, when selected, will load the Help file at the correct place. Many 
+of the Help pages are "hotspot" images, which means you can click on the
+Help page to see more information about the dialog.
+
+You can also search the Help file by selecting Help|Search for Help on..
+within Ameol. Enter the word or phrase that you wish to get help with
+and the nearest match(es) in the Ameol Help file will be displayed.
+
+If you select the Help file contents page (Help|Contents within Ameol)
+you will have access to these sections of the Help file:
+
+Reading Messages
+Writing Messages
+Connecting
+Settings
+Reference
+Ameol v2 Frequently Asked Questions (FAQ)
+Glossary
+
+Although the help file is now a little out of date in some places 
+information about the more recent functions and changes can usually be 
+found in Help | What's New?
+
+
+2. _CIX Forums_
+
+Online support for Ameol is mainly done via the CIX Forums system.
+The topic for Ameol support is called cix.support/ameol or the 
+latest version of that topic cix.support/1ameol, cix.support/2ameol, 
+cix.support/3ameol etc, you can join this forum on your next 
+connection by clicking this forum link -> cix:cix.support. You may 
+find that someone else has already asked the question you want to ask and 
+it has been answered in the cix:cix.support/ameol.faq topic.
+
+Support in the cix.support forum is performed by the CIX support 
+staff. This is a small team of people who are employed by CIX Online
+and have a wide knowledge of Ameol, CIX and the Internet. They also have 
+access to the Ameol Development team in case there are any questions they 
+are unable to answer. 
+
+Support for the CIX system itself is performed in the
+cix.support/support  topic - click here -> cix:cix.support to join the
+forum.
+
+If none of these resources has helped answer your support question CIX
+offers various methods of obtaining support. These methods are described
+in the next message.
+
+3. _CIX Forums_
+
+Online support for Ameol is mainly done via the CIX Forums system.
+The forum for Ameol support is called ameol.support, and you can
+join this forum on your next connection by clicking this forum
+link -> cix:ameol.support. You may find that someone else has already
+asked the question you want to ask and it has been answered in the
+cix:ameol.support/faq topic.
+
+Support in the ameol.support forum is performed by the Ameol
+Moderators. This is a small team of people who are not employed by CIX
+but have a wide knowledge of Ameol, CIX and the internet. They also have
+access to the Ameol Development team in case there are any questions they
+are unable to answer. Ameol Moderators can be identified by the (Ameol
+moderator) line at the end of their messages.
+
+Support for the CIX system itself is performed by CIX staff in the
+cix.support forum - click here -> cix:cix.support to join the
+forum.
+
+If none of these resources has helped answer your support question CIX
+offers various methods of obtaining support. These methods are described
+in the next message.
+
+
+>>>Tutorials/Support 2 Ameol2(2205)20Oct96 12:00
+Support for Ameol - how to get support
+
+CIX Online offers support for Ameol in a several ways.
+
+1. _Via CIX Forums_
+
+This is the preferred method. Select Help|Submit Report, choose the
+nature and importance of the message, fill in the title then enter your
+message. Details of the versions of Ameol and Windows you are using will 
+be included automatically. Click on Save and the report will be saved in 
+your out basket. When you next connect your message will be posted to the 
+appropriate forum and will be answered by one of the support staff or 
+possibly by another forum member. Select View|Next Unread Priority to 
+see your message and any replies to it. It may be up to 24 hours before 
+you have a reply (though it is usually much faster) and there is no need 
+to post "reminder" messages - all messages will be answered.
+
+
+2. _Via email_
+
+CIX has an email address for all Ameol support questions - 
+mailto:support@cixonline.com.
+To send an email to the support department click on the email link above 
+or select Mail|New Message, enter
+support@cixonline.com in the To: box, enter a subject, then type your
+message. Please remember to include details of the version of Ameol you
+are using (use Help|About Ameol to find this out), your operating system 
+(Windows 2000, Windows XP, Windows Vista, or something else) and
+a precise description of the problem, including any steps to reproduce if 
+appropriate. When you have finished your message click the Save button.  
+The message will be mailed to the support department when you next connect.
+
+Only support questions should be mailed to support@cixonline.com - if you 
+have a general question about CIX services or a billing query contact 
+accounts@cixonline.com.  If you have an old CIX ICA account with Pipex you 
+will be advised of the correct contact details.  These are also posted in 
+the cix:cixnews/hotlinks topic.
+
+
+3. _Via telephone_
+
+CIX Online do not offer a telephone support service for Ameol.
+
+
+4. _Via the web_
+
+You can send a message to support from the CIX website via the following 
+link http://cixonline.com/support.asp
+
+There are also many of our FAQs available on this website to help you 
+resolve the most common queries.
+
+
+>>>Tutorials/Rules 1 Ameol2(392)20Oct96 12:00
+Introduction to Rules
+
+Ameol provides a powerful rules engine that allows you to
+mark or move messages as they are being imported.
+
+For example, you can set up a rule so that all mail messages from
+a certain person is moved to another mailbox. You could set up a
+rule so that messages from another person are automatically
+deleted.
+
+Rules work on topics, folders or even the entire database.
+
+>>>Tutorials/Rules 2 Ameol2(983)20Oct96 12:00
+Redirecting Incoming Mail From a User
+
+Ameol provides a quick way to create a rule that directs mail
+from a certain person to another folder.
+
+1. Locate an e-mail from that person.
+2. Choose the Sort Mail From command from the Mail menu, or press 'Q'.
+3. You can either sort the mail into an existing mailbox or create a
+   new mailbox and sort the mail into that. Choose the appropriate
+   option.
+4. Disable the 'Move other messages from this user to the specified
+   folder' checkbox if you only want to move this one mail message. If
+   this option is left checked, Ameol will scan back through the whole
+   mail mailbox looking for other e-mail from the user and move them to
+   the new mailbox.
+5. Click OK to move the e-mail.
+
+Once you have completed this command, all subsequent e-mail from this
+user will be redirected to the new mailbox. To have a look at the rule
+that was created, choose Rules from the Settings menu and click the
+Edit button in the Rule Manager dialog.
+
+>>>Tutorials/Rules 3 Ameol2(1357)20Oct96 12:00
+Redirecting Incoming Mail
+
+If you have your own domain name you can set up many different aliases for 
+your domain. For example, if your domain name is:
+
+      example.co.uk
+
+you can set up email aliases such as:
+
+      personal@example.co.uk
+      fromjane@example.co.uk
+      postmaster@example.co.uk
+
+By default, mail collected from your POP3 mailbox for any of the above 
+e-mail addresses will go into the Messages mailbox. To redirect them to 
+individual mailboxes based on the alias, follow the steps below:
+
+1. Locate an e-mail to the alias you want to redirect.
+2. Choose the Sort Mail To command from the Mail menu.
+3. You can either sort the mail into an existing mailbox or create a
+   new mailbox and sort the mail into that. Choose the appropriate
+   option.
+4. Disable the 'Move other messages from this user to the specified
+   folder' checkbox if you only want to move this one mail message. If
+   this option is left checked, Ameol will scan back through the whole
+   mail mailbox looking for other e-mail to that account and move them to
+   the new mailbox.
+5. Click OK to move the e-mail.
+
+Once you have completed this command, all subsequent e-mail to this
+alias will be redirected to the new mailbox. To have a look at the rule
+that was created, choose Rules from the Settings menu and click the
+Edit button in the Rule Manager dialog.
+
+>>>Tutorials/Rules 4 Ameol2(744)20Oct96 12:00
+Using Rules To Delete Messages From A User
+
+If you want to delete messages from a particular user in a particular
+forum:
+
+1. Choose Rules from the Settings menu.
+2. Select the forum from the list of folders in the Rules Manager
+   dialog.
+3. Click the New button.
+4. In the Edit Rule dialog, enter the CIX Forums nickname of the
+   person in the From field.
+5. Uncheck the 'Mark message for priority attention' box and check the
+   'Delete the message' box.
+6. Click OK to save the new rule.
+7. Click OK to close the Rules Manager dialog.
+
+Now when Ameol adds new messages to that forum, it will check to
+see if the author is the person quoted in the rule and, if so, delete
+the message. The message will not even be saved in your messagebase.
+
+>>>Tutorials/Rules 5 Ameol2(421)20Oct96 12:00
+Creating New Rules Manually
+
+When you choose the Rules command from the Settings menu and click the New
+button to create a new rule, Ameol provides a great deal of flexibility in
+specifying the matching strings. The matching strings are what Ameol looks
+for in every new message checked against the rules you've set up.
+
+The following messages give some background about how to specify rules in
+the Edit Rule dialog box.
+
+>>>Tutorials/Rules 6 Ameol2(481)20Oct96 12:00
+Rules Use the AND Logic
+
+There are inputs for four fields in the match portion of Edit Rule dialog. 
+If you enter a matching string into more than one of the fields, then 
+Ameol expects a message to match ALL the fields before the rule is 
+considered successful.
+
+Thus if you set up a rule as follows:
+
+         From:    test@example.co.uk
+         Subject: Ameol
+
+Then it will only match if the message is from test@example.co.uk AND the 
+word Ameol appears in the Subject field.
+
+>>>Tutorials/Rules 7 Ameol2(577)20Oct96 12:00
+Rules Are Not Case Sensitive
+
+It is important to realise that Ameol disregards case when matching a rule.
+So a rule set up to match Junk in the Subject field will match all of the
+following:
+
+     This is a junk message
+     Warning! Junk E-Mail!
+     This is the JUNK MAILER list
+
+Also, Ameol does not restrict matching complete words. So if the matching
+string appears inside a word, it will match. The following subject fields
+will all match a rule that looks for the string '4020' in the Subject.
+
+          HP i4020 printer problems
+          Re: GPF in address 80040206A
+
+>>>Tutorials/Rules 8 Ameol2(1287)20Oct96 12:00
+How To Specify A Rule To or From A Person
+
+For the From and To field, you can specify either a username or a
+fully-qualified e-mail address. A username is the name to the LEFT of any 
+'@' symbol in an e-mail address. The qualified address is a persons FULL 
+e-mail address including their domain.
+
+               Username: test
+      Qualified Address: test@example.co.uk
+
+If you specify a username only, then mail to that username from ANY domain 
+will match. Given the above example, mail from or to any of the following 
+will match a username of test:
+
+               test@example.co.uk
+               test@cix.co.uk
+               test@another.domain.co.uk
+               test@msn.com
+
+The following will NOT match:
+
+               test_again@cix.co.uk
+               my_test@msn.com
+
+If you specify a fully qualified address, then only mail from or to that 
+address will match. In the examples given above, only mail from or to 
+test@example.co.uk will match.
+
+To match ANY user within a particular domain, specify the domain:
+
+               @example.co.uk
+
+If you specify this in the From or To field, then e-mail to or from any of 
+the following will match the rule:
+
+               test@example.co.uk
+               hurray@example.co.uk
+               i_am_a_duck@example.co.uk
+
+>>>Tutorials/Usenet 1 Ameol2(651)20Oct96 12:00
+Joining a Usenet newsgroup
+
+To join a Usenet newsgroup, choose Subscribe from the News menu and in
+the Subscribe dialog, enter the name of the newsgroup.
+
+Ameol permits you to just download the headers of news articles or the
+entire article. Because Usenet news is a vast collection of usually quite
+long articles, downloading the entire articles can take a long time and
+make for an expensive download. So you have the option of only retrieving
+the headers which will give you basic information about the rest of the
+article. If you think an article is interesting, you can Tag it so that
+next time you connect, Ameol will retrieve the full article.
+
+>>>Tutorials/Usenet 2 Ameol2(453)20Oct96 12:00
+Resigning from a Usenet newsgroup
+
+To resign a Usenet newsgroup, choose the Unsubscribe command from the News
+menu. If the newsgroup was on the CIX news server, Ameol places a resign
+command in the Out Basket to instruct CIX Usenet to explicitly resign the
+newsgroup for you. If the newsgroup was from an internet news server then
+Ameol simply stops collecting articles from that newsgroup.
+
+You can rejoin a resigning newsgroup by resubscribing to it.
+
+>>>Tutorials/Usenet 3 Ameol2(540)20Oct96 12:00
+Tagging articles
+
+By default, Ameol only downloads the headers of Usenet articles unless
+you have explicitly asked it to download the full article. To obtain the
+full article given the header, you need to Tag it for collection. Choose
+the Tag command from the Message menu and the article will be marked as
+tagged.
+
+Not all tagged articles can be retrieved. Many news servers 'expire'
+articles after a period of time and expired articles cannot be retrieved.
+Ameol will tell you if an article could not be retrieved because it was
+expired.
+
+>>>Tutorials/Usenet 4 Ameol2(430)20Oct96 12:00
+Watching interesting threads
+
+Sometimes you might spot a message which you find interesting and you
+would like to retrieve the full articles for any comments to that
+message. Ameol allows you to 'watch' a thread so that the full article
+for any comments to a watched thread are automatically retrieved.
+
+To watch a thread, choose the Watch command from the Message menu. A
+little icon appears next to messages in watched threads.
+
+>>>Tutorials/Usenet 5 Ameol2(743)20Oct96 12:00
+Decoding attachments in binary newsgroups
+
+Ameol supports decoding of encoded attachments in messages posted to
+binary newsgroups. Both Uuencoding and Mime/base64 decoding are
+supported.
+
+If you come across a message which contains an attachment, choose Decode
+Binary Attachment from the Message menu and Ameol will create the
+decoded file in your Attach subdirectory. An icon representing the
+decoded file will also appear at the beginning of the message, replacing
+the encoded information. You can click the icon to open the attachment.
+
+Ameol always warns before you open attachments as there is the
+possibility that the attachment may be a rogue program or a virus. So
+take care and do NOT run any program that you do not know to be safe.
+

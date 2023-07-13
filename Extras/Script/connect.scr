@@ -1,0 +1,11 @@
+status "Executing Login Script"
+pause 1000
+waitfor "ogin:"
+status "Logging into CIX Forums..."
+put "cix"
+waitfor "new user)"
+status "Sending login name"
+put name
+waitfor "Password:"
+status "Sending password"
+put password

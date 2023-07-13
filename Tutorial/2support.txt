@@ -1,0 +1,137 @@
+%START Topic=Support
+Support for Ameol - what help is available?
+
+If you have a problem or question about Ameol there are various
+resources which may help.
+
+1. _The Help file_
+
+Ameol has a full online Help file. Most dialogs include a Help button
+which, when selected, will load the Help file at the correct place. Many 
+of the Help pages are "hotspot" images, which means you can click on the
+Help page to see more information about the dialog.
+
+You can also search the Help file by selecting Help|Search for Help on..
+within Ameol. Enter the word or phrase that you wish to get help with
+and the nearest match(es) in the Ameol Help file will be displayed.
+
+If you select the Help file contents page (Help|Contents within Ameol)
+you will have access to these sections of the Help file:
+
+Reading Messages
+Writing Messages
+Connecting
+Settings
+Reference
+Ameol v2 Frequently Asked Questions (FAQ)
+Glossary
+
+Although the help file is now a little out of date in some places 
+information about the more recent functions and changes can usually be 
+found in Help | What's New?
+
+
+2. _CIX Forums_
+
+Online support for Ameol is mainly done via the CIX Forums system.
+The topic for Ameol support is called cix.support/ameol or the 
+latest version of that topic cix.support/1ameol, cix.support/2ameol, 
+cix.support/3ameol etc, you can join this forum on your next 
+connection by clicking this forum link -> cix:cix.support. You may 
+find that someone else has already asked the question you want to ask and 
+it has been answered in the cix:cix.support/ameol.faq topic.
+
+Support in the cix.support forum is performed by the CIX support 
+staff. This is a small team of people who are employed by CIX Online
+and have a wide knowledge of Ameol, CIX and the Internet. They also have 
+access to the Ameol Development team in case there are any questions they 
+are unable to answer. 
+
+Support for the CIX system itself is performed in the
+cix.support/support  topic - click here -> cix:cix.support to join the
+forum.
+
+If none of these resources has helped answer your support question CIX
+offers various methods of obtaining support. These methods are described
+in the next message.
+
+3. _CIX Forums_
+
+Online support for Ameol is mainly done via the CIX Forums system.
+The forum for Ameol support is called ameol.support, and you can
+join this forum on your next connection by clicking this forum
+link -> cix:ameol.support. You may find that someone else has already
+asked the question you want to ask and it has been answered in the
+cix:ameol.support/faq topic.
+
+Support in the ameol.support forum is performed by the Ameol
+Moderators. This is a small team of people who are not employed by CIX
+but have a wide knowledge of Ameol, CIX and the internet. They also have
+access to the Ameol Development team in case there are any questions they
+are unable to answer. Ameol Moderators can be identified by the (Ameol
+moderator) line at the end of their messages.
+
+Support for the CIX system itself is performed by CIX staff in the
+cix.support forum - click here -> cix:cix.support to join the
+forum.
+
+If none of these resources has helped answer your support question CIX
+offers various methods of obtaining support. These methods are described
+in the next message.
+
+%END
+%START
+Support for Ameol - how to get support
+
+CIX Online offers support for Ameol in a several ways.
+
+1. _Via CIX Forums_
+
+This is the preferred method. Select Help|Submit Report, choose the
+nature and importance of the message, fill in the title then enter your
+message. Details of the versions of Ameol and Windows you are using will 
+be included automatically. Click on Save and the report will be saved in 
+your out basket. When you next connect your message will be posted to the 
+appropriate forum and will be answered by one of the support staff or 
+possibly by another forum member. Select View|Next Unread Priority to 
+see your message and any replies to it. It may be up to 24 hours before 
+you have a reply (though it is usually much faster) and there is no need 
+to post "reminder" messages - all messages will be answered.
+
+
+2. _Via email_
+
+CIX has an email address for all Ameol support questions - 
+mailto:support@cixonline.com.
+To send an email to the support department click on the email link above 
+or select Mail|New Message, enter
+support@cixonline.com in the To: box, enter a subject, then type your
+message. Please remember to include details of the version of Ameol you
+are using (use Help|About Ameol to find this out), your operating system 
+(Windows 2000, Windows XP, Windows Vista, or something else) and
+a precise description of the problem, including any steps to reproduce if 
+appropriate. When you have finished your message click the Save button.  
+The message will be mailed to the support department when you next connect.
+
+Only support questions should be mailed to support@cixonline.com - if you 
+have a general question about CIX services or a billing query contact 
+accounts@cixonline.com.  If you have an old CIX ICA account with Pipex you 
+will be advised of the correct contact details.  These are also posted in 
+the cix:cixnews/hotlinks topic.
+
+
+3. _Via telephone_
+
+CIX Online do not offer a telephone support service for Ameol.
+
+
+4. _Via the web_
+
+You can send a message to support from the CIX website via the following 
+link http://cixonline.com/support.asp
+
+There are also many of our FAQs available on this website to help you 
+resolve the most common queries.
+
+%END
+

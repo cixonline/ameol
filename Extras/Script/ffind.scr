@@ -1,0 +1,12 @@
+REM FFIND.SCR v1.12 "Cix FFIND command"
+REM Contributed by ansible & joz@cix 
+REM Use CIX FFIND to locate file in forum file lists
+REM +++++++++++++++++++++++++++++++++++
+status "FFIND search"
+put "killscratch"
+waitfor "M:"
+put "file ffind %s('FFIND a File','Give string to search for')"
+waitfor ":"
+put "download"
+download "%fs('Save FFIND As','0','FFinds\fffind.txt\f')"
+end

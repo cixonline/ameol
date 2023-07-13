@@ -1,0 +1,9 @@
+rem Script to send mail to your Conf mailbox.
+status "Setting forwarding to Conferencing mailbox"
+put "go forward_toggle"
+if waitfor("Internet", "M:") == 0
+ put "go forward_toggle"
+ waitfor "M:"
+endif
+status ""
+end

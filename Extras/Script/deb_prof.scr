@@ -1,0 +1,11 @@
+put "j cixnews/information"
+waitfor "R:"
+put "killscratch"
+waitfor "R:"
+put "file type profiled.txt"
+waitfor "R:"
+put "scput profile"
+waitfor "R:"
+put "q"
+waitfor "M:"
+end

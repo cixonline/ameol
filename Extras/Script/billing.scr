@@ -1,0 +1,10 @@
+rem billing.scr by joz@cix
+put "killscratch"
+put "filebilling"
+waitfor "month..."
+put "%s('Billing','Enter month of billing, e.g. Nov')"
+waitfor "year...."
+put "%s('Billing','Enter year of billing e.g. 96')"
+put "download"
+download "%s('Billing','Destination filename:')"
+

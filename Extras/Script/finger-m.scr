@@ -1,0 +1,21 @@
+REM FINGER-M.SCR v1.10 "Finger by mail"
+rem By Steve Harris (steveha@cix), amended by pw@cix 28/10/97
+status "Sending Finger Request..."
+put "mail"
+waitfor "l:"
+put "to getweb@info.lanic.utexas.edu"
+waitfor "Enter subject:"
+put "Finger request"
+waitfor ".<CR>"
+putnocr "GET http://www.mit.edu:8001/finger?"
+put "%s('Finger By Mail','Specify address to finger:')"
+put "."
+waitfor "send/action:"
+putnocr "cc "
+put name
+waitfor "send/action:"
+put "send"
+waitfor "l:"
+put "q"
+status ""
+end

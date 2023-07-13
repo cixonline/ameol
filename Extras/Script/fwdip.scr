@@ -1,0 +1,9 @@
+rem Script to send mail to your IP mailbox.
+Status "Setting forwarding to IP mailbox"
+put "go forward_toggle"
+if waitfor("Conferencing", "M:") == 0
+ put "go forward_toggle"
+ waitfor "M:"
+endif
+status ""
+end

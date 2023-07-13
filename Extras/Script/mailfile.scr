@@ -1,0 +1,23 @@
+REM MAILFILE.SCR v1.12 "Mail a local file"
+REM Contributed by mentha@cix
+REM Ameol script to send a local text file as mail.
+REM It is recommended that individual mail files are kept to below 64k
+REM and line lengths below 255 otherwise bits may get lost.
+REM ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Sending local mail file..."
+put "opt term width 255 q"
+waitfor ":"
+put "upl"
+upload "%fo('Select File to Mail')"
+put "mail to %s('Mail a File', 'Enter mail destination:\n(Specify recipient\'s full Internet address for external mail)')"
+waitfor "Enter subject:"
+put "%s('Mail a File', 'Enter mail title:')"
+waitfor ":"
+put "q"
+waitfor "send/action:"
+put "send"
+waitfor "Ml:"
+put "q"
+waitfor "M:"
+status ""
+end

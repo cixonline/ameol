@@ -1,0 +1,3 @@
+put "killscratch scget profile download"
+download "profile.txt"
+end

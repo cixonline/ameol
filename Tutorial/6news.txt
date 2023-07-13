@@ -1,0 +1,67 @@
+%START Topic=Usenet
+Joining a Usenet newsgroup
+
+To join a Usenet newsgroup, choose Subscribe from the News menu and in
+the Subscribe dialog, enter the name of the newsgroup.
+
+Ameol permits you to just download the headers of news articles or the
+entire article. Because Usenet news is a vast collection of usually quite
+long articles, downloading the entire articles can take a long time and
+make for an expensive download. So you have the option of only retrieving
+the headers which will give you basic information about the rest of the
+article. If you think an article is interesting, you can Tag it so that
+next time you connect, Ameol will retrieve the full article.
+%END
+%START
+Resigning from a Usenet newsgroup
+
+To resign a Usenet newsgroup, choose the Unsubscribe command from the News
+menu. If the newsgroup was on the CIX news server, Ameol places a resign
+command in the Out Basket to instruct CIX Usenet to explicitly resign the
+newsgroup for you. If the newsgroup was from an internet news server then
+Ameol simply stops collecting articles from that newsgroup.
+
+You can rejoin a resigning newsgroup by resubscribing to it.
+%END
+%START
+Tagging articles
+
+By default, Ameol only downloads the headers of Usenet articles unless
+you have explicitly asked it to download the full article. To obtain the
+full article given the header, you need to Tag it for collection. Choose
+the Tag command from the Message menu and the article will be marked as
+tagged.
+
+Not all tagged articles can be retrieved. Many news servers 'expire'
+articles after a period of time and expired articles cannot be retrieved.
+Ameol will tell you if an article could not be retrieved because it was
+expired.
+%END
+%START
+Watching interesting threads
+
+Sometimes you might spot a message which you find interesting and you
+would like to retrieve the full articles for any comments to that
+message. Ameol allows you to 'watch' a thread so that the full article
+for any comments to a watched thread are automatically retrieved.
+
+To watch a thread, choose the Watch command from the Message menu. A
+little icon appears next to messages in watched threads.
+%END
+%START
+Decoding attachments in binary newsgroups
+
+Ameol supports decoding of encoded attachments in messages posted to
+binary newsgroups. Both Uuencoding and Mime/base64 decoding are
+supported.
+
+If you come across a message which contains an attachment, choose Decode
+Binary Attachment from the Message menu and Ameol will create the
+decoded file in your Attach subdirectory. An icon representing the
+decoded file will also appear at the beginning of the message, replacing
+the encoded information. You can click the icon to open the attachment.
+
+Ameol always warns before you open attachments as there is the
+possibility that the attachment may be a rogue program or a virus. So
+take care and do NOT run any program that you do not know to be safe.
+%END

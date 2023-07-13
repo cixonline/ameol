@@ -1,0 +1,307 @@
+Installation notes for  GetMM V3.05, the  'Get Miscellaneous
+Messages' addon for Ameol.
+
+© 1994-2000 Zonko Enterprises Ltd., All rights reserved
+
+This  version  of  the  addon  is  for the 32-bit version of
+Ameol, release level 1.22.04 or higher.  It will *not*  work
+with any earlier versions of Ameol.
+
+Please report any  problems or bugs  in the addons  topic in
+the ameol.support conference.
+
+
+ARCHIVE CONTENTS
+================
+
+GETMM32.TXT  this file
+GETMM32.ADN  the Ameol Get Miscellaneous Messages addon
+GETMM.HLP    the Help file for this addon
+
+DESCRIPTION
+===========
+
+This addon provides facilities to retrieve specific sets  of
+messages from any conf/topic to  which you are joined.   You
+can:
+
+* Get all messages that are missing which  have numbers  that 
+  are  between the earliest and latest messages in your local
+  message base. This  can  be  done  by  topic  or  globally.
+  Optionally  you  can limit the number of  days examined for
+  missing messages.
+
+* Retrieve a number of  messages before the earliest  one in
+  your local message base by topic or globally.
+
+* Backfill  to  a  specific  message  number  by  topic   or
+  globally.
+
+* Get an arbitrary range of messages from a specific topic.
+
+* Set  the  topic  pointer  so  as  to retrieve an arbitrary
+  number of messages prior to the 'last' message in the  CIX
+  conf/topic.  Again this can be done by topic or globally.
+
+* Set  the  topic  pointer  so  as  to  retrieve  all the of
+  messages that have been posted in the last 'n' days in the
+  CIX  conf/topic.    This  too  can  be  done  by  topic or
+  globally.
+
+* Get the missing root messages for a topic or globally.
+
+
+INSTALLATION FOR AMEOL2 USERS
+=============================
+
+GetMM32.ADN should  be installed  in the  Ameol subdirectory
+where you normally place your addons.  The default directory
+is c:\ameol\addons.   The  help file  (GetMM.HLP) should  be
+placed in the same directory.
+
+Install  the   addon  using  the  Settings|Install Addons...
+menu   entry.   Click   on   the  "Add"  button  and  select
+GetMM32.ADN using the file selector that  will appear; click
+on  "OK"  in  both the "Select Addon"  and "Addons"  dialogs.
+The addon will appear at the end of your Folder menu.
+
+You may assign a shortcut key to the addon.
+
+You  can  add the addon to your toolbar. Right-click on  the
+toolbar  and  choose  Customise. In  the  Customise  Toolbar
+dialog,  select the Customise tab and choose Folder from the
+list  of  Categories.  At the end of the Buttons list  is  a
+button  titled "Invoke the GetMM addon".  Select the  button
+and drag it onto the toolbar.
+
+
+INSTALLATION FOR AMEOL1 USERS
+=============================
+
+GetMM32.ADN should  be installed  in the  Ameol subdirectory
+where you normally place your addons.  The default directory
+is c:\ameol\addons.   The  help file  (GetMM.HLP) should  be
+placed in the same directory.
+
+Install  the  addon  using  the  Settings|Utilities...  menu
+entry.   Click on  the "Add"  button and  select GetMM32.ADN
+using the file selector that  will appear; click on "OK"  in
+both the "Add Utility"  and "Utilities" dialogs.   The addon
+will appear in your Utilities menu.
+
+You may assign a shortcut key to the addon.
+
+GetMM32.ADN contains  a bitmap  suitable for  placing on the
+Ameol  toolbar.    Use  the  Settings|Toolbar...  menu item;
+select the  "Spares" category  from the  drop-down list box;
+drag  the   spare  tyre   button  to   the  toolbar;  choose
+GETMM32.ADN from the Assign Button dialog; and click OK.
+
+Additionally the addon appends  an item to the  Topic menus:
+"Get Misc Msgs".
+
+
+HISTORY
+=======
+
+The   original   addon   was   written   by   Mike  Pilsbury
+(mpilsbury@cix).
+
+Jerry Ozaniec (joz@cix) added some additional  functionality
+to produce version 1.20 and beyond.
+
+Steve Palmer  (spalmer@cix) provided the  fixes for versions
+3.03 and 3.05.
+
+3.05  Fixed Y2K issues.
+
+      GetMM now accepts 4-digit years in date fields.
+
+      Fixed tab order in dialog.
+
+3.03  Fixed backfill bug where incorrect initialisation of iLimit
+      left many missing messages undetected.
+
+      Fixed bug where missing penultimate message in a topic was
+      never detected.
+
+      Added test for attempt to explicitly backfill a resigned
+      topic and display a more meaningful error message in this case.
+
+      Modified source code slightly to be compatible with Microsoft
+      VC++ compilers.
+
+3.02  Changed User Interface so that:
+
+      1.  All changes are recorded as they occur.
+      2.  Selection of an edit control (number) automatically
+          selects the radio button option.
+      3.  The maximum message number allowed may be up to 6 digits
+          long.
+
+      Fixed bug where a range could be invalid, e.g., 200 to 100;
+      now a message pops up telling you that is not allowed.
+
+      Enhanced numeric values validation; numbers must now be
+      positive; also the 'from' and 'to' values in a range may
+      be the same.
+
+      Added 'Date range' option.
+
+      Changed menu items to be consistent; noted for Ameol2
+
+      Changed to set up correct Usenet folder name depending on
+      Ameol version.
+
+3.01  Fixed bug where GetMM  was not picking up  the correct
+      directory for scripts.
+
+      Fixed  bug  where  some  scripts  were being generated
+      incorrectly  when  the  (All  Conferences)  option was
+      used.
+
+3.00  No functional  changes but  the code  was revamped  in
+      order to make it portable between 16-bit Windows (3.x)
+      and 32-bit Windows (95 and NT).
+
+
+2.06  Changed the "Messages back to number N" option so that
+      it will no longer ignore  the number if you specify  a
+      number higher than the  lowest you have in  your local
+      message base.
+
+      Increased  the  edit  controls  for  the "Get specific
+      range from N to M" option to allow 5 digit numbers.
+
+      Made minor internal changes to accommodate  changes in
+      the Ameol API.
+
+      Changed the copyright information in the About dialog.
+
+      Made the corresponding change to the Help file.
+
+2.05  Added the "Get missing root messages" option.
+
+      Fixed bug in "Missing messages for last N days" option
+      where it didn't operate correctly when the dialog  was
+      in the collapsed state.  It manifested as inconsistent
+      behaviour under some  conditions since it  did operate
+      correctly when the dialog was expanded.
+
+      Changed the logic so that after a successful build the
+      Close  button  has  the  focus  rather  than the Build
+      button.    This  aids  those  who  prefer  to  use the
+      keyboard.
+
+      Fixed bug in the Get Last Days or Get N Days  scripts.
+      The  macro  name  was  permanently assigned to 'fred'.
+      CIX does not allow the redefinition of a macro, so  if
+      multiple scripts  were generated  for use  in the same
+      blink, the second  and subsequent scripts  would fail.
+      Now the macro  in all cases  is generated as  a unique
+      name so that each script will work.
+
+      Fixed bug in he Get  Last Days or Get N  Days scripts.
+      The  script  was  not  properly  handling the 'Topic?'
+      prompt  that  CIX  presents  when joining a conference
+      without a topic.  This caused the scripts to fail when
+      requesting  either  function  for  all  topics  in   a
+      conference.
+
+2.04  Fixed a bug where it was possible to enter a number of
+      days to go  back which would  take the scan  to before
+      the dates that  are possible on  CIX.  The  result was
+      that no  missing messages  would be  found due  to the
+      internal Ameol structure of dates.
+
+      Modified  the  generated  scripts  so  as to allow for
+      multiple  topics  in  cixnews  for  the  "Get last 'n'
+      messages" and "Get last 'n' days worth" functions.
+
+      Changed  so  the  cursor  is  an  hourglass when it is
+      adding items to the Ameol out basket.
+
+2.03  Fixed bug where  right-clicking on some  dialogs would
+      result  in  an  erroneous  "Popup  Help not available"
+      message.
+
+      Added the ability to limit the script building process
+      for missing  messages to  a specified  number of  days
+      prior to the current date.  However since GetMM cannot
+      know the dates  of the messages  on CIX, it  relies on
+      finding a gap before an existing msg which has a  date
+      within the criteria specified.  This is not ideal  but
+      it is the best that can be done.
+
+2.02  Fixed the bug which meant  that if a Build was  chosen
+      when the dialog was collapsed, GetMM would perform the
+      default action of finding missing messages  regardless
+      of  which  actual  option  had been previously chosen.
+      Note that  this did  not happen  when t  he dialog was
+      expanded.
+
+      Fixed  the  bug  where  a  conference  or  topic  name
+      starting with certain special characters would produce
+      incorrect results or a GPF.
+
+      Eliminated  the  hot-key  conflict  on  the   expanded
+      dialog.
+
+      Fixed About dialog to include a static control  rather
+      than a group box.
+
+2.01  This is a radically revised version.
+
+      There is a new main dialog layout.
+
+      The text in both dialogs was revised.
+
+      Added a Help file.
+
+
+1.20  First Version by Jerry Ozaniec - Released 23 Aug  1994
+      Compiled with Rev14 of  the Ameol SDK and  Borland C++
+      V4.0
+
+      Added an icon for use on the toolbar.
+
+      Changed several internal methods.
+
+      Added 3 new options on the dialog:
+
+         Get a range of messages
+         Get last 'n' messages
+         Get last 'n' days worth
+
+      Changed    to     get    ini     file    name     from
+      GetInitialisationFile for multi-user setups.
+
+
+CONFIGURATION
+=============
+
+The initial  dialog may  be expanded  to set  the options to
+indicate  which  messages  should  be  retrieved.    See the
+on-line help for more detail about the options.
+
+
+PLANNED FEATURES
+================
+
+None at the moment.
+
+Suggestions  should  be  posted  in  the addons topic in the
+ameol.support conference.
+
+
+KNOWN ANOMALIES/PROBLEMS/BUGS
+=============================
+
+The "Get missing  root messages" option  cannot fill in  any
+gaps in  a thread  since it  doesn't know  what the  message
+number of the root is.  If there are missing comments within
+the thread, repeated use of the option will have no apparent
+effect  other   than  to   increase  the   scratchpad  Ameol
+downloads.  The normal  "Get missing messages" option  after
+the  blink  including  the  use  of  the  "Get  missing root
+messages" option should be employed to fill in the gaps.

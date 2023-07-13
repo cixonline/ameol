@@ -1,0 +1,17 @@
+REM RESET.SCR V1.2 by mat@cix 20 April 2007
+REM Reset CIX pointers back a number of days
+status "Running Reset CIX pointers..."
+put "opt scratchpad 20000000 q"
+put "order first cixnews"
+put "macro fred file skip to back %s('Reset CIX pointers','Number of days to go back:') tnext fred"
+put "j cixnews/information"
+put "file fred"
+status "Downloading Scratchpad"
+waitfor ":"
+put "download"
+download "rscratch.txt"
+import "rscratch.txt"
+status ""
+end
+
+ 

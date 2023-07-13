@@ -1,0 +1,22 @@
+rem fetchwww.scr by sp@cix
+rem fetches a web page via ip> system
+status "Retrieving a WWW page"
+put "go internet"
+waitfor "ip> "
+put "www"
+waitfor "G)o"
+putnocr "g"
+waitfor "URL to open: "
+put "http://%s('URL', 'Enter the URL of the page to retrieve (omit http:// prefix):')"
+putnocr "p"
+waitfor "Mail the file"
+putnocr "^M"
+waitfor "address: "
+put "%s('Mail Address', 'Enter the e-mail address:')"
+pause 2000
+putnocr "q"
+putnocr "^M"
+waitfor "ip> "
+put "quit"
+status ""
+end

@@ -1,0 +1,31 @@
+REM IPSEND.SCR v1.21 "Get any files in ip> directory"
+REM Contributed by mentha@cix
+REM Ameol script obtains then erases all files in your Cix ip> directory.
+REM It stores the files in your Ameol download directory.
+REM Modified 9/94 to use DOSSIFY
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Downloading any files in ip> directory..."
+put "run internet"
+waitfor "ip>"
+put "dir"
+if waitfor("ip> ","              ^M^J ")==0
+ status "Your ip> directory is empty."
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+waitfor "ip>"
+put "dossify"
+waitfor "ip>"
+put "send *"
+pause 200
+download ""
+status "ip> files received to \download"
+pause 200
+put "erase *"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+status ""
+end

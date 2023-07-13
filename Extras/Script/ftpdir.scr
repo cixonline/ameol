@@ -1,0 +1,67 @@
+REM FTPDIR.SCR v1.12 "Get FTP site directory"
+REM Contributed by mentha@cix
+REM Ameol script to list the files in a user-specified directory on an
+REM arbitrary anonymous ftp site. When run, you need to specify:-
+REM 1. your PC filename in which to store the directory (eg dir.wri)
+REM 2. the ftp site name (eg world.std.com)
+REM 3. the ftp site's directory to list (try /pub initially).
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Requesting FTP directory..."
+put "run internet"
+if waitfor( "M:", "ip>" ) == 1
+put "ftp %s('Dir of FTP Site','Enter FTP Site Name:')"
+if waitfor("ftp>","):")==0
+ status "FTP connection failed."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM Connection successful...
+put "anonymous"
+if waitfor("ftp>","assword:")==0
+ status "FTP site terminated connection."
+ put "quit"
+ waitfor "ip>"
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+putnocr name
+put "@cix.compulink.co.uk"
+waitfor "ftp>"
+put "prompt"
+waitfor "ftp>"
+put "ascii"
+waitfor "ftp>"
+status "Downloading from Site to Cix..."
+put "dir %s('Dir of FTP Site','Specify directory to list:\n(Try /pub or . if not known)') ftpdir.wri"
+waitfor "ftp>"
+put "quit"
+waitfor "ip>"
+put "dir ftpdir.wri"
+if waitfor("ip> ","              ^M^J ")==0
+ status "No FTP Dir to download."
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM Dir successful...
+waitfor "ip>"
+status "Receiving FTP Dir from Cix..."
+put "send ftpdir.wri"
+pause 200
+download "%fs('Save Dir of FTP Site As','0','FTP Directory (*.wri)\f*.wri\f')"
+status "FTP Dir received."
+pause 200
+put "erase ftpdir.wri"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+endif
+status ""
+end

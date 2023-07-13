@@ -1,0 +1,5 @@
+put "upl"
+upload "profile.txt"
+put "scput profile killscratch"
+waitfor "M:"
+end

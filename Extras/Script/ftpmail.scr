@@ -1,0 +1,26 @@
+REM ftpmail script v0.2 by pw@cix 28/3/96
+REM You need to know the site, path and filename
+REM
+status "Requesting FTP file via email"
+put "opt ed v term width 255 q"
+waitfor ":"
+put "mail to ftpmail@sunsite.doc.ic.ac.uk"
+waitfor "Enter subject:"
+put "FTPMail Request"
+waitfor ">"
+put "open %s('FTP site to open?','Enter site name')"
+put "cd %s('Path to file?','Enter the full path to the file')"
+put "get %s('File name?','Enter file name')"
+put "quit"
+put "."
+waitfor "send/action:"
+putnocr "cc "
+put name
+waitfor "send/action:"
+put "send"
+waitfor "Ml:"
+put "q"
+waitfor "M:"
+status ""
+end
+

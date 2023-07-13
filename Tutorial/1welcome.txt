@@ -1,0 +1,245 @@
+%START Folder=Tutorials Topic=Welcome
+Welcome to Ameol!
+
+Ameol is an all-in-one off-line reader for your internet news, mail and
+CIX Forums messages.  As it is an off-line reader you can read and
+compose messages without being connected to your dial-up service provider 
+or on-line service, so saving time and money. Ameol can be used with an 
+internet account to read usenet news and mail and also to read CIX 
+Forums messages.
+
+This is a brief tutorial for people who are new to off-line readers and
+will help you get started. For more detailed instructions and help please 
+see the Ameol help file by selecting the Help menu, Contents item (in 
+short form, Help|Contents).
+
+Each news, mail and CIX Forums message is displayed on your screen
+individually, just like the message you are reading now. To go to the next 
+message, press the Return key.
+
+Press Return now.
+%END
+
+%START
+Read and Unread messages
+
+This is the second message which you probably reached by pressing Return
+after reading message number 1. Ameol keeps track of the messages you
+have read and those you haven't yet read and displays this information in
+the Thread Window. The Thread Window is above the status bar (the line
+that has the date, time and other message information on it) and you can
+see there is a letterbox icon next to message 2 - this shows that Ameol
+knows this message hasn't been read yet. If you look up to message 1 you
+will see there is no letterbox icon next to it - Ameol knows that you
+have read that message.
+
+Press Return to go to the next message.
+%END
+
+%START
+Moving up and down messages
+
+If a message is quite long and can not fit in the message viewer window
+(the window you are reading this message in now) then scroll bars will be
+displayed on the right hand side of the window. To carry on reading more
+of the message that isn't currently in view, press the Page Down key.
+
+Press the Page Down key now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Press Page Down again
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This is the bottom of the message which you reached by pressing the
+Page Down Key. If you want to scroll back up again press the Page Up key
+until you see the beginning of the message. You can also re-size the
+message window so you can see more of a message without using the page up
+and page down keys. To do this just move your mouse pointer over any edge
+of the window until the pointer changes to one with an arrow at each end.
+Then holding down the left mouse button, move the mouse and you will see
+the window change size. Let go of the mouse button when the window is the
+size you want it to be. This method works for nearly all Ameol windows.
+
+This is the end of this message - press Return to go to the next message.
+%END
+
+%START
+Going to a previous message
+
+If you want to go back to the last message to you read for another look
+at it just press the Backspace key. This will always take you to the last
+message you read. Try it now, Ameol will go back to message 3. Press
+Return to come back to this message.
+
+Back again?
+
+The Backspace key can be used many times in succession, so if you want to
+go back to a message you read five messages ago, you would press
+Backspace five times.
+
+Press Return to go to the next message.
+%END
+---
+
+%START Comment
+Threading
+
+Ameol is a threaded message reader. This means that when people reply to
+mail (or follow-up to a usenet message, or comment to a CIX Forums
+message) Ameol will show you that the second message is related to the
+first one. For example, the message you are reading now is a comment to
+message number 4. This is shown in two ways
+
+- the status bar says "Comment to message 4"
+- in the graphical Thread Window
+
+The Thread Window shows you the message number, author and the first line
+of the message. It also has a graphic display of the threads - message 4
+(which is called a "Root message" as it is not a comment to any other
+message) is displayed in bold type and has a brown folder icon next to
+it. The current message (message 5, which you are reading now) is
+displayed in normal type.
+
+Usenet and CIX Forums messages threads can be very complicated, the graphical
+thread window lets you see at a glance which message is a comment to which
+other message. Occasionally you will see a message in the thread window that
+is in bold type but which has two dots on the left of it, like this:
+
+.. 187  sp  I posted a message yesterday.
+
+This means the message is a comment but you do not have the original
+message in your database.
+
+
+Remember to press Return to go to the next message.
+%END
+
+%START
+The In Basket
+
+On the left hand side of the Ameol window you can see a window that is
+titled "In Basket" (if you cannot see this window select the View menu
+and choose the In Basket item). The In Basket lists all the newsgroups
+you have read in Ameol, any mail folders or topics you have created and
+any CIX forums or topics you have read in Ameol.
+
+If this is the first time you have used Ameol you will probably only
+have a few News and Mail folders, plus the current folder (that contains
+the messages you are reading now). The current folder is highlighted in
+the In Basket and as you change topics by reading messages the highlight
+also moves to show you which topic you are in.
+
+Lets try moving to another folder. Make a note of the current highlighted
+topic, then double-click on the Mail/Messages folder. You will be in the
+Messages topic of the Mail folder (the topic itself will probably be
+empty). To come back to this topic double-click the name that you noted
+down earlier, in the In Basket.
+%END
+
+%START
+Creating messages
+
+Let's create our first message.
+
+Select Mail|New Message. A New Mail Message window will open, re-size it
+so you can still see this message using the window re-size method
+described earlier. The Mail Message window has a number of boxes, but you
+don't have to fill all of them in.
+
+In the box next to To: type in your own e-mail address. If you are not
+sure what this is, copy the e-mail address in the Reply-To field to the
+To: box.
+
+In the box next to Subject: type "Test E-mail".
+
+Then type anything you like in the lower blank area (this is called an
+Edit Window). When you have finished typing your message press the Save
+key. You have now created your first e-mail message! However as Ameol is
+an off-line reader your message has not been sent yet, it will be sent
+when you next connect to your internet provider or to CIX Forums. This
+means you can perform many different actions on the message before it is
+sent, this is done from the Out Basket and it is this that we will cover
+in the next message.
+
+You can create new News and CIX Forums messages by selecting
+News|Post Article and Message|Say respectively. To make a Comment to a
+message select Mail|Reply to Message, News|Follow Up Article or
+Message|Comment depending on whether the message is a Mail, News or
+CIX Forums message. You should always use the Comment command when
+you are replying to a message by someone else so everyone can see that
+the two messages relate to each other.
+%END
+
+%START
+The Out Basket
+
+To open the Out Basket, select View|Out Basket.
+
+The Out Basket is the storage area for any messages you post, any file
+downloads or uploads you decide to do.. in fact any actions relating to
+files or messages that you do within Ameol. While an item is in the Out
+Basket you can review it, edit it, delete it, Keep it (so it is executed
+every time you connect) or Hold it (so it stays in the Out Basket but is
+not executed).
+
+If you followed the method above for creating a new mail message then
+that message will be in your Out Basket now. You can edit it by
+highlighting the message in the Out Basket and clicking the Edit button
+on the Out Basket window (not the Edit menu at the top of the Ameol
+window). You will see your mail message open in an editor again - here
+you can change any of the details you entered before. You can change the
+text of the message, the Subject: or who the message was addressed To:.
+When you have finished editing the message, click Save again and your
+newly edited message will return to the Out Basket. It will stay there
+until you connect to your internet provider or to CIX Forums.
+%END
+
+%START
+Connecting
+
+Connecting ("Blinking") with Ameol is very simple. To connect to either
+your internet provider or to CIX Forums just click the Blink button
+on the toolbar (on the left with the telephone picture) or select File|Send
+& Receive All.
+
+Ameol will then send any messages that were in your Out Basket, then
+collect any new messages waiting for you. At the end of the blink Ameol
+will disconnect.
+
+As it is an off-line reader you can read and compose messages without 
+being connected to your on-line service, so saving time and money.
+%END

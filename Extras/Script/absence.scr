@@ -1,0 +1,3 @@
+REM ABSENCE.SCR V1.0 by awhiteb@cix from ameol_reg/scripts #116
+put "absence first %s('Enter absence','First day (dd/mm/yy):') last %s('Enter absence','Last day (dd/mm/yy):')"
+

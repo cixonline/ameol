@@ -1,0 +1,14 @@
+REM GetConf 1.01
+REM By pw@cix based on ffind.scr
+REM Get Forum/Moderator Information
+REM +++++++++++++++++++++++++++++++++++
+status "Getting Forum Information..."
+put "killscratch"
+waitfor "M:"
+put "file show %s('Get Forum Information','Name of Forum')"
+waitfor ":"
+put "download"
+download "%fs('Save Forum Info As','0','Confs\fconfget.txt\f')"
+status ""
+end
+

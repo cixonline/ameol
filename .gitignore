@@ -47,8 +47,13 @@ BuildLog.htm
 *.embed.manifest
 *.aps
 .vs
-Build/Zmodem32.afp
+Build/
+drops/
 
 */Debug/*
 ameol.ncb
 ameol.suo
+
+!Tools/*
+!Extras/*
+

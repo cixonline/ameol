@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+   <title>Forms</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Autoresponder, how to set up,Forms, definition,Forms, usage,Mailing list, how to set up">
+</head>
+
+
+
+<body bgcolor="#FFFFFF">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#FFFF80">
+  <tr>
+    <td align="left">
+      
+<span style="font-family:Helvetica,Arial; font-size:12pt; color:#000000"><b><i>Forms
+<br>
+</i></b></span>
+    </td>
+    <td align="right">
+     <font face="Arial" size="2">
+     <a href="idh5o2haa.htm">Previous</a>&nbsp;
+     <a href="indgag_cs.htm">Top</a>&nbsp;
+     <a href="header.htm">Next</a>
+     </font>
+    </td>
+  </tr>
+</table>
+<br>
+
+
+<span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+<b>What are forms?
+<br>
+</b>
+<br>
+First of all:
+<br>
+
+<br>
+<b>Forms are rather complex and we recommend that only advanced Ameol
+<br>
+users try them.
+<br>
+</b>
+<br>
+Forms are an extension to the rules in Ameol. Using a form is an extra action that can be triggered by a rule. Any  message which matches the rule can instruct Ameol to e-mail a predefined mail message back to the sender of that message. Forms are not completely integrated into Ameol and support for them is done on a "best-effort" basis. This means the ultimate resolution to a problem may be "stop using forms." The use of forms is only supported in v2.12.1885 and above.
+<br>
+
+<br>
+Mail forms are text files that are stored in the FORMS subdirectory in the Ameol base directory and must have the extension .afm. If any forms are found when Ameol is started up an extra entry, "Mail Form" will appear on the <a href=coniy_sxe.htm>Edit Rule</a> dialog (Settings|Rules|New).
+<br>
+
+<br>
+Ameol reads the forms directly once only, when it starts up. If you add extra forms while Ameol is running you have to exit and restart Ameol before the new forms can be seen.
+<br>
+
+<br>
+
+<br>
+<b>Examples
+<br>
+</b>
+<br>
+I can get e-mail to enquiries@mycompany.co.uk with a Subject line of 'Prices'. I set up a rule to match 'Prices' in the Subject field and to e-mail the sender the current price list in response. (N.B., This is an example and is not in real use.)
+<br>
+
+<br>
+A sample mail form that would fulfill this function is:
+<br>
+
+<br>
+    To: $FROM$
+<br>
+    Subject: Our price list
+<br>
+    
+<br>
+    Thanks for your enquiry about our pricing. A price list is
+<br>
+    enclosed below.
+<br>
+    ...
+<br>
+
+<br>
+A mail form is divided into two parts. The header part contains instructions to fill the To:, CC:, Subject, and Reply To: fields of the outgoing mail message. Then a blank line separates the header from the text body part.
+<br>
+
+<br>
+In the above example, the name of the recipient is picked up from the $FROM$ macro which is filled in with the sender of the message which matched the rule. In the example, if I e-mailed enquiries@mycompany.co.uk from an account called test@cix.co.uk, the $FROM$ macro will expand to 'test@cix.co.uk'. $FROM$ does not use the Reply-To address of an incoming mail message.
+<br>
+
+<br>
+The text body part also permits a macro called $INCLUDE$ which will pull in the contents of another file. Thus:
+<br>
+
+<br>
+    Thanks for your enquiry about our pricing. A price list is
+<br>
+    enclosed below.
+<br>
+    
+<br>
+    $INCLUDE$  C:\Ameol\Pricing\Pricing.txt
+<br>
+
+<br>
+would retrieve the current price list from that location.
+<br>
+
+<br>
+Even better, the pathname in the $INCLUDE$ macro can contain a macro. You can use this facility to set up an automatic help system. In this example, I can e-mail help@mycompany.co.uk and specify a help topic in the subject field. The mail form created for the help folder in Ameol is as follows:
+<br>
+
+<br>
+    To: $FROM$
+<br>
+    Subject: Help on $SUBJECT$
+<br>
+    
+<br>
+    $INCLUDE$ C:\Ameol\Helpfiles\$SUBJECT$.TXT
+<br>
+
+<br>
+Thus if I mail help@mycompany.co.uk a message with a Subject of 'Features', the mail form will expand to:  
+<br>
+
+<br>
+    To: author
+<br>
+    Subject: Help on Rules
+<br>
+    
+<br>
+    $INCLUDE$ C:\Ameol\Helpfiles\Features.txt
+<br>
+
+<br>
+and will pull in the contents of Features.txt at this point in the message.
+<br>
+
+<br>
+What happens if the user specifies a subject that doesn't match? If the $INCLUDE$ fails then Ameol will look for a file called !ERROR!.TXT in the given directory. This file can be set up to contain the following:
+<br>
+
+<br>
+     Sorry, there is no help on this subject. A full list of valid
+<br>
+     subjects appear below:
+<br>
+     ...
+<br>
+
+<br>
+If !ERROR!.TXT is not found, then an error is embedded in the outgoing form.
+<br>
+
+<br>
+You can also return files via mail forms. The extra header field, Attachment, will attach a file in the mail message. If the recipient address is on CIX, the file is sent as binmail otherwise it is sent uuencoded/base64 depending on the option selected. 
+<br>
+
+<br>
+Here are two more examples. If you want to reject all e-mail from a particular person, create a rule to redirect all e-mail from that person 
+<br>
+to another folder and create the following mail form on that folder:
+<br>
+
+<br>
+   To: $FROM$
+<br>
+   Subject: Re: $SUBJECT$
+<br>
+   
+<br>
+   I'm bored with listening to you. Please go away!
+<br>
+
+<br>
+Or how about forwarding incoming e-mail to another address when you're on holiday?
+<br>
+
+<br>
+   To: ms_secretary@joe_bloggs.co.uk
+<br>
+   Subject: Fw: $SUBJECT$
+<br>
+   
+<br>
+   ---- Forwarded Message ----
+<br>
+   $TEXT$
+<br>
+
+<br>
+The $TEXT$ macro pulls in the contents of the message that matches. You also have $BODY$ that only pulls in the body and not the header.
+<br>
+
+<br>
+
+<br>
+<b>WARNING
+<br>
+</b>
+<br>
+Forms are a very powerful feature, but there are some problems of which 
+<br>
+you should be aware. 
+<br>
+
+<br>
+1. Say you set up a rule and form similar to the "reject all email" 
+<br>
+   example above. Now imagine that the person you are ignoring email
+<br>
+   from has set up a similar rule and form. The other person sends you
+<br>
+   a message, which triggers your rule, sending a form email message
+<br>
+   out. This then triggers their rule, sending you an email message,
+<br>
+   which triggers your rule. The result is a mail loop, the two systems
+<br>
+   spend all their time sending each other mail. If you do not detect
+<br>
+   and fix this problem rapidly you can expect your ISP to cut off your
+<br>
+   incoming email until you do fix it.
+<br>
+
+<br>
+2. Be very careful setting up rules and forms which match the subject
+<br>
+   field only. Say you set up a rule and form to match the subject line,
+<br>
+   where if the subject contains "prices" your price list is sent. If
+<br>
+   your form uses "Re: $SUBJECT$" then the CC of the outgoing mail
+<br>
+   message with your price list in it will also match the rule, so you
+<br>
+   will end up sending yourself mail for ever - another mail loop.
+<br>
+
+<br>
+3. You should not create forms using versions of AmEdit earlier than
+<br>
+   v1.04. If you are not able to use 1.04 or later you should use an
+<br>
+   alternate editor.
+<br>
+
+<br>
+
+<br>
+Summary
+<br>
+-------
+<br>
+
+<br>
+1. Forms must have the file extension .afm and must be saved in a Forms
+<br>
+   sub-directory off your main Ameol directory.
+<br>
+
+<br>
+2. The Forms folder is only read once per session, when Ameol is
+<br>
+   started up. If you add a Forms directory or some new forms to the
+<br>
+   Forms directory while Ameol is running you will need to quit and
+<br>
+   restart Ameol before the changes will be apparent.
+<br>
+
+<br>
+3. Valid lines in the header part of the form are:
+<br>
+
+<br>
+   To:
+<br>
+   CC:
+<br>
+   Reply-To:
+<br>
+   Subject:
+<br>
+   Attachment:
+<br>
+
+<br>
+4. The header and body sections of a mail form are separated by one or
+<br>
+   more blank lines.
+<br>
+
+<br>
+5. Valid macros in forms are:
+<br>
+
+<br>
+   $FROM$    - expands to the full email address of the person who sent
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               the mail. This is taken from the From: field, not the
+<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Reply-To: field.
+<br>
+
+<br>
+   $SUBJECT$ - expands to the subject of the incoming mail message
+<br>
+
+<br>
+   $TEXT$    - expands to the full text of the incoming message,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               including the header
+<br>
+
+<br>
+   $BODY$    - expands to the full text of the incoming message,
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               excluding the header
+<br>
+
+<br>
+   $INCLUDE$ - used with a path and filename, includes that file in
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               the outgoing message
+<br>
+
+<br>
+</span>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+REM BANLIST.SCR
+REM Retrieve the ban list for a conference
+status "Retrieving ban list"
+put "join %c('Choose forum...','2')"
+waitfor "?"
+put ""
+waitfor ":"
+put "go filebanlist"
+waitfor ":"
+put "download"
+download "%fs('Save Ban List to','0','*.txt\f')"
+put "q"
+waitfor "M:"
+status ""

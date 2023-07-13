@@ -1,0 +1,8 @@
+REM USERBAN.SCR
+REM Retrieve the ban list for a user
+status "Retrieving user's ban list"
+put "go filebanlist"
+waitfor ":"
+put "download"
+download "%fs('Save Ban List to','0','*.txt\f')"
+status ""

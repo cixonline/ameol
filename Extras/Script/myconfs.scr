@@ -1,0 +1,11 @@
+REM MYCONFS.SCR v1.00 My joined conferences listing
+REM Written by Steve Harris, steveha@cix
+REM For PGP and other stuff check out http://www.compulink.co.uk/~net-services/pgp/
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+put "killscratch"
+waitfor "M:"
+ put "file show"
+ waitfor "M:"
+ put "download"
+ download "%fs('Save My Forum/Topic Listing As','0','Forum/Topic Listing\fmyconfs.txt\f')"
+end

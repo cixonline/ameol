@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+   <title>Forum/Topic (Script Command)</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+</head>
+
+
+
+<body bgcolor="#FFFFFF">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#FFFF80">
+  <tr>
+    <td align="left">
+      
+<span style="font-family:Helvetica,Arial; font-size:12pt; color:#000000"><b><i>Forum/Topic (Script Command)</i></b><span style="font-family:Times New Roman; font-size:11pt; color:#000000"><b>
+<br>
+</b></span></span>
+    </td>
+    <td align="right">
+     <font face="Arial" size="2">
+     <a href="99mxmn.htm">Previous</a>&nbsp;
+     <a href="indgag_cs.htm">Top</a>&nbsp;
+     <a href="5wzlcd.htm">Next</a>
+     </font>
+    </td>
+  </tr>
+</table>
+<br>
+
+
+<span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+<span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000"><a href=3mvxmt.htm>Script Command</a><b> - String Prompt
+<br>
+
+<br>
+Forum/Topic </b>
+<br>
+
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>%c('dialog caption', 'value')</b>
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">Displays a forum list from which the user can select a forum and/or topic. The value field determines whether the list shows only forums or both forums and topics.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Meaning
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display both forums and topics.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Display forums only
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">If the user presses the Esc key, the entire script is aborted and is not added to the Out Basket. If the user presses the Enter key, the highlighted topic or forum replaces the string prompt.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">For example:
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Courier New; font-size:10pt; color:#000000">put&nbsp;'mod&nbsp;%c('Add&nbsp;Participant','2')'
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">This displays a forums list showing only forums and with the caption 'Add Participant'. If the user selected the ameol_reg forum from the pick-list. then the entire string is updated to,
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Courier New; font-size:10pt; color:#000000">put&nbsp;'mod&nbsp;ameol_reg'
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">This string is then output to the output script file which will subsequently be interpreted by Ameol when it comes to execute the entire script.</span><span style="font-family:Times New Roman; font-size:11pt; color:#000000">
+<br>
+</span></span>
+
+</body>
+</html>

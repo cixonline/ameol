@@ -1,0 +1,20 @@
+REM FILESTAT.SCR v1.13 "Cix FILESTATS command"
+REM Contributed by Martin Tod (mtod@cix) with improvements from joz@cix
+REM Updated by joz@cix 17/8/94
+REM Ameol script to get file download statistics.
+REM It stores the file in your Ameol download directory.
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Getting FileStats..."
+put "killscratch"
+waitfor "M:"
+put "join %c('Download FILESTATS from...','1')"
+if waitfor("R:","M:")==0
+ put "go olrfilestats"
+ waitfor "R:"
+ put "download"
+ download "%fs('Save FILESTATS As','0','FileStats\ffilestat.txt\f')"
+ put "quit"
+ waitfor "M:"
+endif
+status ""
+end

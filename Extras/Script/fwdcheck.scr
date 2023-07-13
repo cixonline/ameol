@@ -1,0 +1,5 @@
+REM script to run go forward_check
+REM pw@cix 4/6/97
+put "go forward_check"
+waitfor ":"
+end

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+   <channel>
+      <title>Ameol Version $(version)</title>
+      <link>http://ameol2beta.cixhosting.co.uk/ameol/beta/appcast.xml</link>
+      <description>Most recent changes with links to updates.</description>
+      <copyright>Copyright 2014-2021, CIX Ltd</copyright>
+      <language>en</language>      
+         <item>
+            <title>Version $(version)</title>
+			<description>
+				Ameol
+			</description>
+			<pubDate>$(date)</pubDate>
+			<sparkle:releaseNotesLink>
+				http://ameol2beta.cixhosting.co.uk/ameol/$(folder)/Changes.html
+			</sparkle:releaseNotesLink>
+			<enclosure url="http://ameol2beta.cixhosting.co.uk/ameol/$(folder)/a$(version).exe"
+               sparkle:version="$(version)"
+               type="application/octet-stream" />
+         </item>
+   </channel>
+</rss>

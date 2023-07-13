@@ -1,0 +1,5 @@
+rem Script to update PC clock from CIX
+rem spalmer@cix - 6/12/94
+gettime
+waitfor "M:"
+

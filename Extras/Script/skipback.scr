@@ -1,0 +1,13 @@
+REM SKIPBACK.SCR v1.0 by joz@cix 09 Jul 1994
+REM Based on an original script by hugo@cix
+REM Skip back a few messages in a topic.
+status "Running 'Skip Back'"
+put "join %c('Choose forum/topic for Skip Back','1')"
+if waitfor("R:","M:")==0
+put "skip back %s('Skip back','Number of messages to get')"
+put "q"
+waitfor "M:"
+endif
+status ""
+end
+

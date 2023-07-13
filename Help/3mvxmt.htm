@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+   <title>Script Language Command List</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Command List, Script Language,Creating Scripts,Script Commands,Script Language Command List">
+</head>
+
+
+
+<body bgcolor="#FFFFFF">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#FFFF80">
+  <tr>
+    <td align="left">
+      
+<span style="font-family:Helvetica,Arial; font-size:12pt; color:#000000"><b><i>Script Language Command List</i></b><span style="font-family:Times New Roman; font-size:11pt; color:#000000"><b>
+<br>
+</b></span></span>
+    </td>
+    <td align="right">
+     <font face="Arial" size="2">
+     <a href="indcl5idy.htm">Previous</a>&nbsp;
+     <a href="indgag_cs.htm">Top</a>&nbsp;
+     <a href="ind2xq2to.htm">Next</a>
+     </font>
+    </td>
+  </tr>
+</table>
+<br>
+
+
+<span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+It is possible to write scripts that can be run with Ameol that will automatically perform tasks using CIX Forums.
+<br>
+Examples of such scripts can be found in the Script directory of your Ameol installation. You can add a script to the out basket by using the Scripts command in the File Menu.
+<br>
+
+<br>
+This section is not intended to be a complete guide on how to write scripts, rather it is a listing of the commands and functions available. For more information about writing scripts, study the supplied examples, and ask in the ameol_reg forum on CIX Forums.
+<br>
+
+<br>
+The following is a list of script commands.
+<br>
+
+<br>
+<a href=ind2xq2to.htm>break</a><b>
+<br>
+</b><b><a href=indgg_u6i.htm>clear</a></b><b>
+<br>
+</b><b><a href=99mxmn.htm>closelog</a></b><b>
+<br>
+</b><b><a href=5wzlcd.htm>continue</a></b><b>
+<br>
+</b><b><a href=0fyamx.htm>copy 'filename'</a></b><b>
+<br>
+</b><b><a href=1bwb23.htm>delete 'filename'</a></b><b>
+<br>
+</b><b><a href=keylcwxg8.htm>download 'filename'</a></b><b>
+<br>
+</b><b><a href=idh5ncauz.htm>end</a></b><b>
+<br>
+</b><b><a href=glu5gn.htm>endif</a></b><b>
+<br>
+</b><b><a href=congrdkw9.htm>endwhile</a></b>
+<br>
+<a href=con7anzdy.htm>gettime</a><b>
+<br>
+</b><b><a href=idh_md7hc.htm>hangup</a></b><b>
+<br>
+</b><b><a href=lzmp4j.htm>holdlog</a></b><b>
+<br>
+</b><b><a href=ind_usqg5.htm>if expression</a></b><b>
+<br>
+</b><b><a href=idh4o5dnr.htm>import</a></b><b>
+<br>
+</b><b><a href=ind7sw0eo.htm>include 'filename'</a></b><b>
+<br>
+</b><b><a href=_gqkvl.htm>lasterror</a></b><b>
+<br>
+</b><b><a href=_z4kp7.htm>log</a></b><b>
+<br>
+</b><b><a href=_mxndf.htm>name</a></b><b>
+<br>
+</b><b><a href=ind7uonpc.htm>openlog 'filename'</a></b><b>
+<br>
+</b><b><a href=9co6u_.htm>overwrite</a></b><b>
+<br>
+</b><b><a href=2hauad.htm>password</a></b><b>
+<br>
+</b><b><a href=2izi.htm>pause time</a></b><b>
+<br>
+</b><b><a href=indc9klep.htm>put 'text'</a></b>
+<br>
+<a href=j49el_.htm>put name</a><b>
+<br>
+</b><b><a href=id_5ucnjd.htm>put password</a></b><b>
+<br>
+</b><b><a href=idhi485mi.htm>putnocr 'text'</a></b><b>
+<br>
+</b><b><a href=coni498xs.htm>record</a></b><b>
+<br>
+</b><b><a href=idh09cwie.htm>recover</a></b><b>
+<br>
+</b><b><a href=8jo1p6.htm>rem</a></b>
+<br>
+<a href=_xcf5u.htm>rename</a><b>
+<br>
+</b><b><a href=ind__ymz_.htm>resumelog</a></b><b>
+<br>
+</b><b><a href=6c37r.htm>set variable=expression</a></b><b>
+<br>
+</b><b><a href=5yj66h.htm>status</a></b><b>
+<br>
+</b><b><a href=indj1bkfp.htm>success</a></b><b>
+<br>
+</b><b><a href=con0sf9pq.htm>timeout</a></b><b>
+<br>
+</b><b><a href=2d3kx9.htm>upload 'filename'</a></b><b>
+<br>
+</b><b><a href=fcsn5_.htm>waitfor 'text'</a></b><b>
+<br>
+</b><b><a href=concedn7t.htm>while expression</a></b><b>
+<br>
+</b>
+<br>
+<b>String Prompts</b>
+<br>
+If you embed certain characters in strings, you can make Ameol display an Input or File Open dialog to prompt the user for the information to be inserted at that point in the string. For example, the following line:
+<br>
+put 'mod %c('Add Participant','2')'
+<br>
+displays a list of forums in a dialog box with the caption 'Add Participant'. The value 2 indicates that only forums are displayed, not topics.
+<br>
+
+<br>
+The following list shows string prompts supported by Ameol.
+<br>
+<a href=38jlg2.htm>Forum/Topic Picker</a><b>
+<br>
+</b><b><a href=ind5za_g9.htm>File Open Browser</a></b><b>
+<br>
+</b><b><a href=ind079lep.htm>File Save Browser</a></b><b>
+<br>
+</b><b><a href=indkseev5.htm>Input Dialog</a></b><span style="font-family:Times New Roman; font-size:11pt; color:#000000"><b>
+<br>
+</b></span></span>
+
+</body>
+</html>

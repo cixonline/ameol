@@ -1,0 +1,177 @@
+%START Folder=Tutorials Topic=Rules
+Introduction to Rules
+
+Ameol provides a powerful rules engine that allows you to
+mark or move messages as they are being imported.
+
+For example, you can set up a rule so that all mail messages from
+a certain person is moved to another mailbox. You could set up a
+rule so that messages from another person are automatically
+deleted.
+
+Rules work on topics, folders or even the entire database.
+%END
+%START
+Redirecting Incoming Mail From a User
+
+Ameol provides a quick way to create a rule that directs mail
+from a certain person to another folder.
+
+1. Locate an e-mail from that person.
+2. Choose the Sort Mail From command from the Mail menu, or press 'Q'.
+3. You can either sort the mail into an existing mailbox or create a
+   new mailbox and sort the mail into that. Choose the appropriate
+   option.
+4. Disable the 'Move other messages from this user to the specified
+   folder' checkbox if you only want to move this one mail message. If
+   this option is left checked, Ameol will scan back through the whole
+   mail mailbox looking for other e-mail from the user and move them to
+   the new mailbox.
+5. Click OK to move the e-mail.
+
+Once you have completed this command, all subsequent e-mail from this
+user will be redirected to the new mailbox. To have a look at the rule
+that was created, choose Rules from the Settings menu and click the
+Edit button in the Rule Manager dialog.
+%END
+%START
+Redirecting Incoming Mail
+
+If you have your own domain name you can set up many different aliases for 
+your domain. For example, if your domain name is:
+
+      example.co.uk
+
+you can set up email aliases such as:
+
+      personal@example.co.uk
+      fromjane@example.co.uk
+      postmaster@example.co.uk
+
+By default, mail collected from your POP3 mailbox for any of the above 
+e-mail addresses will go into the Messages mailbox. To redirect them to 
+individual mailboxes based on the alias, follow the steps below:
+
+1. Locate an e-mail to the alias you want to redirect.
+2. Choose the Sort Mail To command from the Mail menu.
+3. You can either sort the mail into an existing mailbox or create a
+   new mailbox and sort the mail into that. Choose the appropriate
+   option.
+4. Disable the 'Move other messages from this user to the specified
+   folder' checkbox if you only want to move this one mail message. If
+   this option is left checked, Ameol will scan back through the whole
+   mail mailbox looking for other e-mail to that account and move them to
+   the new mailbox.
+5. Click OK to move the e-mail.
+
+Once you have completed this command, all subsequent e-mail to this
+alias will be redirected to the new mailbox. To have a look at the rule
+that was created, choose Rules from the Settings menu and click the
+Edit button in the Rule Manager dialog.
+%END
+%START
+Using Rules To Delete Messages From A User
+
+If you want to delete messages from a particular user in a particular
+forum:
+
+1. Choose Rules from the Settings menu.
+2. Select the forum from the list of folders in the Rules Manager
+   dialog.
+3. Click the New button.
+4. In the Edit Rule dialog, enter the CIX Forums nickname of the
+   person in the From field.
+5. Uncheck the 'Mark message for priority attention' box and check the
+   'Delete the message' box.
+6. Click OK to save the new rule.
+7. Click OK to close the Rules Manager dialog.
+
+Now when Ameol adds new messages to that forum, it will check to
+see if the author is the person quoted in the rule and, if so, delete
+the message. The message will not even be saved in your messagebase.
+%END
+%START
+Creating New Rules Manually
+
+When you choose the Rules command from the Settings menu and click the New
+button to create a new rule, Ameol provides a great deal of flexibility in
+specifying the matching strings. The matching strings are what Ameol looks
+for in every new message checked against the rules you've set up.
+
+The following messages give some background about how to specify rules in
+the Edit Rule dialog box.
+%END
+%START
+Rules Use the AND Logic
+
+There are inputs for four fields in the match portion of Edit Rule dialog. 
+If you enter a matching string into more than one of the fields, then 
+Ameol expects a message to match ALL the fields before the rule is 
+considered successful.
+
+Thus if you set up a rule as follows:
+
+         From:    test@example.co.uk
+         Subject: Ameol
+
+Then it will only match if the message is from test@example.co.uk AND the 
+word Ameol appears in the Subject field.
+%END
+%START
+Rules Are Not Case Sensitive
+
+It is important to realise that Ameol disregards case when matching a rule.
+So a rule set up to match Junk in the Subject field will match all of the
+following:
+
+     This is a junk message
+     Warning! Junk E-Mail!
+     This is the JUNK MAILER list
+
+Also, Ameol does not restrict matching complete words. So if the matching
+string appears inside a word, it will match. The following subject fields
+will all match a rule that looks for the string '4020' in the Subject.
+
+          HP i4020 printer problems
+          Re: GPF in address 80040206A
+%END
+%START
+How To Specify A Rule To or From A Person
+
+For the From and To field, you can specify either a username or a
+fully-qualified e-mail address. A username is the name to the LEFT of any 
+'@' symbol in an e-mail address. The qualified address is a persons FULL 
+e-mail address including their domain.
+
+               Username: test
+      Qualified Address: test@example.co.uk
+
+If you specify a username only, then mail to that username from ANY domain 
+will match. Given the above example, mail from or to any of the following 
+will match a username of test:
+
+               test@example.co.uk
+               test@cix.co.uk
+               test@another.domain.co.uk
+               test@msn.com
+
+The following will NOT match:
+
+               test_again@cix.co.uk
+               my_test@msn.com
+
+If you specify a fully qualified address, then only mail from or to that 
+address will match. In the examples given above, only mail from or to 
+test@example.co.uk will match.
+
+To match ANY user within a particular domain, specify the domain:
+
+               @example.co.uk
+
+If you specify this in the From or To field, then e-mail to or from any of 
+the following will match the rule:
+
+               test@example.co.uk
+               hurray@example.co.uk
+               i_am_a_duck@example.co.uk
+%END

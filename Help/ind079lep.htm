@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+   <title>File Save (Script Command)</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+</head>
+
+
+
+<body bgcolor="#FFFFFF">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#FFFF80">
+  <tr>
+    <td align="left">
+      
+<span style="font-family:Helvetica,Arial; font-size:12pt; color:#000000"><b><i>File Save (Script Command)</i></b><span style="font-family:Times New Roman; font-size:11pt; color:#000000"><b>
+<br>
+</b></span></span>
+    </td>
+    <td align="right">
+     <font face="Arial" size="2">
+     <a href="ind5za_g9.htm">Previous</a>&nbsp;
+     <a href="indgag_cs.htm">Top</a>&nbsp;
+     <a href="con7anzdy.htm">Next</a>
+     </font>
+    </td>
+  </tr>
+</table>
+<br>
+
+
+<span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+<span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000"><a href=3mvxmt.htm>Script Command</a><b> - String Prompt
+<br>
+
+<br>
+File Save Browser</b>
+<br>
+
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>%fs('dialog caption', 'type', 'filter')</b>
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">Displays a File Save dialog with the specified caption. The type field determines whether the dialog shows any special options. This field should be set to zero.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">The filter field specifies a list of wildcards and descriptions which are used to constrain the files shown in the dialog. The format of a filter is:
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Courier New; font-size:10pt; color:#000000">'description\fwildcard'
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">where description is a short description of the filter such as 'Zip files (*.ZIP)', and wildcard is the wildcard used to filter out only those files matching the description. The description and wildcard are separated by the \f sequence.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">If the user presses the Esc key, the entire script is aborted and is not added to the out-basket. If the user selects a filename and clicks OK, the selected filename replaces the string prompt.
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">For example, the following puts up a File Save dialog showing only .TXT files:
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Courier New; font-size:10pt; color:#000000">put&nbsp;"upload&nbsp;%fs('Save&nbsp;As','0',&nbsp;'Documents\f*.TXT')"</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">If the user subsequently selects MYREPORT.TXT from the File Save dialog, the entire string becomes:
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Courier New; font-size:10pt; color:#000000">put&nbsp;"upload&nbsp;MYREPORT.TXT"</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">
+<br>
+</span><span style="font-family:Helv; font-size:2pt; color:#000000"> 
+<br>
+</span><span style="font-family:Helvetica,Arial; font-size:10pt; color:#000000">If the file is not in the current directory, the full pathname appears in the string.</span><span style="font-family:Times New Roman; font-size:11pt; color:#000000">
+<br>
+</span></span>
+
+</body>
+</html>

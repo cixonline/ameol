@@ -1,0 +1,21 @@
+REM NGSHOW.SCR v2.0 
+REM "Show Joined Groups in Newsnet" 
+REM Ameol script to capture all the newsnet groups you are joined to.
+status "Running Newsnet Show Groups..."
+put "go newsnet"
+waitfor "Newsnet:"
+put "killscratch"
+waitfor "Newsnet:"
+put "echo !*_NewsgroupListStart_"
+waitfor "Newsnet:"
+put "file newsgroups"
+waitfor "Newsnet:"
+put "echo !*_NewsgroupListEnd_"
+waitfor "Newsnet:"
+put "download messages"
+download "scratch\newsgrps.dat"
+import "scratch\newsgrps.dat"
+put "quit"
+waitfor "M:"
+status ""
+end

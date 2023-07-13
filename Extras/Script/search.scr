@@ -1,0 +1,10 @@
+REM SEARCH.SCR V1.0 by joz@cix 25 Jun 1994
+REM Text Search on CIX
+put "killscratch"
+put "join %c('Choose forum/topic to search...','1')"
+put "file search %s('Search','Enter search string') from %s('Search','Enter first message number') to %s('Search','Enter last message number')"
+waitfor ":"
+put "download"
+download "%fs('Search destination filename','0','Search\fsearch.txt\f')"
+put "q"
+waitfor "M:"

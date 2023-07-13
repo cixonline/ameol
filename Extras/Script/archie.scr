@@ -1,0 +1,30 @@
+REM ARCHIE.SCR v1.12.2 "Execute ip> archie"
+REM Contributed by mentha@cix
+REM Ameol script to Archie a site or for a file.
+REM This version downloads archie.lis file as archie.wri
+REM +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+status "Archie..."
+put "run internet"
+waitfor "ip>"
+put "archie %s('Archie','Enter search text:') %s('Archie','Enter site to search:\n(Optional - enter a [space] to ignore)')"
+waitfor "ip>"
+put "dir archie.lis"
+if waitfor("ip> ","              ^M^J ")==0
+ status "Archie failed."
+ put "quit"
+ waitfor "M:"
+ status ""
+ end
+endif
+REM Archie successful...
+waitfor "ip>"
+status "Receiving Archie list from Cix..."
+put "send archie.lis"
+download "archie.wri"
+status "archie.wri received to \download"
+put "erase archie.lis"
+waitfor "ip>"
+put "quit"
+waitfor "M:"
+status ""
+end

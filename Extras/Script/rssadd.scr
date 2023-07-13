@@ -1,0 +1,13 @@
+REM "Create an RSS feed for CIX" 
+REM Contributed by alanheyes@cix
+put "go rssadd"
+waitfor "RSS feed to:"
+put "%c('Conference to add RSS feed to:','2')"
+waitfor "URL of RSS feed:"
+put "%s('URL of RSS feed:')"
+waitfor "Description of RSS feed:"
+put "%s('Description of RSS feed:')"
+waitfor "feed (e.g. 09:00:00):"
+put "%s('Time of day to trigger RSS feed:','e.g. 09:00:00')"
+waitfor "M:"
+end

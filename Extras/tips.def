@@ -1,0 +1,40 @@
+You shouldn't reply to spam - it only encourages the spammer. Send the spam, including full header, to spamtrap@cix.co.uk instead.
+You can Comment to messages by pressing C or by selecting Comment from the Message menu.
+You can quote the previous message in your replies. Either press 'Control + q' or right click in the message window and select 'Quote Message'.
+You can right click on a folder to set the purge options for individual topics and forums.
+You can set up individual signatures for each forum or topic by right clicking on the forum folder from the In Basket and selecting 'Properties|Signatures'.
+You can protect your email data by backing up the Data and Users directories in your Ameol2 directory.
+You can change the icons on your toolbar by selecting Settings|Toolbar|Customise and dragging icons to and from the dialog box to the tool bar.
+You can automatically run a check on your messagebase and purge old messages by setting them as options in the scheduler. See Settings|Scheduler.
+Many features and commands are fully documented in the help file. This can be accessed by clicking the question mark icon on the toolbar.
+You can decode MIME and UUencoded attachments by simply pressing U on the keyboard. These files are stored in your Ameol2\Attach directory.
+There are many single keypress shortcut commands available in Ameol2. You can customise these from Settings|Customise|Keyboard, where you will find a full list of available options.
+You can send and collect all your email via your Internet POP3 mailbox by running the script "Set mail forwarding to IP mailbox", this offers a number of significant advantages.  The script can be found in File|Scripts and is simply added to your out basket. A full blink will then collect all your email from the POP3 mailbox in the normal way.
+You can add bold, italics and underlines to words in your email by using the correct codes.  A full list is in the Help file - search for "message styles".
+You can copy a hot link to an existing message by right-clicking on the message and choosing Copy link, then pasting it into a message.
+You can scroll down messages line by line, by holding down Control and pressing the down arrow button.
+You can move through the topics by holding down Control and pressing either the Left or Right Arrow keys. Left takes you up the Inbasket, and Right takes you down the Inbasket.
+You can mark all unread messages in a thread as 'Read' by pressing the 'Z' key.
+Right clicking on almost everything in Ameol2 brings up options.
+If you run into any trouble using Ameol2, try the context sensitive help. Just press the Help button or press F1 for the main Help screen.
+You can create more than one user in Ameol2. Select 'Users' from the 'Settings' menu to find out more.
+If you receive an email message that looks like it is full of garbage then you have been sent a file that's been encoded. To decode the message, simply press 'U' or go to 'Message|Decode Binary Attachment' so that Ameol2 will attempt to decode the message. Ameol2 will save the file to \ameol2\attach and create a clickable icon in the email message.
+To sort mail from a particular user, click on a message from that user, go to the 'Mail' menu, and click 'Sort Mail From'.
+You can edit any message before it is sent - select 'Out Basket' from the 'View' menu, select the message you wish to change and click the 'Edit' button.
+To create a new mail message, select 'New Message' from the 'Mail' menu.
+A list of CIX forums can be viewed by selecting 'Show All Forums' from the 'CIX Forums' menu. If the list is empty it can be updated by clicking the 'Update' button. You can also search the list by entering your search text in the 'Show all forums that contain:' box.
+You can search messages using the 'Search' command on the 'File' menu.
+If you receive a message with very long lines you can make the long lines wrap by selecting 'Word Wrap' from the 'View' menu.
+Ameol2 will highlight URLs (such as web site addresses) and if you have a web browser installed, clicking on the URL will open your web browser and go to that URL. You can choose which web browser is used by Ameol2 from the 'Browser' tab displayed when you select 'Preferences' from the 'Settings' menu.
+You can change the colour of many parts of Ameol2. Right click the item you wish to change and select the 'Colour' menu item. Colours can also be changed by selecting the 'Colours' tab which is displayed when you choose 'Customise' from the 'Settings' menu.
+You can change the font used by many parts of Ameol2. Right click the item you wish to change and select the 'Font' menu item. Fonts can also be changed by selecting the 'Fonts' tab which is displayed when you choose 'Customise' from the 'Settings' menu.
+You can bookmark a message to make it easier to find later. Select 'Bookmark' from the 'Message' menu or press the M key when viewing a message you wish to bookmark. You can then go back to bookmarked messages by pressing F9. To remove a bookmark select 'Remove Bookmark" from the message menu while viewing a bookmarked message. There is no limit to the number of bookmarks you can add.
+You can change the picture used for blink toolbar buttons. To do this right click on a blink button and choose the Button menu option.
+CIX Forum users can choose to give you some information about themselves. This information is called a resumé and can be viewed by selecting 'Show Resume' from the 'Message' menu. If you do not have the resumé for that user you will be prompted to download it. You can edit your own resumé by selecting 'Edit My Resumé' from the 'CIX Forums' menu.
+You can set a default signature for all folders. Select 'Signatures' from the 'Settings' menu and create a signature called GLOBAL. It is considered polite to keep your signature as short as possible - extra information can be kept in your resumé (select 'Edit My Resumé' from the 'CIX Forums' menu to do this).
+You can move a message to another topic by selecting 'Move' from the 'Message' menu.
+You can copy a message to another topic by selecting 'Copy' from the 'Message' menu.
+You can search for files on CIX by selecting 'Find in File Lists' from the 'File' menu.
+You can use Ameol2 to connect to multiple news servers. To do this select 'Usenet' from the 'Settings' menu, choose the 'Servers' tab and click 'New'. Fill in the details for the new news server and click 'OK'. You can then get the list of newsgroups for that server by selecting 'Show All Newsgroups' from the 'News' menu.
+Messages can be sorted in different ways. The default method is 'Reference', which displays messages in threads. To change the sorting order for a topic select 'Sorted By' from the 'View' menu and choose the sort method. The new sort method will apply to the current topic only. To make a new sort method apply to all folders hold down the Control key before selecting 'Sorted By'.
+There are a number of command line switches which affect the operation of Ameol2. For a list of these switches search the Help file for 'command line switches'.

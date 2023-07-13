@@ -1,0 +1,14 @@
+REM GETRANGE.SCR v1.0 by joz@cix 25 Jun 1994
+REM "Get a range of messages from CIX" 
+REM Ameol script to place a range of messages on CIX into the scratchpad
+status "Filing a Range of messages"
+put "join %c('Choose forum/topic to search...','1')"
+put "file %s('GetRange','Enter starting number') to %s('GetRange','Enter ending number')"
+waitfor ":"
+put "download"
+download "scratch\mrange.txt", overwrite
+import "scratch\mrange.txt"
+put "q"
+waitfor "M:"
+status ""
+
