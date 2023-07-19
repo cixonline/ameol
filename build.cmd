@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-if "%_AM2DEVROOT%" == "" goto NoRoot
+set _AM2DEVROOT=%CD%
 
 set _CONFIG="Debug"
 set _OPTION=build
