@@ -40,10 +40,10 @@ xcopy /dyqi %_AM2DEVROOT%\Build\Amob32.dll %_AM2DEVROOT%\setup\source\
 xcopy /dyqi %_AM2DEVROOT%\Build\Amuser32.dll %_AM2DEVROOT%\setup\source\
 xcopy /dyqi %_AM2DEVROOT%\Build\Zmodem32.afp %_AM2DEVROOT%\setup\source\
 xcopy /dyqi %_AM2DEVROOT%\Ameol232\ameol232.exe.manifest %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\External\RegExp.dll %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\External\RegExp9x.dll %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\RegExp.dll %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\RegExp9x.dll %_AM2DEVROOT%\setup\source\
 xcopy /dyqi %_AM2DEVROOT%\Build\SciLexer.dll %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\External\winsparkle.dll %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\winsparkle.dll %_AM2DEVROOT%\setup\source\
 
 copy /y     %_AM2DEVROOT%\Extras\decoder.dll %_AM2DEVROOT%\setup\source\addons\decoder.adn
 
@@ -66,15 +66,15 @@ xcopy /dyqi %_AM2DEVROOT%\Tutorial\tutorial.scr %_AM2DEVROOT%\setup\source\
 
 xcopy /dyqi %_AM2DEVROOT%\Extras\Script\*.* %_AM2DEVROOT%\setup\source\Script\
 
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\beta_report.ini %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\report.ini %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\cix.dat %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\nwzmod32.afp %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\acronyms.lst %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\msvcrt.dll %_AM2DEVROOT%\setup\source\
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\zmcfg32.adn %_AM2DEVROOT%\setup\source\addons\
+xcopy /dyqi %_AM2DEVROOT%\Extras\beta_report.ini %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\report.ini %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\cix.dat %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\nwzmod32.afp %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\acronyms.lst %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\msvcrt.dll %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\zmcfg32.adn %_AM2DEVROOT%\setup\source\addons\
 
-xcopy /dyqi %_AM2DEVROOT%\setup\extra\ameol2.ini %_AM2DEVROOT%\setup\source\
+xcopy /dyqi %_AM2DEVROOT%\Extras\ameol2.ini %_AM2DEVROOT%\setup\source\
 xcopy /dyqi %_AM2DEVROOT%\setup\changes.html %_AM2DEVROOT%\setup\source\
 
 if "%_AM2SIGNPWD%" == "" goto SkipSign1
@@ -97,7 +97,7 @@ echo Signing installers...
 :SkipSign2
 
 echo Fixing ameol2.ini
-copy /y %_AM2DEVROOT%\setup\extra\ameol2.ini %_AM2DEVROOT%\setup\source\ameol2.ini
+copy /y %_AM2DEVROOT%\Extras\ameol2.ini %_AM2DEVROOT%\setup\source\ameol2.ini
 echo Version=%_VERSTRING% >>%_AM2DEVROOT%\setup\source\ameol2.ini
 
 echo Building Lite distribution...

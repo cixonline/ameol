@@ -22,7 +22,14 @@ goto NextArg
 
 :DoBuild
 set "%VSCMD_VER%" == "" goto MissingVS
+pushd %_AM2DEVROOT%\tutorial
+call build.cmd %*
+cd %_AM2DEVROOT%\Help
+call build.cmd %*
+cd %_AM2DEVROOT%
 msbuild ameol.sln /t:%_OPTION% /p:Configuration=%_CONFIG%
+cd %_AM2DEVROOT%\setup
+call build.cmd %*
 goto Exit
 
 :MissingVS
