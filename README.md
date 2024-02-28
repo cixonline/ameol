@@ -48,8 +48,8 @@ The resulting installer is NOT code signed by default. If you have access
 to the code signing certificate then set two environment variables before
 running the build:
 
-set _PFXPATH=<path to the code signing PFX file>
-set _AM2SIGNPWD=<the PFX password>
+    set _PFXPATH=<path to the code signing PFX file>
+    set _AM2SIGNPWD=<the PFX password>
 
 If the above are not set the the build skips code signing. You can run the
 resulting packages without code signing but you'll need to bypass Windows
